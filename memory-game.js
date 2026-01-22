@@ -61,6 +61,27 @@ const gameData = [
         yAxisLabel: "L",
         highlightIndices: [2, 10],
         timeLabels: ["0h", "5h", "7h", "8h", "9h", "10h", "12h", "13h", "14h", "16h", "19h", "20h", "21h", "22h", "23h", "24h"]
+    },
+    {
+        id: 7,
+        storyTitle: "CO2-Konzentration",
+        storyText: "Die CO2-Konzentration steigt langsam an, wenn sich jemand im geschlossenen Raum aufhält, und fällt rapide ab, sobald das Fenster geöffnet wird.",
+        graphType: "area",
+        graphTitle: "CO2-Konzentration",
+        graphData: [400, 450, 520, 600, 720, 850, 980, 1100, 1180, 550, 420, 410, 400],
+        yAxisLabel: "ppm",
+        timeLabels: ["8h", "9h", "10h", "11h", "12h", "13h", "14h", "15h", "16h", "16.5h", "17h", "18h", "19h"]
+    },
+    {
+        id: 8,
+        storyTitle: "Türaktivität",
+        storyText: "Jede Türöffnung wird registriert und zeigt an, wann jemand das Haus betritt oder verlässt.",
+        graphType: "bar",
+        graphTitle: "Türöffnungen",
+        graphData: [0, 0, 8, 6, 0, 1, 0, 2, 9, 7, 1, 0, 0, 3, 0, 0],
+        yAxisLabel: "",
+        highlightIndices: [2, 8],
+        timeLabels: ["0h", "3h", "7h", "8h", "10h", "12h", "14h", "16h", "18h", "19h", "20h", "21h", "22h", "23h", "23.5h", "24h"]
     }
 ];
 
@@ -233,7 +254,7 @@ function showZoomModal(data) {
     zoomGraphContainer.innerHTML = '';
     
     const img = document.createElement('img');
-    img.src = generateGraph(data, true); // Show title in zoomed view
+    img.src = generateGraph(data, false); // Keep title hidden in zoomed view
     img.alt = data.graphTitle || 'Datenvisualisierung';
     zoomGraphContainer.appendChild(img);
     
@@ -292,11 +313,14 @@ function createCards() {
     dataBoard.innerHTML = '';
     cards = [];
     
+    // Randomly select 6 scenarios from all available scenarios
+    const selectedScenarios = shuffleArray([...gameData]).slice(0, 6);
+    
     const storyCards = [];
     const graphCards = [];
     
     // Create pairs of cards (graph + story)
-    gameData.forEach((item, index) => {
+    selectedScenarios.forEach((item, index) => {
         // Graph card
         graphCards.push({
             id: `graph-${index}`,
