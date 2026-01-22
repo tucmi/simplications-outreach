@@ -4,7 +4,7 @@ Ein interaktives Memory-Spiel, bei dem Spieler Datenvisualisierungen mit den pas
 
 ## Projektstruktur
 
-```
+```log
 simplications-outreach/
 ├── index.html       # Haupt-HTML-Datei
 ├── styles.css       # Styling (mit Simplications Farben)
@@ -35,7 +35,7 @@ const gameData = [
 ];
 ```
 
-### Beispiel:
+### Beispiel
 
 ```javascript
 const gameData = [
@@ -57,6 +57,7 @@ const gameData = [
 ## Graphen erstellen
 
 Für die Graphen können verwendet werden:
+
 - PNG/JPG Bilder
 - SVG-Dateien
 - Screenshot von Datenvisualisierungen
@@ -67,6 +68,7 @@ Empfohlene Bildgröße: 400x300px oder höher
 ## Farben
 
 Das Design verwendet die offiziellen Simplications-Farben:
+
 - Primärfarbe: `#BF4254`
 - Dunkel: `#2C2E35`
 - Grau: `#84888E`
@@ -81,6 +83,7 @@ Das Spiel passt sich automatisch an die Anzahl der Einträge im `gameData` Array
 ### Spielaufbau
 
 Das Spielfeld ist in zwei Bereiche unterteilt:
+
 - **Geschichten** (linke Seite) - Story-Karten
 - **Daten** (rechte Seite) - Graph-Karten
 
@@ -89,6 +92,7 @@ Dies verhindert, dass Spieler versehentlich zwei Karten des gleichen Typs auswä
 ### Responsive Design
 
 Das Spiel ist vollständig responsiv und funktioniert auf:
+
 - Desktop (2 Spalten pro Bereich)
 - Tablet (1-2 Spalten pro Bereich)
 - Smartphone (gestapelte Bereiche)
