@@ -220,11 +220,11 @@ body {
 /* Game Board */
 .game-board {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
     .game-board {
         grid-template-columns: repeat(2, 1fr);
     }
