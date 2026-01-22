@@ -136,6 +136,55 @@ body {
     background-color: var(--color-dark);
 }
 
+/* Floating Action Button */
+.fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 56px;
+    height: 56px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+    z-index: 100;
+}
+
+.fab:hover {
+    background-color: var(--color-dark);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.fab:active {
+    transform: scale(1.05);
+}
+
+.fab svg {
+    width: 28px;
+    height: 28px;
+}
+
+@media (max-width: 768px) {
+    .fab {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 48px;
+        height: 48px;
+    }
+    
+    .fab svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
 /* Game Boards Container */
 .game-boards-container {
     display: grid;

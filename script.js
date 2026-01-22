@@ -32,17 +32,15 @@ let flippedCards = [];
 let matchedPairs = 0;
 let attempts = 0;
 let gameStarted = false;
-let timerInterval = null;
-let startTime = 0;
 
 // DOM Elements
 const storyBoard = document.getElementById('storyBoard');
 const dataBoard = document.getElementById('dataBoard');
 const newGameButton = document.getElementById('newGameButton');
+const fullscreenButton = document.getElementById('fullscreenButton');
 const restartButton = document.getElementById('restartButton');
 const attemptsDisplay = document.getElementById('attempts');
 const matchesDisplay = document.getElementById('matches');
-const timerDisplay = document.getElementById('timer');
 const gameMessage = document.getElementById('gameMessage');
 const messageTitle = document.getElementById('messageTitle');
 const messageText = document.getElementById('messageText');
@@ -50,6 +48,7 @@ const messageText = document.getElementById('messageText');
 // Initialize the game
 function init() {
     newGameButton.addEventListener('click', startNewGame);
+    fullscreenButton.addEventListener('click', toggleFullscreen);
     restartButton.addEventListener('click', startNewGame);
     // Auto-start the game
     startNewGame();
@@ -62,17 +61,14 @@ function startNewGame() {
         return;
     }
 
-    stopTimer();
     gameMessage.classList.add('hidden');
     gameStarted = true;
     matchedPairs = 0;
     attempts = 0;
     flippedCards = [];
-    timerDisplay.textContent = '0:00';
     
     updateStats();
     createCards();
-    startTimer();
 }
 
 // Create and shuffle cards
@@ -243,26 +239,6 @@ function checkForMatch() {
     flippedCards = [];
 }
 
-// Timer functions
-function startTimer() {
-    startTime = Date.now();
-    timerInterval = setInterval(updateTimer, 1000);
-}
-
-function updateTimer() {
-    const elapsed = Math.floor((Date.now() - startTime) / 1000);
-    const minutes = Math.floor(elapsed / 60);
-    const seconds = elapsed % 60;
-    timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-}
-
-function stopTimer() {
-    if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-    }
-}
-
 // Update statistics display
 function updateStats() {
     attemptsDisplay.textContent = attempts;
@@ -272,11 +248,9 @@ function updateStats() {
 // End the game
 function endGame() {
     gameStarted = false;
-    stopTimer();
     
-    const finalTime = timerDisplay.textContent;
     messageTitle.textContent = 'Glückwunsch!';
-    messageText.textContent = `Du hast alle Paare in ${attempts} Versuchen und ${finalTime} Minuten gefunden!`;
+    messageText.textContent = `Du hast alle Paare in ${attempts} Versuchen gefunden!`;
     gameMessage.classList.remove('hidden');
 }
 
@@ -286,6 +260,36 @@ function showMessage(title, text) {
     messageText.textContent = text;
     gameMessage.classList.remove('hidden');
 }
+
+// Toggle fullscreen mode
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        // Enter fullscreen
+        document.documentElement.requestFullscreen().then(() => {
+            fullscreenButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>';
+            fullscreenButton.title = 'Vollbild beenden';
+            fullscreenButton.setAttribute('aria-label', 'Vollbild beenden');
+        }).catch(err => {
+            console.error(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+    } else {
+        // Exit fullscreen
+        document.exitFullscreen().then(() => {
+            fullscreenButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+            fullscreenButton.title = 'Vollbild';
+            fullscreenButton.setAttribute('aria-label', 'Vollbild');
+        });
+    }
+}
+
+// Update fullscreen button icon when fullscreen changes
+document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+        fullscreenButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+        fullscreenButton.title = 'Vollbild';
+        fullscreenButton.setAttribute('aria-label', 'Vollbild');
+    }
+});
 
 // Utility: Shuffle array (Fisher-Yates algorithm)
 function shuffleArray(array) {
