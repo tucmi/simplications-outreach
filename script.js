@@ -216,7 +216,7 @@ function handleCardClick(cardElement, card) {
     if (flippedCards.length === 2) {
         attempts++;
         updateStats();
-        setTimeout(checkForMatch, 800);
+        setTimeout(checkForMatch, 1500);
     }
 }
 
@@ -245,7 +245,7 @@ function checkForMatch() {
         setTimeout(() => {
             first.element.classList.remove('flipped', 'shake');
             second.element.classList.remove('flipped', 'shake');
-        }, 600);
+        }, 1200);
     }
     
     flippedCards = [];
