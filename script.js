@@ -216,7 +216,7 @@ function handleCardClick(cardElement, card) {
     if (flippedCards.length === 2) {
         attempts++;
         updateStats();
-        setTimeout(checkForMatch, 1500);
+        setTimeout(checkForMatch, 1000);
     }
 }
 
@@ -228,27 +228,37 @@ function checkForMatch() {
     if (first.card.pairId === second.card.pairId && 
         first.card.type !== second.card.type) {
         // Match found!
-        first.element.classList.add('matched', 'pulse');
-        second.element.classList.add('matched', 'pulse');
+        first.element.classList.add('matched');
+        second.element.classList.add('matched');
+        
+        // Add pulse animation briefly
+        setTimeout(() => {
+            first.element.classList.add('pulse');
+            second.element.classList.add('pulse');
+        }, 100);
+        
         matchedPairs++;
         updateStats();
+        flippedCards = [];
         
         // Check if game is complete
         if (matchedPairs === gameData.length) {
             setTimeout(endGame, 500);
         }
     } else {
-        // No match - flip cards back
-        first.element.classList.add('shake');
-        second.element.classList.add('shake');
-        
+        // No match - keep cards flipped, show shake, then flip back
         setTimeout(() => {
-            first.element.classList.remove('flipped', 'shake');
-            second.element.classList.remove('flipped', 'shake');
-        }, 1200);
+            first.element.classList.add('shake');
+            second.element.classList.add('shake');
+            
+            // After shake animation completes, flip cards back
+            setTimeout(() => {
+                first.element.classList.remove('shake', 'flipped');
+                second.element.classList.remove('shake', 'flipped');
+                flippedCards = [];
+            }, 400);
+        }, 800);
     }
-    
-    flippedCards = [];
 }
 
 // Update statistics display

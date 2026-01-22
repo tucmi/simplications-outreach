@@ -254,6 +254,7 @@ body {
     opacity: 1;
     cursor: default;
     pointer-events: none;
+    transform: rotateY(180deg) !important;
 }
 
 .card.matched .card-back {
