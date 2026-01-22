@@ -4,37 +4,37 @@ const gameData = [
         id: 1,
         storyTitle: "Temperaturanstieg",
         storyText: "Die Temperatur in einem Raum steigt kontinuierlich über den Tag an, bis die Klimaanlage eingeschaltet wird.",
-        graphImage: ""
+        graphImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F7F7F8'/%3E%3Ctext x='200' y='30' text-anchor='middle' font-size='16' font-weight='bold' fill='%23BF4254'%3ETemperatur im Tagesverlauf%3C/text%3E%3Cpath d='M 50 250 L 100 220 L 150 190 L 200 160 L 250 140 L 280 100 L 300 200 L 350 200' stroke='%23BF4254' stroke-width='3' fill='none'/%3E%3Ccircle cx='280' cy='100' r='5' fill='%23BF4254'/%3E%3Ctext x='290' y='95' font-size='12' fill='%232C2E35'%3EKlima an%3C/text%3E%3Cline x1='50' y1='260' x2='350' y2='260' stroke='%2384888E' stroke-width='1'/%3E%3Cline x1='50' y1='260' x2='50' y2='50' stroke='%2384888E' stroke-width='1'/%3E%3Ctext x='20' y='155' font-size='12' fill='%2384888E'%3E°C%3C/text%3E%3Ctext x='180' y='285' font-size='12' fill='%2384888E'%3EZeit%3C/text%3E%3C/svg%3E"
     },
     {
         id: 2,
         storyTitle: "Bewegungsmuster",
         storyText: "Ein regelmäßiges Bewegungsmuster zeigt, dass jemand jeden Morgen um 7 Uhr aufsteht und das Haus verlässt.",
-        graphImage: ""
+        graphImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F7F7F8'/%3E%3Ctext x='200' y='30' text-anchor='middle' font-size='16' font-weight='bold' fill='%23BF4254'%3EBewegungsaktivität%3C/text%3E%3Crect x='60' y='230' width='15' height='10' fill='%2384888E'/%3E%3Crect x='85' y='220' width='15' height='20' fill='%2384888E'/%3E%3Crect x='110' y='150' width='15' height='90' fill='%23BF4254'/%3E%3Crect x='135' y='240' width='15' height='0' fill='%2384888E'/%3E%3Crect x='160' y='240' width='15' height='0' fill='%2384888E'/%3E%3Crect x='185' y='230' width='15' height='10' fill='%2384888E'/%3E%3Crect x='210' y='210' width='15' height='30' fill='%2384888E'/%3E%3Crect x='235' y='180' width='15' height='60' fill='%2384888E'/%3E%3Crect x='260' y='160' width='15' height='80' fill='%23BF4254'/%3E%3Crect x='285' y='220' width='15' height='20' fill='%2384888E'/%3E%3Crect x='310' y='230' width='15' height='10' fill='%2384888E'/%3E%3Cline x1='50' y1='245' x2='350' y2='245' stroke='%2384888E' stroke-width='1'/%3E%3Cline x1='50' y1='245' x2='50' y2='50' stroke='%2384888E' stroke-width='1'/%3E%3Ctext x='105' y='275' font-size='11' fill='%232C2E35'%3E7:00%3C/text%3E%3Ctext x='255' y='275' font-size='11' fill='%232C2E35'%3E18:00%3C/text%3E%3C/svg%3E"
     },
     {
         id: 3,
         storyTitle: "Stromverbrauch",
         storyText: "Der Stromverbrauch zeigt deutliche Spitzen am Morgen und Abend, wenn die meisten Geräte in Betrieb sind.",
-        graphImage: ""
+        graphImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F7F7F8'/%3E%3Ctext x='200' y='30' text-anchor='middle' font-size='16' font-weight='bold' fill='%23BF4254'%3EStromverbrauch (24h)%3C/text%3E%3Cpath d='M 50 230 L 80 220 L 110 120 L 140 140 L 170 170 L 200 190 L 230 180 L 260 100 L 290 130 L 320 180 L 350 220' stroke='%23BF4254' stroke-width='3' fill='none'/%3E%3Cpath d='M 50 230 L 80 220 L 110 120 L 140 140 L 170 170 L 200 190 L 230 180 L 260 100 L 290 130 L 320 180 L 350 220 L 350 240 L 50 240 Z' fill='%23BF4254' opacity='0.2'/%3E%3Cline x1='50' y1='240' x2='350' y2='240' stroke='%2384888E' stroke-width='1'/%3E%3Cline x1='50' y1='240' x2='50' y2='50' stroke='%2384888E' stroke-width='1'/%3E%3Ctext x='15' y='150' font-size='12' fill='%2384888E'%3EkWh%3C/text%3E%3Ctext x='100' y='270' font-size='11' fill='%232C2E35'%3EMorgen%3C/text%3E%3Ctext x='250' y='270' font-size='11' fill='%232C2E35'%3EAbend%3C/text%3E%3C/svg%3E"
     },
     {
         id: 4,
         storyTitle: "Luftfeuchtigkeit",
         storyText: "Nach dem Duschen steigt die Luftfeuchtigkeit im Badezimmer schnell an und normalisiert sich dann wieder.",
-        graphImage: ""
+        graphImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F7F7F8'/%3E%3Ctext x='200' y='30' text-anchor='middle' font-size='16' font-weight='bold' fill='%23BF4254'%3ELuftfeuchtigkeit%3C/text%3E%3Cpath d='M 50 200 L 80 200 L 100 80 L 130 85 L 160 95 L 190 110 L 220 130 L 250 150 L 280 170 L 310 185 L 340 195 L 350 200' stroke='%23BF4254' stroke-width='3' fill='none'/%3E%3Ccircle cx='100' cy='80' r='5' fill='%23BF4254'/%3E%3Ctext x='110' y='75' font-size='11' fill='%232C2E35'%3EDuschen%3C/text%3E%3Cline x1='50' y1='240' x2='350' y2='240' stroke='%2384888E' stroke-width='1'/%3E%3Cline x1='50' y1='240' x2='50' y2='50' stroke='%2384888E' stroke-width='1'/%3E%3Ctext x='20' y='150' font-size='11' fill='%2384888E'%3E%25%3C/text%3E%3Ctext x='180' y='270' font-size='12' fill='%2384888E'%3EZeit%3C/text%3E%3Cline x1='50' y1='200' x2='350' y2='200' stroke='%2384888E' stroke-width='1' stroke-dasharray='5,5' opacity='0.5'/%3E%3Ctext x='355' y='205' font-size='10' fill='%2384888E'%3ENormal%3C/text%3E%3C/svg%3E"
     },
     {
         id: 5,
         storyTitle: "Lichtintensität",
         storyText: "Die Lichtintensität folgt dem natürlichen Tagesrhythmus mit einem Maximum zur Mittagszeit.",
-        graphImage: ""
+        graphImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F7F7F8'/%3E%3Ctext x='200' y='30' text-anchor='middle' font-size='16' font-weight='bold' fill='%23BF4254'%3ELichtintensität%3C/text%3E%3Cpath d='M 50 240 Q 100 220, 120 180 Q 150 100, 200 70 Q 250 100, 280 180 Q 300 220, 350 240' stroke='%23BF4254' stroke-width='3' fill='none'/%3E%3Cpath d='M 50 240 Q 100 220, 120 180 Q 150 100, 200 70 Q 250 100, 280 180 Q 300 220, 350 240 L 350 245 L 50 245 Z' fill='%23BF4254' opacity='0.15'/%3E%3Ccircle cx='200' cy='70' r='5' fill='%23BF4254'/%3E%3Ctext x='210' y='65' font-size='11' fill='%232C2E35'%3EMittag%3C/text%3E%3Cline x1='50' y1='245' x2='350' y2='245' stroke='%2384888E' stroke-width='1'/%3E%3Cline x1='50' y1='245' x2='50' y2='50' stroke='%2384888E' stroke-width='1'/%3E%3Ctext x='15' y='150' font-size='11' fill='%2384888E'%3ELux%3C/text%3E%3Ctext x='40' y='270' font-size='10' fill='%2384888E'%3E6:00%3C/text%3E%3Ctext x='185' y='270' font-size='10' fill='%2384888E'%3E12:00%3C/text%3E%3Ctext x='330' y='270' font-size='10' fill='%2384888E'%3E18:00%3C/text%3E%3C/svg%3E"
     },
     {
         id: 6,
         storyTitle: "Wasserverbrauch",
         storyText: "Hoher Wasserverbrauch am Morgen und Abend deutet auf Körperpflege und Kochen hin.",
-        graphImage: ""
+        graphImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F7F7F8'/%3E%3Ctext x='200' y='30' text-anchor='middle' font-size='16' font-weight='bold' fill='%23BF4254'%3EWasserverbrauch%3C/text%3E%3Crect x='70' y='220' width='25' height='20' fill='%2384888E' rx='2'/%3E%3Crect x='105' y='110' width='25' height='130' fill='%23BF4254' rx='2'/%3E%3Crect x='140' y='200' width='25' height='40' fill='%2384888E' rx='2'/%3E%3Crect x='175' y='220' width='25' height='20' fill='%2384888E' rx='2'/%3E%3Crect x='210' y='210' width='25' height='30' fill='%2384888E' rx='2'/%3E%3Crect x='245' y='130' width='25' height='110' fill='%23BF4254' rx='2'/%3E%3Crect x='280' y='200' width='25' height='40' fill='%2384888E' rx='2'/%3E%3Crect x='315' y='230' width='25' height='10' fill='%2384888E' rx='2'/%3E%3Cline x1='50' y1='245' x2='360' y2='245' stroke='%2384888E' stroke-width='1'/%3E%3Cline x1='50' y1='245' x2='50' y2='50' stroke='%2384888E' stroke-width='1'/%3E%3Ctext x='20' y='150' font-size='11' fill='%2384888E'%3EL%3C/text%3E%3Ctext x='100' y='275' font-size='10' fill='%232C2E35'%3EMorgen%3C/text%3E%3Ctext x='240' y='275' font-size='10' fill='%232C2E35'%3EAbend%3C/text%3E%3C/svg%3E"
     }
 ];
 
