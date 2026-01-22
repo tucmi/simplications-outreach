@@ -232,7 +232,7 @@ body {
 
 /* Card */
 .card {
-    aspect-ratio: 3/4;
+    aspect-ratio: 4/3;
     background-color: var(--color-white);
     border-radius: var(--border-radius);
     cursor: pointer;
