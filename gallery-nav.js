@@ -48,7 +48,7 @@ function initGalleryNav() {
     }
     
     createNavigationArrows(currentIndex);
-    createGameIndicator(currentIndex);
+    // createGameIndicator(currentIndex); // Removed - indicator not needed
     
     // Add keyboard navigation
     document.addEventListener('keydown', handleKeyboardNavigation);
