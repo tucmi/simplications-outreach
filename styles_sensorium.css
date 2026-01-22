@@ -1,0 +1,617 @@
+/* ============================================
+   Sensorium Game Styles
+   ============================================ */
+
+/* CSS Custom Properties - Simplications Brand Colors */
+:root {
+    --primary-color: #BF4254;
+    --primary-dark: #9B3544;
+    --primary-light: #D96578;
+    --dark-color: #2C2E35;
+    --gray-color: #84888E;
+    --light-color: #F7F7F8;
+    --white: #FFFFFF;
+    --success-color: #2E7D32;
+    --warning-color: #F57C00;
+    --danger-color: #C62828;
+    
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+    
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    --border-radius: 8px;
+    --border-radius-lg: 16px;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, var(--light-color) 0%, #E8EAED 100%);
+    color: var(--dark-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   Header
+   ============================================ */
+
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: var(--shadow-md);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   Main Container
+   ============================================ */
+
+main.game-container {
+    flex: 1;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* ============================================
+   Scenario Info
+   ============================================ */
+
+.scenario-info {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid var(--primary-color);
+}
+
+.scenario-counter {
+    display: inline-block;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.scenario-info h2 {
+    font-size: 1.8rem;
+    color: var(--dark-color);
+    margin-bottom: 0.75rem;
+}
+
+.scenario-info p {
+    font-size: 1.1rem;
+    color: var(--gray-color);
+    line-height: 1.7;
+}
+
+/* ============================================
+   Perspective Controls
+   ============================================ */
+
+.perspective-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.perspective-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    border: 2px solid var(--gray-color);
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    transition: all var(--transition-medium);
+    box-shadow: var(--shadow-sm);
+}
+
+.perspective-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.perspective-btn.active {
+    background: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-icon {
+    font-size: 1.5rem;
+}
+
+.btn-text {
+    font-size: 1rem;
+}
+
+/* ============================================
+   Visualization Area
+   ============================================ */
+
+.visualization-area {
+    position: relative;
+    height: 50vh;
+    max-height: 50vh;
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+/* Scroll hint indicator - fixed to bottom of visible area */
+.visualization-area::after {
+    content: '⌄';
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    color: var(--gray-color);
+    opacity: 0.5;
+    animation: bounce 2s infinite;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.perspective-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-slow), visibility var(--transition-slow);
+    display: flex;
+    flex-direction: column;
+}
+
+.perspective-view.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+}
+
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: linear-gradient(to bottom, var(--light-color), var(--white));
+    border-bottom: 2px solid var(--light-color);
+}
+
+.view-header h3 {
+    font-size: 1.3rem;
+    color: var(--dark-color);
+}
+
+.warning-badge {
+    background: var(--warning-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.view-content {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+/* ============================================
+   Data Items Display
+   ============================================ */
+
+.data-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.data-item {
+    background: var(--light-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all var(--transition-medium);
+}
+
+.data-item.highlight {
+    background: #FFF3E0;
+    border-color: var(--warning-color);
+    animation: pulse 2s infinite;
+}
+
+.data-item-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.data-item-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.data-item-description {
+    font-size: 0.9rem;
+    color: var(--gray-color);
+}
+
+/* ============================================
+   Data Comparison
+   ============================================ */
+
+.data-comparison {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.data-comparison h3 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.comparison-column h4 {
+    font-size: 1.2rem;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--light-color);
+}
+
+.comparison-column.highlight h4 {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.comparison-column ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.comparison-column li {
+    padding: 0.75rem 1rem;
+    background: var(--light-color);
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--gray-color);
+    font-size: 0.95rem;
+}
+
+.comparison-column.highlight li {
+    background: #FFEBEE;
+    border-left-color: var(--danger-color);
+    font-weight: 500;
+}
+
+.comparison-column li.extra-data {
+    background: #FFF3E0;
+    border-left-color: var(--warning-color);
+}
+
+/* ============================================
+   Insights Section
+   ============================================ */
+
+.insights-section {
+    background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.insight-card {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.insight-icon {
+    font-size: 3rem;
+    flex-shrink: 0;
+}
+
+.insight-content h3 {
+    font-size: 1.4rem;
+    color: var(--success-color);
+    margin-bottom: 0.75rem;
+}
+
+.insight-content p {
+    font-size: 1.05rem;
+    color: var(--dark-color);
+    line-height: 1.7;
+}
+
+/* ============================================
+   Navigation Controls
+   ============================================ */
+
+.navigation-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.nav-btn {
+    flex: 1;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: var(--border-radius-lg);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-btn.primary {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.nav-btn.primary:hover:not(:disabled) {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.nav-btn.secondary {
+    background: var(--white);
+    color: var(--dark-color);
+    border: 2px solid var(--gray-color);
+}
+
+.nav-btn.secondary:hover:not(:disabled) {
+    background: var(--light-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.nav-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   Progress Bar
+   ============================================ */
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--light-color);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+    border-radius: 4px;
+    transition: width var(--transition-slow);
+    width: 0%;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+footer {
+    background: var(--dark-color);
+    color: var(--white);
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0.5rem 0;
+}
+
+footer a {
+    color: var(--primary-light);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-fast);
+}
+
+footer a:hover {
+    color: var(--white);
+}
+
+.footer-note {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(10px);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    main.game-container {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+    
+    .perspective-controls {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .data-items-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .insight-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .navigation-controls {
+        flex-direction: column;
+    }
+    
+    .scenario-info {
+        padding: 1.5rem;
+    }
+    
+    .view-content {
+        padding: 1.5rem;
+    }
+    
+    .visualization-area {
+        height: 45vh;
+        max-height: 45vh;
+    }
+    
+    .visualization-area::after {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 1.5rem 1rem;
+    }
+    
+    header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .scenario-info h2 {
+        font-size: 1.5rem;
+    }
+    
+    .perspective-btn {
+        padding: 1rem;
+    }
+    
+    .btn-text {
+        font-size: 0.9rem;
+    }
+}

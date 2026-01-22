@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensorium - Was siehst DU? | Simplications</title>
+    <link rel="stylesheet" href="styles_sensorium.css">
+    <link rel="stylesheet" href="gallery-nav.css">
+</head>
+<body>
+    <header>
+        <h1>Sensorium</h1>
+        <p class="subtitle">Was siehst DU? Entdecke die zwei Perspektiven der Datensammlung</p>
+    </header>
+
+    <main class="game-container">
+        <!-- Scenario Info -->
+        <section class="scenario-info">
+            <div class="scenario-counter">
+                <span id="currentScenario">1</span> / <span id="totalScenarios">3</span>
+            </div>
+            <h2 id="scenarioTitle">Szenario wird geladen...</h2>
+            <p id="scenarioDescription">Beschreibung wird geladen...</p>
+        </section>
+
+        <!-- Perspective Toggle -->
+        <section class="perspective-controls">
+            <button class="perspective-btn active" id="userPerspectiveBtn" data-perspective="user">
+                <span class="btn-icon">👤</span>
+                <span class="btn-text">Deine Sicht</span>
+            </button>
+            <button class="perspective-btn" id="collectorPerspectiveBtn" data-perspective="collector">
+                <span class="btn-icon">🔍</span>
+                <span class="btn-text">Datensammler-Sicht</span>
+            </button>
+        </section>
+
+        <!-- Visualization Area -->
+        <section class="visualization-area">
+            <div class="perspective-view active" id="userView">
+                <div class="view-header">
+                    <h3>Was du siehst und teilst</h3>
+                </div>
+                <div class="view-content" id="userViewContent">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+
+            <div class="perspective-view" id="collectorView">
+                <div class="view-header">
+                    <h3>Was der Datensammler sieht</h3>
+                    <span class="warning-badge">⚠️ Achtung</span>
+                </div>
+                <div class="view-content" id="collectorViewContent">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Points Comparison -->
+        <section class="data-comparison" id="dataComparison">
+            <h3>Datenvergleich</h3>
+            <div class="comparison-grid">
+                <div class="comparison-column">
+                    <h4>Bewusst geteilt</h4>
+                    <ul id="userDataList">
+                        <!-- Dynamic list items -->
+                    </ul>
+                </div>
+                <div class="comparison-column highlight">
+                    <h4>Tatsächlich gesammelt</h4>
+                    <ul id="collectorDataList">
+                        <!-- Dynamic list items -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Insights Section -->
+        <section class="insights-section" id="insightsSection">
+            <div class="insight-card">
+                <div class="insight-icon">💡</div>
+                <div class="insight-content">
+                    <h3>Was bedeutet das?</h3>
+                    <p id="insightText">Wechsle zur Datensammler-Sicht, um mehr zu erfahren.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Controls -->
+        <section class="navigation-controls">
+            <button class="nav-btn secondary" id="prevBtn" disabled>
+                <span>← Zurück</span>
+            </button>
+            <button class="nav-btn primary" id="nextBtn">
+                <span>Weiter →</span>
+            </button>
+        </section>
+
+        <!-- Progress Indicator -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Ein Projekt von <a href="https://simplications.tucmi.de" target="_blank" rel="noopener">Simplications</a></p>
+        <p class="footer-note">Datenschutz spielerisch verstehen</p>
+    </footer>
+
+    <script src="script_sensorium.js"></script>
+    <script src="gallery-nav.js"></script>
+</body>
+</html>
