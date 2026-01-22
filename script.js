@@ -35,18 +35,6 @@ const gameData = [
         storyTitle: "Wasserverbrauch",
         storyText: "Hoher Wasserverbrauch am Morgen und Abend deutet auf Körperpflege und Kochen hin.",
         graphImage: ""
-    },
-    {
-        id: 7,
-        storyTitle: "Türöffnungen",
-        storyText: "Häufige Türöffnungen zwischen 17 und 19 Uhr zeigen die Rückkehr der Bewohner nach der Arbeit.",
-        graphImage: ""
-    },
-    {
-        id: 8,
-        storyTitle: "CO2-Konzentration",
-        storyText: "Die CO2-Konzentration steigt nachts im Schlafzimmer an und sinkt nach dem Lüften am Morgen.",
-        graphImage: ""
     }
 ];
 
