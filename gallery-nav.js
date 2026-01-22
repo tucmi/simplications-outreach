@@ -10,20 +10,20 @@ const GAMES = [
     {
         id: 'memory',
         title: 'Daten-Memory',
-        file: 'index.html',
+        file: 'memory-game.html',
         description: 'Ordne Datenvisualisierungen ihren Geschichten zu'
     },
     {
         id: 'sensorium',
         title: 'Sensorium',
-        file: 'sensorium.html',
+        file: 'sensorium-game.html',
         description: 'Entdecke die zwei Perspektiven der Datensammlung'
     }
     // Add future games here:
     // {
     //     id: 'game-id',
     //     title: 'Game Title',
-    //     file: 'game.html',
+    //     file: 'game-name.html',
     //     description: 'Game description'
     // }
 ];

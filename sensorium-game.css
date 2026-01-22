@@ -1,81 +1,14 @@
 /* ============================================
-   Sensorium Game Styles
+   Sensorium Game Specific Styles
    ============================================ */
 
-/* CSS Custom Properties - Simplications Brand Colors */
-:root {
-    --primary-color: #BF4254;
-    --primary-dark: #9B3544;
-    --primary-light: #D96578;
-    --dark-color: #2C2E35;
-    --gray-color: #84888E;
-    --light-color: #F7F7F8;
-    --white: #FFFFFF;
-    --success-color: #2E7D32;
-    --warning-color: #F57C00;
-    --danger-color: #C62828;
-    
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
-    
-    --transition-fast: 0.2s ease;
-    --transition-medium: 0.3s ease;
-    --transition-slow: 0.5s ease;
-    
-    --border-radius: 8px;
-    --border-radius-lg: 16px;
-}
-
-/* ============================================
-   Base Styles
-   ============================================ */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Override background for sensorium game */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     background: linear-gradient(135deg, var(--light-color) 0%, #E8EAED 100%);
-    color: var(--dark-color);
-    line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
 /* ============================================
-   Header
-   ============================================ */
-
-header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-    color: var(--white);
-    text-align: center;
-    padding: 2rem 1rem;
-    box-shadow: var(--shadow-md);
-}
-
-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.5px;
-}
-
-.subtitle {
-    font-size: 1.1rem;
-    opacity: 0.95;
-    font-weight: 400;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* ============================================
-   Main Container
+   Scenario Info
    ============================================ */
 
 main.game-container {
@@ -468,49 +401,8 @@ main.game-container {
 }
 
 /* ============================================
-   Footer
-   ============================================ */
-
-footer {
-    background: var(--dark-color);
-    color: var(--white);
-    text-align: center;
-    padding: 1.5rem 1rem;
-    margin-top: 2rem;
-}
-
-footer p {
-    margin: 0.5rem 0;
-}
-
-footer a {
-    color: var(--primary-light);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color var(--transition-fast);
-}
-
-footer a:hover {
-    color: var(--white);
-}
-
-.footer-note {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
-/* ============================================
    Animations
    ============================================ */
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.02);
-    }
-}
 
 @keyframes bounce {
     0%, 100% {
@@ -521,19 +413,145 @@ footer a:hover {
     }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ============================================
+   Completion Modal
+   ============================================ */
+
+.completion-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(44, 46, 53, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+    padding: 1rem;
 }
 
-.fade-in {
-    animation: fadeInUp 0.5s ease forwards;
+.completion-modal.show {
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--white);
+    border-radius: var(--border-radius-lg);
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: fadeInUp 0.4s ease;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+    padding: 2rem;
+    text-align: center;
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+}
+
+.modal-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-body h3 {
+    color: var(--dark-color);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal-body h4 {
+    color: var(--dark-color);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+.key-takeaways {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.key-takeaways li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1rem;
+    background: var(--light-color);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-color);
+}
+
+.takeaway-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.key-takeaways strong {
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.privacy-tips {
+    background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-top: 2rem;
+}
+
+.privacy-tips ul {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.privacy-tips li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.privacy-tips li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.modal-footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--light-color);
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.modal-footer button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-medium);
 }
 
 /* ============================================
@@ -592,6 +610,31 @@ footer a:hover {
     .visualization-area::after {
         font-size: 1.5rem;
     }
+    
+    .modal-content {
+        max-height: 95vh;
+    }
+    
+    .modal-header {
+        padding: 1.5rem;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.75rem;
+    }
+    
+    .modal-body {
+        padding: 1.5rem;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+        padding: 1rem 1.5rem;
+    }
+    
+    .modal-footer button {
+        width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -613,5 +656,22 @@ footer a:hover {
     
     .btn-text {
         font-size: 0.9rem;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-body h3 {
+        font-size: 1.25rem;
+    }
+    
+    .key-takeaways li {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .takeaway-icon {
+        font-size: 2rem;
     }
 }

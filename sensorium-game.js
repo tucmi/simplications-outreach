@@ -321,6 +321,9 @@ function nextScenario() {
         currentScenarioIndex++;
         loadScenario(currentScenarioIndex);
         scrollToTop();
+    } else {
+        // Show completion modal
+        showCompletionModal();
     }
 }
 
@@ -349,6 +352,116 @@ function updateProgressBar() {
 
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================
+// Completion Modal
+// ============================================
+
+function showCompletionModal() {
+    // Create modal overlay
+    const modal = document.createElement('div');
+    modal.className = 'completion-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🎉 Glückwunsch!</h2>
+                <p>Du hast alle Szenarien durchgespielt</p>
+            </div>
+            
+            <div class="modal-body">
+                <h3>💡 Wichtigste Erkenntnisse:</h3>
+                <ul class="key-takeaways">
+                    <li>
+                        <span class="takeaway-icon">🔍</span>
+                        <div>
+                            <strong>Unsichtbare Datensammlung:</strong>
+                            Smart-Geräte sammeln weit mehr Daten als für ihre Hauptfunktion nötig.
+                        </div>
+                    </li>
+                    <li>
+                        <span class="takeaway-icon">📊</span>
+                        <div>
+                            <strong>Verhaltensmuster:</strong>
+                            Aus scheinbar harmlosen Sensordaten entstehen detaillierte Profile über dein Leben.
+                        </div>
+                    </li>
+                    <li>
+                        <span class="takeaway-icon">🔗</span>
+                        <div>
+                            <strong>Datenverknüpfung:</strong>
+                            Die Kombination verschiedener Datenquellen ermöglicht noch tiefere Einblicke.
+                        </div>
+                    </li>
+                    <li>
+                        <span class="takeaway-icon">🛡️</span>
+                        <div>
+                            <strong>Bewusstsein ist Schutz:</strong>
+                            Nur wer versteht, welche Daten gesammelt werden, kann informierte Entscheidungen treffen.
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="privacy-tips">
+                    <h4>🔐 Was kannst du tun?</h4>
+                    <ul>
+                        <li>Lies die Datenschutzerklärungen von Smart-Geräten</li>
+                        <li>Deaktiviere unnötige Sensoren und Funktionen</li>
+                        <li>Nutze lokale statt Cloud-basierte Lösungen, wo möglich</li>
+                        <li>Überprüfe regelmäßig die Berechtigungen deiner Geräte</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-secondary" id="restartBtn">🔄 Von vorne beginnen</button>
+                <button class="btn-primary" id="closeModalBtn">Verstanden</button>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Add fade-in animation
+    setTimeout(() => modal.classList.add('show'), 10);
+    
+    // Event listeners
+    modal.querySelector('#closeModalBtn').addEventListener('click', () => {
+        closeCompletionModal(modal);
+        resetGame();
+    });
+    
+    modal.querySelector('#restartBtn').addEventListener('click', () => {
+        closeCompletionModal(modal);
+        resetGame();
+    });
+    
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeCompletionModal(modal);
+            resetGame();
+        }
+    });
+    
+    // Close on Escape key
+    const escapeHandler = (e) => {
+        if (e.key === 'Escape') {
+            closeCompletionModal(modal);
+            resetGame();
+            document.removeEventListener('keydown', escapeHandler);
+        }
+    };
+    document.addEventListener('keydown', escapeHandler);
+}
+
+function closeCompletionModal(modal) {
+    modal.classList.remove('show');
+    setTimeout(() => {
+        if (modal.parentNode) {
+            modal.parentNode.removeChild(modal);
+        }
+    }, 300);
 }
 
 // ============================================
