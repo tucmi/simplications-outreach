@@ -205,6 +205,16 @@ body {
     border-radius: var(--border-radius);
     padding: 1rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.board-section.inactive {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.board-section.active {
+    box-shadow: 0 0 0 3px var(--color-primary), 0 4px 12px rgba(191, 66, 84, 0.3);
 }
 
 .board-title {
@@ -258,7 +268,7 @@ body {
 }
 
 .card.matched .card-back {
-    border: 3px solid var(--color-primary);
+    border: 3px solid #2E7D32;
 }
 
 .card-face {

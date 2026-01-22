@@ -201,6 +201,7 @@ let flippedCards = [];
 let matchedPairs = 0;
 let attempts = 0;
 let gameStarted = false;
+let lastSelectedType = null; // Track which type was selected last
 
 // DOM Elements
 const storyBoard = document.getElementById('storyBoard');
@@ -235,7 +236,9 @@ function startNewGame() {
     matchedPairs = 0;
     attempts = 0;
     flippedCards = [];
+    lastSelectedType = null;
     
+    resetBoardHighlighting();
     updateStats();
     createCards();
 }
@@ -362,12 +365,37 @@ function handleCardClick(cardElement, card) {
     cardElement.classList.add('flipped');
     flippedCards.push({ element: cardElement, card: card });
     
+    // Update board highlighting
+    if (flippedCards.length === 1) {
+        // First card selected - highlight the opposite board
+        lastSelectedType = card.type;
+        if (card.type === 'story') {
+            storyBoard.parentElement.classList.remove('active');
+            dataBoard.parentElement.classList.add('active');
+            storyBoard.parentElement.classList.add('inactive');
+        } else {
+            dataBoard.parentElement.classList.remove('active');
+            storyBoard.parentElement.classList.add('active');
+            dataBoard.parentElement.classList.add('inactive');
+        }
+    } else if (flippedCards.length === 2) {
+        // Both cards selected - remove all highlighting
+        resetBoardHighlighting();
+    }
+    
     // Check for match when two cards are flipped
     if (flippedCards.length === 2) {
         attempts++;
         updateStats();
         setTimeout(checkForMatch, 1000);
     }
+}
+
+// Reset board highlighting
+function resetBoardHighlighting() {
+    storyBoard.parentElement.classList.remove('active', 'inactive');
+    dataBoard.parentElement.classList.remove('active', 'inactive');
+    lastSelectedType = null;
 }
 
 // Check if two flipped cards match
@@ -390,6 +418,7 @@ function checkForMatch() {
         matchedPairs++;
         updateStats();
         flippedCards = [];
+        resetBoardHighlighting();
         
         // Check if game is complete
         if (matchedPairs === gameData.length) {
@@ -406,6 +435,7 @@ function checkForMatch() {
                 first.element.classList.remove('shake', 'flipped');
                 second.element.classList.remove('shake', 'flipped');
                 flippedCards = [];
+                resetBoardHighlighting();
             }, 400);
         }, 800);
     }
