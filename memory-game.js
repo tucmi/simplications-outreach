@@ -224,12 +224,45 @@ const matchesDisplay = document.getElementById('matches');
 const gameMessage = document.getElementById('gameMessage');
 const messageTitle = document.getElementById('messageTitle');
 const messageText = document.getElementById('messageText');
+const zoomModal = document.getElementById('zoomModal');
+const zoomClose = document.getElementById('zoomClose');
+const zoomGraphContainer = document.getElementById('zoomGraphContainer');
+
+// Zoom Modal Functions
+function showZoomModal(data) {
+    zoomGraphContainer.innerHTML = '';
+    
+    const img = document.createElement('img');
+    img.src = generateGraph(data, true); // Show title in zoomed view
+    img.alt = data.graphTitle || 'Datenvisualisierung';
+    zoomGraphContainer.appendChild(img);
+    
+    zoomModal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideZoomModal() {
+    zoomModal.classList.add('hidden');
+    document.body.style.overflow = '';
+}
 
 // Initialize the game
 function init() {
     newGameButton.addEventListener('click', startNewGame);
     fullscreenButton.addEventListener('click', toggleFullscreen);
     restartButton.addEventListener('click', startNewGame);
+    
+    // Zoom modal event listeners
+    zoomClose.addEventListener('click', hideZoomModal);
+    zoomModal.querySelector('.zoom-modal-backdrop').addEventListener('click', hideZoomModal);
+    
+    // ESC key to close zoom modal
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !zoomModal.classList.contains('hidden')) {
+            hideZoomModal();
+        }
+    });
+    
     // Auto-start the game
     startNewGame();
 }
@@ -346,6 +379,17 @@ function createGraphContent(data) {
     img.alt = 'Datenvisualisierung';
     img.className = 'graph-image';
     container.appendChild(img);
+    
+    // Add zoom icon
+    const zoomIcon = document.createElement('button');
+    zoomIcon.className = 'zoom-icon';
+    zoomIcon.innerHTML = '🔍';
+    zoomIcon.setAttribute('aria-label', 'Vergrößern');
+    zoomIcon.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent card click
+        showZoomModal(data);
+    });
+    container.appendChild(zoomIcon);
     
     return container;
 }
