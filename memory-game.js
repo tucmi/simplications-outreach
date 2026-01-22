@@ -85,37 +85,84 @@ const gameData = [
     }
 ];
 
-// SVG Graph Generation Functions
+// Constants
+const SVG_CONFIG = {
+    WIDTH: 400,
+    HEIGHT: 300,
+    PADDING: { top: 40, right: 30, bottom: 50, left: 50 },
+    COLORS: {
+        BACKGROUND: '#F7F7F8',
+        PRIMARY: '#BF4254',
+        SECONDARY: '#84888E'
+    },
+    FONT_SIZES: {
+        TITLE: 14,
+        LABEL: 11,
+        TIME: 9
+    }
+};
+
+const GAME_CONFIG = {
+    SCENARIOS_PER_GAME: 6,
+    MATCH_CHECK_DELAY: 300,
+    MISMATCH_DELAY: 800,
+    MISMATCH_FLIP_DELAY: 400,
+    END_GAME_DELAY: 500,
+    PULSE_DELAY: 100
+};
+
+// Helper function to sanitize text for SVG
+function sanitizeForSVG(text) {
+    if (!text) return '';
+    return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;');
+}
+
+/**
+ * Generate SVG graph from data
+ * @param {Object} data - Graph data object containing graphType, graphData, labels, etc.
+ * @param {boolean} showTitle - Whether to display the graph title
+ * @returns {string} Data URI containing the SVG
+ */
 function generateGraph(data, showTitle = true) {
-    const { graphType, graphTitle, graphData, yAxisLabel, annotation, highlightIndices, timeLabels } = data;
-    
-    const width = 400;
-    const height = 300;
-    const padding = { top: 40, right: 30, bottom: 50, left: 50 };
-    const chartWidth = width - padding.left - padding.right;
-    const chartHeight = height - padding.top - padding.bottom;
-    
-    const maxValue = Math.max(...graphData);
-    const minValue = Math.min(...graphData);
-    const valueRange = maxValue - minValue || 1;
-    
-    let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">`;
-    svg += `<rect width="${width}" height="${height}" fill="#F7F7F8"/>`;
-    
-    // Only show title if showTitle is true
-    if (showTitle) {
-        svg += `<text x="${width/2}" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#BF4254">${graphTitle}</text>`;
-    }
-    
-    // Axes
-    const axisY = padding.top + chartHeight;
-    svg += `<line x1="${padding.left}" y1="${axisY}" x2="${width - padding.right}" y2="${axisY}" stroke="#84888E" stroke-width="1"/>`;
-    svg += `<line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${axisY}" stroke="#84888E" stroke-width="1"/>`;
-    
-    // Y-axis label
-    if (yAxisLabel) {
-        svg += `<text x="${padding.left - 30}" y="${height/2}" font-size="11" fill="#84888E">${yAxisLabel}</text>`;
-    }
+    try {
+        // Validate input
+        if (!data || !data.graphType || !Array.isArray(data.graphData) || data.graphData.length === 0) {
+            console.error('Invalid graph data:', data);
+            return createErrorSVG();
+        }
+        
+        const { graphType, graphTitle, graphData, yAxisLabel, highlightIndices, timeLabels } = data;
+        
+        const { WIDTH: width, HEIGHT: height, PADDING: padding, COLORS, FONT_SIZES } = SVG_CONFIG;
+        const chartWidth = width - padding.left - padding.right;
+        const chartHeight = height - padding.top - padding.bottom;
+        
+        const maxValue = Math.max(...graphData);
+        const minValue = Math.min(...graphData);
+        const valueRange = maxValue - minValue || 1;
+        
+        let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">`;
+        svg += `<rect width="${width}" height="${height}" fill="${COLORS.BACKGROUND}"/>`;
+        
+        // Only show title if showTitle is true
+        if (showTitle && graphTitle) {
+            svg += `<text x="${width/2}" y="25" text-anchor="middle" font-size="${FONT_SIZES.TITLE}" font-weight="bold" fill="${COLORS.PRIMARY}">${sanitizeForSVG(graphTitle)}</text>`;
+        }
+        
+        // Axes
+        const axisY = padding.top + chartHeight;
+        svg += `<line x1="${padding.left}" y1="${axisY}" x2="${width - padding.right}" y2="${axisY}" stroke="${COLORS.SECONDARY}" stroke-width="1"/>`;
+        svg += `<line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${axisY}" stroke="${COLORS.SECONDARY}" stroke-width="1"/>`;
+        
+        // Y-axis label
+        if (yAxisLabel) {
+            svg += `<text x="${padding.left - 30}" y="${height/2}" font-size="${FONT_SIZES.LABEL}" fill="${COLORS.SECONDARY}">${sanitizeForSVG(yAxisLabel)}</text>`;
+        }
     
     // X-axis time labels
     if (timeLabels && timeLabels.length > 0) {
@@ -123,38 +170,52 @@ function generateGraph(data, showTitle = true) {
         timeLabels.forEach((label, i) => {
             const x = padding.left + (i * stepX);
             const y = axisY + 20;
-            svg += `<text x="${x}" y="${y}" font-size="9" fill="#84888E" text-anchor="middle">${label}</text>`;
-        });
+                svg += `<text x="${x}" y="${y}" font-size="${FONT_SIZES.TIME}" fill="${COLORS.SECONDARY}" text-anchor="middle">${sanitizeForSVG(label)}</text>`;
+            });
+        }
+        
+        // X-axis label
+        svg += `<text x="${width/2}" y="${height - 10}" font-size="${FONT_SIZES.LABEL}" fill="${COLORS.SECONDARY}" text-anchor="middle">Zeit</text>`;
+        
+        // Generate graph based on type
+        switch(graphType) {
+            case 'line':
+                svg += generateLineGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
+                break;
+            case 'bar':
+                svg += generateBarGraph(graphData, padding, chartWidth, chartHeight, maxValue, highlightIndices);
+                break;
+            case 'area':
+                svg += generateAreaGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
+                break;
+            case 'smooth':
+                svg += generateSmoothGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
+                break;
+            default:
+                console.warn('Unknown graph type:', graphType);
+                return createErrorSVG();
+        }
+        
+        svg += '</svg>';
+        return 'data:image/svg+xml,' + encodeURIComponent(svg);
+    } catch (error) {
+        console.error('Error generating graph:', error);
+        return createErrorSVG();
     }
-    
-    // X-axis label
-    svg += `<text x="${width/2}" y="${height - 10}" font-size="11" fill="#84888E" text-anchor="middle">Zeit</text>`;
-    
-    // Generate graph based on type
-    switch(graphType) {
-        case 'line':
-            svg += generateLineGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
-            break;
-        case 'bar':
-            svg += generateBarGraph(graphData, padding, chartWidth, chartHeight, maxValue, highlightIndices);
-            break;
-        case 'area':
-            svg += generateAreaGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
-            break;
-        case 'smooth':
-            svg += generateSmoothGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
-            break;
-    }
-    
-    svg += '</svg>';
-    return 'data:image/svg+xml,' + encodeURIComponent(svg);
 }
 
-function generateLineGraph(data, padding, chartWidth, chartHeight, maxValue, minValue, valueRange) {
-    const stepX = chartWidth / (data.length - 1);
-    let path = 'M ';
-    
-    data.forEach((value, i) => {
+/**
+ * Create a fallback error SVG
+ * @returns {string} Data URI containing error SVG
+ */
+function createErrorSVG() {
+    const { WIDTH: width, HEIGHT: height } = SVG_CONFIG;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">
+        <rect width="${width}" height="${height}" fill="#F7F7F8"/>
+        <text x="${width/2}" y="${height/2}" text-anchor="middle" font-size="12" fill="#BF4254">Fehler beim Laden</text>
+    </svg>`;
+    return 'data:image/svg+xml,' + encodeURIComponent(svg);
+}
         const x = padding.left + (i * stepX);
         const normalized = (value - minValue) / valueRange;
         const y = padding.top + chartHeight - (normalized * chartHeight);
@@ -228,11 +289,14 @@ function generateSmoothGraph(data, padding, chartWidth, chartHeight, maxValue, m
 
 // Game State
 let cards = [];
+let cardDataMap = new Map(); // Store card data by index to avoid memory leaks
 let flippedCards = [];
 let matchedPairs = 0;
 let attempts = 0;
 let gameStarted = false;
 let lastSelectedType = null; // Track which type was selected last
+let currentPairCount = 0; // Track actual number of pairs in current game
+let isProcessingMatch = false; // Prevent interaction during match checking
 
 // DOM Elements
 const storyBoard = document.getElementById('storyBoard');
@@ -248,6 +312,21 @@ const messageText = document.getElementById('messageText');
 const zoomModal = document.getElementById('zoomModal');
 const zoomClose = document.getElementById('zoomClose');
 const zoomGraphContainer = document.getElementById('zoomGraphContainer');
+const srAnnouncements = document.getElementById('srAnnouncements');
+
+/**
+ * Announce message to screen readers
+ * @param {string} message - Message to announce
+ */
+function announceToScreenReader(message) {
+    if (srAnnouncements) {
+        srAnnouncements.textContent = message;
+        // Clear after announcement to allow repeated messages
+        setTimeout(() => {
+            srAnnouncements.textContent = '';
+        }, 1000);
+    }
+}
 
 // Zoom Modal Functions
 function showZoomModal(data) {
@@ -277,6 +356,10 @@ function init() {
     zoomClose.addEventListener('click', hideZoomModal);
     zoomModal.querySelector('.zoom-modal-backdrop').addEventListener('click', hideZoomModal);
     
+    // Event delegation for card clicks
+    storyBoard.addEventListener('click', handleBoardClick);
+    dataBoard.addEventListener('click', handleBoardClick);
+    
     // ESC key to close zoom modal
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !zoomModal.classList.contains('hidden')) {
@@ -286,6 +369,18 @@ function init() {
     
     // Auto-start the game
     startNewGame();
+}
+
+// Handle clicks on game boards (event delegation)
+function handleBoardClick(e) {
+    const cardElement = e.target.closest('.card');
+    if (!cardElement) return;
+    
+    const cardIndex = cardElement.dataset.index;
+    const cardData = cardDataMap.get(cardIndex);
+    if (!cardData) return;
+    
+    handleCardClick(cardElement, cardData);
 }
 
 // Start a new game
@@ -301,20 +396,31 @@ function startNewGame() {
     attempts = 0;
     flippedCards = [];
     lastSelectedType = null;
+    cardDataMap.clear(); // Clear previous card data
     
     resetBoardHighlighting();
     updateStats();
     createCards();
 }
 
-// Create and shuffle cards
+/**
+ * Create and shuffle cards for the game
+ */
 function createCards() {
     storyBoard.innerHTML = '';
     dataBoard.innerHTML = '';
     cards = [];
     
-    // Randomly select 6 scenarios from all available scenarios
-    const selectedScenarios = shuffleArray([...gameData]).slice(0, 6);
+    // Validate game data
+    if (!gameData || !Array.isArray(gameData) || gameData.length < GAME_CONFIG.SCENARIOS_PER_GAME) {
+        console.error('Insufficient game data');
+        showMessage('Fehler', 'Nicht genügend Szenarien verfügbar.');
+        return;
+    }
+    
+    // Randomly select scenarios from all available scenarios
+    const selectedScenarios = shuffleArray([...gameData]).slice(0, GAME_CONFIG.SCENARIOS_PER_GAME);
+    currentPairCount = selectedScenarios.length;
     
     const storyCards = [];
     const graphCards = [];
@@ -366,6 +472,9 @@ function createCardElement(card, index) {
     cardDiv.dataset.pairId = card.pairId;
     cardDiv.dataset.type = card.type;
     
+    // Store card data in map for event delegation
+    cardDataMap.set(String(index), card);
+    
     // Data cards start flipped (always visible)
     if (card.type === 'graph') {
         cardDiv.classList.add('flipped', 'data-always-visible');
@@ -388,7 +497,7 @@ function createCardElement(card, index) {
     cardDiv.appendChild(frontFace);
     cardDiv.appendChild(backFace);
     
-    cardDiv.addEventListener('click', () => handleCardClick(cardDiv, card));
+    // No event listener needed - using event delegation
     
     return cardDiv;
 }
@@ -437,9 +546,14 @@ function createStoryContent(data) {
     return container;
 }
 
-// Handle card click
+/**
+ * Handle card click event
+ * @param {HTMLElement} cardElement - The clicked card element
+ * @param {Object} card - Card data object
+ */
 function handleCardClick(cardElement, card) {
     if (!gameStarted) return;
+    if (isProcessingMatch) return; // Prevent interaction during match checking
     if (cardElement.classList.contains('matched')) return;
     if (flippedCards.length >= 2) return;
     
@@ -476,7 +590,7 @@ function handleCardClick(cardElement, card) {
     if (flippedCards.length === 2) {
         attempts++;
         updateStats();
-        setTimeout(checkForMatch, 1000);
+        setTimeout(checkForMatch, GAME_CONFIG.MATCH_CHECK_DELAY);
     }
 }
 
@@ -487,8 +601,11 @@ function resetBoardHighlighting() {
     lastSelectedType = null;
 }
 
-// Check if two flipped cards match
+/**
+ * Check if two flipped cards match
+ */
 function checkForMatch() {
+    isProcessingMatch = true;
     const [first, second] = flippedCards;
     
     // Check if cards form a pair (same pairId but different types)
@@ -509,19 +626,25 @@ function checkForMatch() {
         setTimeout(() => {
             first.element.classList.add('pulse');
             second.element.classList.add('pulse');
-        }, 100);
+        }, GAME_CONFIG.PULSE_DELAY);
         
         matchedPairs++;
         updateStats();
         flippedCards = [];
         resetBoardHighlighting();
+        isProcessingMatch = false;
+        
+        // Announce match to screen readers
+        const matchTitle = graphCard.card.data.storyTitle || 'Paar';
+        announceToScreenReader(`Übereinstimmung gefunden: ${matchTitle}. ${matchedPairs} von ${currentPairCount} Paaren gefunden.`);
         
         // Check if game is complete
-        if (matchedPairs === gameData.length) {
-            setTimeout(endGame, 500);
+        if (matchedPairs === currentPairCount) {
+            setTimeout(endGame, GAME_CONFIG.END_GAME_DELAY);
         }
     } else {
         // No match - keep cards flipped, show shake, then flip back
+        announceToScreenReader('Keine Übereinstimmung. Versuche es erneut.');
         setTimeout(() => {
             first.element.classList.add('shake');
             second.element.classList.add('shake');
@@ -532,15 +655,16 @@ function checkForMatch() {
                 second.element.classList.remove('shake', 'flipped');
                 flippedCards = [];
                 resetBoardHighlighting();
-            }, 400);
-        }, 800);
+                isProcessingMatch = false;
+            }, GAME_CONFIG.MISMATCH_FLIP_DELAY);
+        }, GAME_CONFIG.MISMATCH_DELAY);
     }
 }
 
 // Update statistics display
 function updateStats() {
     attemptsDisplay.textContent = attempts;
-    matchesDisplay.textContent = `${matchedPairs}/${gameData.length}`;
+    matchesDisplay.textContent = `${matchedPairs}/${currentPairCount}`;
 }
 
 // End the game
@@ -588,15 +712,6 @@ document.addEventListener('fullscreenchange', () => {
         fullscreenButton.setAttribute('aria-label', 'Vollbild');
     }
 });
-
-// Utility: Shuffle array (Fisher-Yates algorithm)
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
 
 // Initialize the game when the page loads
 document.addEventListener('DOMContentLoaded', init);

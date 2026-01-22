@@ -13,12 +13,26 @@
     --color-lighter: var(--lighter-color);
     --color-white: var(--white);
     --color-black: var(--black);
+    --color-success: #2E7D32;
     --transition: var(--transition-medium);
 }
 
 /* Override background for memory game */
 body {
     background-color: var(--lighter-color);
+}
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
 }
 
 /* Header customization for memory game */
@@ -261,7 +275,7 @@ header h1 {
 }
 
 .card.matched .card-back {
-    border: 3px solid #2E7D32;
+    border: 3px solid var(--color-success);
 }
 
 .card-face {

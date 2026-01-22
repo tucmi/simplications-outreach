@@ -28,14 +28,14 @@
         </div>
 
         <div class="game-boards-container">
-            <div class="board-section">
+            <div class="board-section" role="region" aria-label="Geschichten-Spielfeld">
                 <h2 class="board-title">Geschichten</h2>
                 <div id="storyBoard" class="game-board">
                     <!-- Story cards will be dynamically inserted here -->
                 </div>
             </div>
             
-            <div class="board-section">
+            <div class="board-section" role="region" aria-label="Daten-Spielfeld">
                 <h2 class="board-title">Daten</h2>
                 <div id="dataBoard" class="game-board">
                     <!-- Data/Graph cards will be dynamically inserted here -->
@@ -74,6 +74,9 @@
             <div id="zoomGraphContainer" class="zoom-graph-container"></div>
         </div>
     </div>
+
+    <!-- Screen reader announcements -->
+    <div id="srAnnouncements" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
 
     <script src="common.js"></script>
     <script src="memory-game.js"></script>
