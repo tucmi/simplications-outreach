@@ -1,0 +1,445 @@
+/* Color variables from Simplications website */
+:root {
+    --color-primary: #BF4254;
+    --color-dark: #2C2E35;
+    --color-text: #281501;
+    --color-gray-1: #84888E;
+    --color-gray-2: #B4B9C1;
+    --color-light: #EEF2F8;
+    --color-lighter: #F7F7F8;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+    --border-radius: 4px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--color-lighter);
+    color: var(--color-text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Game Controls */
+.game-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.game-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.game-stats {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.stat {
+    font-size: 1rem;
+    color: var(--color-gray-1);
+}
+
+.stat strong {
+    color: var(--color-dark);
+    font-weight: 700;
+}
+
+/* Button */
+.btn {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn:hover {
+    background-color: var(--color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    background-color: var(--color-gray-2);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secondary {
+    background-color: var(--color-gray-1);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-dark);
+}
+
+/* Game Boards Container */
+.game-boards-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .game-boards-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+.board-section {
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.board-title {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+/* Game Board */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .game-board {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Card */
+.card {
+    aspect-ratio: 3/4;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card.matched {
+    opacity: 0.6;
+    cursor: default;
+    pointer-events: none;
+}
+
+.card.matched .card-back {
+    border: 3px solid var(--color-primary);
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.card-front {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-dark) 100%);
+    color: var(--color-white);
+}
+
+.card-front::before {
+    content: "?";
+    font-size: 4rem;
+    font-weight: 700;
+    opacity: 0.3;
+}
+
+.card-back {
+    background-color: var(--color-white);
+    transform: rotateY(180deg);
+    overflow: hidden;
+}
+
+/* Graph Card */
+.card-back.graph-card {
+    padding: 1.5rem 1rem;
+}
+
+.graph-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-lighter);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+.graph-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-light) 0%, var(--color-lighter) 100%);
+    border: 2px dashed var(--color-gray-2);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-1);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.graph-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Story Card */
+.card-back.story-card {
+    padding: 1.5rem;
+}
+
+.story-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.story-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+}
+
+.story-text {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    line-height: 1.5;
+    overflow-y: auto;
+}
+
+/* Game Message */
+.game-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 46, 53, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.game-message.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.message-content {
+    background-color: var(--color-white);
+    padding: 3rem 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.message-content h2 {
+    color: var(--color-primary);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.message-content p {
+    color: var(--color-text);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-white);
+    border-top: 1px solid var(--color-light);
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--color-gray-1);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.footer a:hover {
+    color: var(--color-dark);
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .header p {
+        font-size: 1rem;
+    }
+
+    .game-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .game-stats {
+        justify-content: space-around;
+    }
+
+    .message-content {
+        margin: 1rem;
+        padding: 2rem 1.5rem;
+    }
+
+    .message-content h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animations */
+@keyframes flipIn {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(180deg);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-10px);
+    }
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+.card.shake {
+    animation: shake 0.4s;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.card.pulse {
+    animation: pulse 0.6s;
+}

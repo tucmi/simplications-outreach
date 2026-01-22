@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "storyTitle": "Beispiel: Temperaturanstieg",
+    "storyText": "Die Temperatur in einem Raum steigt kontinuierlich über den Tag an, bis die Klimaanlage eingeschaltet wird.",
+    "graphImage": ""
+  },
+  {
+    "id": 2,
+    "storyTitle": "Beispiel: Bewegungsmuster",
+    "storyText": "Ein regelmäßiges Bewegungsmuster zeigt, dass jemand jeden Morgen um 7 Uhr aufsteht und das Haus verlässt.",
+    "graphImage": ""
+  },
+  {
+    "id": 3,
+    "storyTitle": "Beispiel: Stromverbrauch",
+    "storyText": "Der Stromverbrauch zeigt deutliche Spitzen am Morgen und Abend, wenn die meisten Geräte in Betrieb sind.",
+    "graphImage": ""
+  },
+  {
+    "id": 4,
+    "storyTitle": "Beispiel: Luftfeuchtigkeit",
+    "storyText": "Nach dem Duschen steigt die Luftfeuchtigkeit im Badezimmer schnell an und normalisiert sich dann wieder.",
+    "graphImage": ""
+  }
+]
