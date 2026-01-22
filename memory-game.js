@@ -13,7 +13,7 @@ const gameData = [
     {
         id: 2,
         storyTitle: "Bewegungsmuster",
-        storyText: "Ein regelmäßiges Bewegungsmuster zeigt, dass jemand jeden Morgen um 7 Uhr aufsteht und das Haus verlässt.",
+        storyText: "Ein regelmäßiges Bewegungsmuster zeigt, dass jemand morgens um 7 Uhr aufsteht und abends um 18 Uhr nach Hause kommt.",
         graphType: "bar",
         graphTitle: "Bewegungsaktivität",
         graphData: [2, 5, 95, 85, 5, 3, 2, 8, 90, 75, 40, 5],
@@ -24,7 +24,7 @@ const gameData = [
     {
         id: 3,
         storyTitle: "Stromverbrauch",
-        storyText: "Der Stromverbrauch zeigt deutliche Spitzen am Morgen und Abend, wenn die meisten Geräte in Betrieb sind.",
+        storyText: "Der Stromverbrauch zeigt drei deutliche Spitzen: morgens, mittags beim Kochen und abends, wenn die meisten Geräte in Betrieb sind.",
         graphType: "area",
         graphTitle: "Stromverbrauch (24h)",
         graphData: [3, 5, 85, 75, 45, 65, 70, 50, 35, 30, 45, 88, 70, 40, 8],
@@ -44,7 +44,7 @@ const gameData = [
     {
         id: 5,
         storyTitle: "Lichtintensität",
-        storyText: "Die Lichtintensität folgt dem natürlichen Tagesrhythmus mit einem Maximum zur Mittagszeit.",
+        storyText: "Die Lichtintensität folgt dem natürlichen Tagesrhythmus mit einem Maximum am Nachmittag gegen 14 Uhr.",
         graphType: "smooth",
         graphTitle: "Lichtintensität",
         graphData: [0, 0, 5, 25, 55, 85, 100, 85, 55, 25, 5, 0, 0],
@@ -54,7 +54,7 @@ const gameData = [
     {
         id: 6,
         storyTitle: "Wasserverbrauch",
-        storyText: "Hoher Wasserverbrauch am Morgen und Abend deutet auf Körperpflege und Kochen hin.",
+        storyText: "Der Wasserverbrauch zeigt mehrere Spitzen über den Tag verteilt: morgens beim Duschen, mittags, und abends beim Kochen.",
         graphType: "bar",
         graphTitle: "Wasserverbrauch",
         graphData: [1, 3, 75, 45, 25, 15, 35, 20, 12, 8, 65, 40, 28, 18, 8, 2],
