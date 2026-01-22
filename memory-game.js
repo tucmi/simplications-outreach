@@ -6,9 +6,9 @@ const gameData = [
         storyText: "Die Temperatur in einem Raum steigt kontinuierlich über den Tag an, bis die Klimaanlage eingeschaltet wird.",
         graphType: "line",
         graphTitle: "Temperatur im Tagesverlauf",
-        graphData: [18, 19, 20, 21.5, 23, 26, 20, 20],
+        graphData: [18, 18.5, 19, 20, 21.5, 23, 25, 27, 21, 20, 20],
         yAxisLabel: "°C",
-        annotation: { index: 5, label: "Klima an" }
+        timeLabels: ["6h", "8h", "10h", "12h", "14h", "16h", "18h", "20h", "21h", "22h", "23h"]
     },
     {
         id: 2,
@@ -16,9 +16,10 @@ const gameData = [
         storyText: "Ein regelmäßiges Bewegungsmuster zeigt, dass jemand jeden Morgen um 7 Uhr aufsteht und das Haus verlässt.",
         graphType: "bar",
         graphTitle: "Bewegungsaktivität",
-        graphData: [5, 10, 90, 0, 0, 5, 20, 35, 80, 15, 5],
+        graphData: [2, 5, 95, 85, 5, 3, 2, 8, 90, 75, 40, 5],
         yAxisLabel: "",
-        highlightIndices: [2, 8]
+        highlightIndices: [2, 8],
+        timeLabels: ["0h", "5h", "7h", "8h", "10h", "12h", "14h", "16h", "18h", "19h", "21h", "23h"]
     },
     {
         id: 3,
@@ -26,8 +27,9 @@ const gameData = [
         storyText: "Der Stromverbrauch zeigt deutliche Spitzen am Morgen und Abend, wenn die meisten Geräte in Betrieb sind.",
         graphType: "area",
         graphTitle: "Stromverbrauch (24h)",
-        graphData: [5, 10, 80, 60, 40, 30, 35, 85, 60, 35, 10],
-        yAxisLabel: "kWh"
+        graphData: [3, 5, 85, 75, 45, 65, 70, 50, 35, 30, 45, 88, 70, 40, 8],
+        yAxisLabel: "kWh",
+        timeLabels: ["0h", "4h", "7h", "8h", "10h", "12h", "13h", "14h", "15h", "16h", "18h", "20h", "21h", "22h", "23h"]
     },
     {
         id: 4,
@@ -35,9 +37,9 @@ const gameData = [
         storyText: "Nach dem Duschen steigt die Luftfeuchtigkeit im Badezimmer schnell an und normalisiert sich dann wieder.",
         graphType: "line",
         graphTitle: "Luftfeuchtigkeit",
-        graphData: [55, 55, 95, 90, 82, 72, 65, 60, 57, 55, 55],
+        graphData: [52, 52, 53, 98, 95, 88, 78, 68, 62, 58, 55, 53],
         yAxisLabel: "%",
-        annotation: { index: 2, label: "Duschen" }
+        timeLabels: ["6h", "6.5h", "7h", "7.2h", "7.3h", "7.5h", "8h", "8.5h", "9h", "10h", "11h", "12h"]
     },
     {
         id: 5,
@@ -45,9 +47,9 @@ const gameData = [
         storyText: "Die Lichtintensität folgt dem natürlichen Tagesrhythmus mit einem Maximum zur Mittagszeit.",
         graphType: "smooth",
         graphTitle: "Lichtintensität",
-        graphData: [0, 15, 40, 70, 100, 70, 40, 15, 0],
+        graphData: [0, 0, 5, 25, 55, 85, 100, 85, 55, 25, 5, 0, 0],
         yAxisLabel: "Lux",
-        annotation: { index: 4, label: "Mittag" }
+        timeLabels: ["0h", "3h", "6h", "8h", "10h", "12h", "14h", "16h", "18h", "20h", "22h", "23h", "24h"]
     },
     {
         id: 6,
@@ -55,15 +57,16 @@ const gameData = [
         storyText: "Hoher Wasserverbrauch am Morgen und Abend deutet auf Körperpflege und Kochen hin.",
         graphType: "bar",
         graphTitle: "Wasserverbrauch",
-        graphData: [10, 90, 30, 10, 15, 85, 30, 5],
+        graphData: [1, 3, 75, 45, 25, 15, 35, 20, 12, 8, 65, 40, 28, 18, 8, 2],
         yAxisLabel: "L",
-        highlightIndices: [1, 5]
+        highlightIndices: [2, 10],
+        timeLabels: ["0h", "5h", "7h", "8h", "9h", "10h", "12h", "13h", "14h", "16h", "19h", "20h", "21h", "22h", "23h", "24h"]
     }
 ];
 
 // SVG Graph Generation Functions
-function generateGraph(data) {
-    const { graphType, graphTitle, graphData, yAxisLabel, annotation, highlightIndices } = data;
+function generateGraph(data, showTitle = true) {
+    const { graphType, graphTitle, graphData, yAxisLabel, annotation, highlightIndices, timeLabels } = data;
     
     const width = 400;
     const height = 300;
@@ -77,7 +80,11 @@ function generateGraph(data) {
     
     let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">`;
     svg += `<rect width="${width}" height="${height}" fill="#F7F7F8"/>`;
-    svg += `<text x="${width/2}" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#BF4254">${graphTitle}</text>`;
+    
+    // Only show title if showTitle is true
+    if (showTitle) {
+        svg += `<text x="${width/2}" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#BF4254">${graphTitle}</text>`;
+    }
     
     // Axes
     const axisY = padding.top + chartHeight;
@@ -88,6 +95,19 @@ function generateGraph(data) {
     if (yAxisLabel) {
         svg += `<text x="${padding.left - 30}" y="${height/2}" font-size="11" fill="#84888E">${yAxisLabel}</text>`;
     }
+    
+    // X-axis time labels
+    if (timeLabels && timeLabels.length > 0) {
+        const stepX = chartWidth / (graphData.length - 1);
+        timeLabels.forEach((label, i) => {
+            const x = padding.left + (i * stepX);
+            const y = axisY + 20;
+            svg += `<text x="${x}" y="${y}" font-size="9" fill="#84888E" text-anchor="middle">${label}</text>`;
+        });
+    }
+    
+    // X-axis label
+    svg += `<text x="${width/2}" y="${height - 10}" font-size="11" fill="#84888E" text-anchor="middle">Zeit</text>`;
     
     // Generate graph based on type
     switch(graphType) {
@@ -103,16 +123,6 @@ function generateGraph(data) {
         case 'smooth':
             svg += generateSmoothGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
             break;
-    }
-    
-    // Add annotation if provided
-    if (annotation) {
-        const stepX = chartWidth / (graphData.length - 1);
-        const x = padding.left + (annotation.index * stepX);
-        const normalized = (graphData[annotation.index] - minValue) / valueRange;
-        const y = padding.top + chartHeight - (normalized * chartHeight);
-        svg += `<circle cx="${x}" cy="${y}" r="4" fill="#BF4254"/>`;
-        svg += `<text x="${x + 8}" y="${y - 5}" font-size="10" fill="#2C2E35">${annotation.label}</text>`;
     }
     
     svg += '</svg>';
@@ -299,6 +309,11 @@ function createCardElement(card, index) {
     cardDiv.dataset.pairId = card.pairId;
     cardDiv.dataset.type = card.type;
     
+    // Data cards start flipped (always visible)
+    if (card.type === 'graph') {
+        cardDiv.classList.add('flipped', 'data-always-visible');
+    }
+    
     // Front face (hidden)
     const frontFace = document.createElement('div');
     frontFace.className = 'card-face card-front';
@@ -327,7 +342,7 @@ function createGraphContent(data) {
     container.className = 'graph-container';
     
     const img = document.createElement('img');
-    img.src = generateGraph(data);
+    img.src = generateGraph(data, false); // Don't show title initially
     img.alt = 'Datenvisualisierung';
     img.className = 'graph-image';
     container.appendChild(img);
@@ -357,12 +372,18 @@ function createStoryContent(data) {
 // Handle card click
 function handleCardClick(cardElement, card) {
     if (!gameStarted) return;
-    if (cardElement.classList.contains('flipped')) return;
     if (cardElement.classList.contains('matched')) return;
     if (flippedCards.length >= 2) return;
     
-    // Flip the card
-    cardElement.classList.add('flipped');
+    // For story cards, check if already flipped
+    if (card.type === 'story' && cardElement.classList.contains('flipped')) return;
+    
+    // For data cards, they're always visible - just add to selection
+    // For story cards, flip them
+    if (card.type === 'story') {
+        cardElement.classList.add('flipped');
+    }
+    
     flippedCards.push({ element: cardElement, card: card });
     
     // Update board highlighting
@@ -408,6 +429,13 @@ function checkForMatch() {
         // Match found!
         first.element.classList.add('matched');
         second.element.classList.add('matched');
+        
+        // Show title on the graph card
+        const graphCard = first.card.type === 'graph' ? first : second;
+        const graphImg = graphCard.element.querySelector('.graph-image');
+        if (graphImg) {
+            graphImg.src = generateGraph(graphCard.card.data, true); // Regenerate with title
+        }
         
         // Add pulse animation briefly
         setTimeout(() => {
