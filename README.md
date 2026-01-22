@@ -97,13 +97,12 @@ Use the arrow keys or click the side arrows to navigate between games:
 
 - **← / →** - Switch between games
 - **1, 2** - Jump to specific game
-- Click dots at bottom to jump to any game
 
 ## 🛠️ Adding a New Game
 
 1. **Create game files following the naming convention:**
 
-   ```
+   ```cmd
    new-game-name.html
    new-game-name.css
    new-game-name.js
@@ -199,7 +198,7 @@ See `LICENSE` file for details.
 ## 🔗 Links
 
 - [Simplications Website](https://simplications.tucmi.de)
-- [TU Chemnitz - Mensch-Computer Interaktion](https://www.tu-chemnitz.de/informatik/mc/)
+- [TU Chemnitz - Medieninformatik](https://www.tu-chemnitz.de/informatik/mi/)
 
 ---
 
