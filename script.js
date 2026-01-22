@@ -4,39 +4,196 @@ const gameData = [
         id: 1,
         storyTitle: "Temperaturanstieg",
         storyText: "Die Temperatur in einem Raum steigt kontinuierlich über den Tag an, bis die Klimaanlage eingeschaltet wird.",
-        graphImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F7F7F8'/%3E%3Ctext x='200' y='30' text-anchor='middle' font-size='16' font-weight='bold' fill='%23BF4254'%3ETemperatur im Tagesverlauf%3C/text%3E%3Cpath d='M 50 250 L 100 220 L 150 190 L 200 160 L 250 140 L 280 100 L 300 200 L 350 200' stroke='%23BF4254' stroke-width='3' fill='none'/%3E%3Ccircle cx='280' cy='100' r='5' fill='%23BF4254'/%3E%3Ctext x='290' y='95' font-size='12' fill='%232C2E35'%3EKlima an%3C/text%3E%3Cline x1='50' y1='260' x2='350' y2='260' stroke='%2384888E' stroke-width='1'/%3E%3Cline x1='50' y1='260' x2='50' y2='50' stroke='%2384888E' stroke-width='1'/%3E%3Ctext x='20' y='155' font-size='12' fill='%2384888E'%3E°C%3C/text%3E%3Ctext x='180' y='285' font-size='12' fill='%2384888E'%3EZeit%3C/text%3E%3C/svg%3E"
+        graphType: "line",
+        graphTitle: "Temperatur im Tagesverlauf",
+        graphData: [18, 19, 20, 21.5, 23, 26, 20, 20],
+        yAxisLabel: "°C",
+        annotation: { index: 5, label: "Klima an" }
     },
     {
         id: 2,
         storyTitle: "Bewegungsmuster",
         storyText: "Ein regelmäßiges Bewegungsmuster zeigt, dass jemand jeden Morgen um 7 Uhr aufsteht und das Haus verlässt.",
-        graphImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F7F7F8'/%3E%3Ctext x='200' y='30' text-anchor='middle' font-size='16' font-weight='bold' fill='%23BF4254'%3EBewegungsaktivität%3C/text%3E%3Crect x='60' y='230' width='15' height='10' fill='%2384888E'/%3E%3Crect x='85' y='220' width='15' height='20' fill='%2384888E'/%3E%3Crect x='110' y='150' width='15' height='90' fill='%23BF4254'/%3E%3Crect x='135' y='240' width='15' height='0' fill='%2384888E'/%3E%3Crect x='160' y='240' width='15' height='0' fill='%2384888E'/%3E%3Crect x='185' y='230' width='15' height='10' fill='%2384888E'/%3E%3Crect x='210' y='210' width='15' height='30' fill='%2384888E'/%3E%3Crect x='235' y='180' width='15' height='60' fill='%2384888E'/%3E%3Crect x='260' y='160' width='15' height='80' fill='%23BF4254'/%3E%3Crect x='285' y='220' width='15' height='20' fill='%2384888E'/%3E%3Crect x='310' y='230' width='15' height='10' fill='%2384888E'/%3E%3Cline x1='50' y1='245' x2='350' y2='245' stroke='%2384888E' stroke-width='1'/%3E%3Cline x1='50' y1='245' x2='50' y2='50' stroke='%2384888E' stroke-width='1'/%3E%3Ctext x='105' y='275' font-size='11' fill='%232C2E35'%3E7:00%3C/text%3E%3Ctext x='255' y='275' font-size='11' fill='%232C2E35'%3E18:00%3C/text%3E%3C/svg%3E"
+        graphType: "bar",
+        graphTitle: "Bewegungsaktivität",
+        graphData: [5, 10, 90, 0, 0, 5, 20, 35, 80, 15, 5],
+        yAxisLabel: "",
+        highlightIndices: [2, 8]
     },
     {
         id: 3,
         storyTitle: "Stromverbrauch",
         storyText: "Der Stromverbrauch zeigt deutliche Spitzen am Morgen und Abend, wenn die meisten Geräte in Betrieb sind.",
-        graphImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F7F7F8'/%3E%3Ctext x='200' y='30' text-anchor='middle' font-size='16' font-weight='bold' fill='%23BF4254'%3EStromverbrauch (24h)%3C/text%3E%3Cpath d='M 50 230 L 80 220 L 110 120 L 140 140 L 170 170 L 200 190 L 230 180 L 260 100 L 290 130 L 320 180 L 350 220' stroke='%23BF4254' stroke-width='3' fill='none'/%3E%3Cpath d='M 50 230 L 80 220 L 110 120 L 140 140 L 170 170 L 200 190 L 230 180 L 260 100 L 290 130 L 320 180 L 350 220 L 350 240 L 50 240 Z' fill='%23BF4254' opacity='0.2'/%3E%3Cline x1='50' y1='240' x2='350' y2='240' stroke='%2384888E' stroke-width='1'/%3E%3Cline x1='50' y1='240' x2='50' y2='50' stroke='%2384888E' stroke-width='1'/%3E%3Ctext x='15' y='150' font-size='12' fill='%2384888E'%3EkWh%3C/text%3E%3Ctext x='100' y='270' font-size='11' fill='%232C2E35'%3EMorgen%3C/text%3E%3Ctext x='250' y='270' font-size='11' fill='%232C2E35'%3EAbend%3C/text%3E%3C/svg%3E"
+        graphType: "area",
+        graphTitle: "Stromverbrauch (24h)",
+        graphData: [5, 10, 80, 60, 40, 30, 35, 85, 60, 35, 10],
+        yAxisLabel: "kWh"
     },
     {
         id: 4,
         storyTitle: "Luftfeuchtigkeit",
         storyText: "Nach dem Duschen steigt die Luftfeuchtigkeit im Badezimmer schnell an und normalisiert sich dann wieder.",
-        graphImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F7F7F8'/%3E%3Ctext x='200' y='30' text-anchor='middle' font-size='16' font-weight='bold' fill='%23BF4254'%3ELuftfeuchtigkeit%3C/text%3E%3Cpath d='M 50 200 L 80 200 L 100 80 L 130 85 L 160 95 L 190 110 L 220 130 L 250 150 L 280 170 L 310 185 L 340 195 L 350 200' stroke='%23BF4254' stroke-width='3' fill='none'/%3E%3Ccircle cx='100' cy='80' r='5' fill='%23BF4254'/%3E%3Ctext x='110' y='75' font-size='11' fill='%232C2E35'%3EDuschen%3C/text%3E%3Cline x1='50' y1='240' x2='350' y2='240' stroke='%2384888E' stroke-width='1'/%3E%3Cline x1='50' y1='240' x2='50' y2='50' stroke='%2384888E' stroke-width='1'/%3E%3Ctext x='20' y='150' font-size='11' fill='%2384888E'%3E%25%3C/text%3E%3Ctext x='180' y='270' font-size='12' fill='%2384888E'%3EZeit%3C/text%3E%3Cline x1='50' y1='200' x2='350' y2='200' stroke='%2384888E' stroke-width='1' stroke-dasharray='5,5' opacity='0.5'/%3E%3Ctext x='355' y='205' font-size='10' fill='%2384888E'%3ENormal%3C/text%3E%3C/svg%3E"
+        graphType: "line",
+        graphTitle: "Luftfeuchtigkeit",
+        graphData: [55, 55, 95, 90, 82, 72, 65, 60, 57, 55, 55],
+        yAxisLabel: "%",
+        annotation: { index: 2, label: "Duschen" }
     },
     {
         id: 5,
         storyTitle: "Lichtintensität",
         storyText: "Die Lichtintensität folgt dem natürlichen Tagesrhythmus mit einem Maximum zur Mittagszeit.",
-        graphImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F7F7F8'/%3E%3Ctext x='200' y='30' text-anchor='middle' font-size='16' font-weight='bold' fill='%23BF4254'%3ELichtintensität%3C/text%3E%3Cpath d='M 50 240 Q 100 220, 120 180 Q 150 100, 200 70 Q 250 100, 280 180 Q 300 220, 350 240' stroke='%23BF4254' stroke-width='3' fill='none'/%3E%3Cpath d='M 50 240 Q 100 220, 120 180 Q 150 100, 200 70 Q 250 100, 280 180 Q 300 220, 350 240 L 350 245 L 50 245 Z' fill='%23BF4254' opacity='0.15'/%3E%3Ccircle cx='200' cy='70' r='5' fill='%23BF4254'/%3E%3Ctext x='210' y='65' font-size='11' fill='%232C2E35'%3EMittag%3C/text%3E%3Cline x1='50' y1='245' x2='350' y2='245' stroke='%2384888E' stroke-width='1'/%3E%3Cline x1='50' y1='245' x2='50' y2='50' stroke='%2384888E' stroke-width='1'/%3E%3Ctext x='15' y='150' font-size='11' fill='%2384888E'%3ELux%3C/text%3E%3Ctext x='40' y='270' font-size='10' fill='%2384888E'%3E6:00%3C/text%3E%3Ctext x='185' y='270' font-size='10' fill='%2384888E'%3E12:00%3C/text%3E%3Ctext x='330' y='270' font-size='10' fill='%2384888E'%3E18:00%3C/text%3E%3C/svg%3E"
+        graphType: "smooth",
+        graphTitle: "Lichtintensität",
+        graphData: [0, 15, 40, 70, 100, 70, 40, 15, 0],
+        yAxisLabel: "Lux",
+        annotation: { index: 4, label: "Mittag" }
     },
     {
         id: 6,
         storyTitle: "Wasserverbrauch",
         storyText: "Hoher Wasserverbrauch am Morgen und Abend deutet auf Körperpflege und Kochen hin.",
-        graphImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23F7F7F8'/%3E%3Ctext x='200' y='30' text-anchor='middle' font-size='16' font-weight='bold' fill='%23BF4254'%3EWasserverbrauch%3C/text%3E%3Crect x='70' y='220' width='25' height='20' fill='%2384888E' rx='2'/%3E%3Crect x='105' y='110' width='25' height='130' fill='%23BF4254' rx='2'/%3E%3Crect x='140' y='200' width='25' height='40' fill='%2384888E' rx='2'/%3E%3Crect x='175' y='220' width='25' height='20' fill='%2384888E' rx='2'/%3E%3Crect x='210' y='210' width='25' height='30' fill='%2384888E' rx='2'/%3E%3Crect x='245' y='130' width='25' height='110' fill='%23BF4254' rx='2'/%3E%3Crect x='280' y='200' width='25' height='40' fill='%2384888E' rx='2'/%3E%3Crect x='315' y='230' width='25' height='10' fill='%2384888E' rx='2'/%3E%3Cline x1='50' y1='245' x2='360' y2='245' stroke='%2384888E' stroke-width='1'/%3E%3Cline x1='50' y1='245' x2='50' y2='50' stroke='%2384888E' stroke-width='1'/%3E%3Ctext x='20' y='150' font-size='11' fill='%2384888E'%3EL%3C/text%3E%3Ctext x='100' y='275' font-size='10' fill='%232C2E35'%3EMorgen%3C/text%3E%3Ctext x='240' y='275' font-size='10' fill='%232C2E35'%3EAbend%3C/text%3E%3C/svg%3E"
+        graphType: "bar",
+        graphTitle: "Wasserverbrauch",
+        graphData: [10, 90, 30, 10, 15, 85, 30, 5],
+        yAxisLabel: "L",
+        highlightIndices: [1, 5]
     }
 ];
+
+// SVG Graph Generation Functions
+function generateGraph(data) {
+    const { graphType, graphTitle, graphData, yAxisLabel, annotation, highlightIndices } = data;
+    
+    const width = 400;
+    const height = 300;
+    const padding = { top: 40, right: 30, bottom: 50, left: 50 };
+    const chartWidth = width - padding.left - padding.right;
+    const chartHeight = height - padding.top - padding.bottom;
+    
+    const maxValue = Math.max(...graphData);
+    const minValue = Math.min(...graphData);
+    const valueRange = maxValue - minValue || 1;
+    
+    let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">`;
+    svg += `<rect width="${width}" height="${height}" fill="#F7F7F8"/>`;
+    svg += `<text x="${width/2}" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#BF4254">${graphTitle}</text>`;
+    
+    // Axes
+    const axisY = padding.top + chartHeight;
+    svg += `<line x1="${padding.left}" y1="${axisY}" x2="${width - padding.right}" y2="${axisY}" stroke="#84888E" stroke-width="1"/>`;
+    svg += `<line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${axisY}" stroke="#84888E" stroke-width="1"/>`;
+    
+    // Y-axis label
+    if (yAxisLabel) {
+        svg += `<text x="${padding.left - 30}" y="${height/2}" font-size="11" fill="#84888E">${yAxisLabel}</text>`;
+    }
+    
+    // Generate graph based on type
+    switch(graphType) {
+        case 'line':
+            svg += generateLineGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
+            break;
+        case 'bar':
+            svg += generateBarGraph(graphData, padding, chartWidth, chartHeight, maxValue, highlightIndices);
+            break;
+        case 'area':
+            svg += generateAreaGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
+            break;
+        case 'smooth':
+            svg += generateSmoothGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
+            break;
+    }
+    
+    // Add annotation if provided
+    if (annotation) {
+        const stepX = chartWidth / (graphData.length - 1);
+        const x = padding.left + (annotation.index * stepX);
+        const normalized = (graphData[annotation.index] - minValue) / valueRange;
+        const y = padding.top + chartHeight - (normalized * chartHeight);
+        svg += `<circle cx="${x}" cy="${y}" r="4" fill="#BF4254"/>`;
+        svg += `<text x="${x + 8}" y="${y - 5}" font-size="10" fill="#2C2E35">${annotation.label}</text>`;
+    }
+    
+    svg += '</svg>';
+    return 'data:image/svg+xml,' + encodeURIComponent(svg);
+}
+
+function generateLineGraph(data, padding, chartWidth, chartHeight, maxValue, minValue, valueRange) {
+    const stepX = chartWidth / (data.length - 1);
+    let path = 'M ';
+    
+    data.forEach((value, i) => {
+        const x = padding.left + (i * stepX);
+        const normalized = (value - minValue) / valueRange;
+        const y = padding.top + chartHeight - (normalized * chartHeight);
+        path += `${x} ${y} `;
+        if (i < data.length - 1) path += 'L ';
+    });
+    
+    return `<path d="${path}" stroke="#BF4254" stroke-width="2.5" fill="none"/>`;
+}
+
+function generateBarGraph(data, padding, chartWidth, chartHeight, maxValue, highlightIndices = []) {
+    const barWidth = chartWidth / data.length * 0.7;
+    const stepX = chartWidth / data.length;
+    let svg = '';
+    
+    data.forEach((value, i) => {
+        const x = padding.left + (i * stepX) + (stepX - barWidth) / 2;
+        const barHeight = (value / maxValue) * chartHeight;
+        const y = padding.top + chartHeight - barHeight;
+        const isHighlighted = highlightIndices.includes(i);
+        const color = isHighlighted ? '#BF4254' : '#84888E';
+        svg += `<rect x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" fill="${color}" rx="1"/>`;
+    });
+    
+    return svg;
+}
+
+function generateAreaGraph(data, padding, chartWidth, chartHeight, maxValue, minValue, valueRange) {
+    const stepX = chartWidth / (data.length - 1);
+    let path = 'M ';
+    
+    data.forEach((value, i) => {
+        const x = padding.left + (i * stepX);
+        const normalized = (value - minValue) / valueRange;
+        const y = padding.top + chartHeight - (normalized * chartHeight);
+        path += `${x} ${y} `;
+        if (i < data.length - 1) path += 'L ';
+    });
+    
+    const linePath = path;
+    const areaPath = path + `L ${padding.left + chartWidth} ${padding.top + chartHeight} L ${padding.left} ${padding.top + chartHeight} Z`;
+    
+    return `<path d="${areaPath}" fill="#BF4254" opacity="0.2"/><path d="${linePath}" stroke="#BF4254" stroke-width="2.5" fill="none"/>`;
+}
+
+function generateSmoothGraph(data, padding, chartWidth, chartHeight, maxValue, minValue, valueRange) {
+    const stepX = chartWidth / (data.length - 1);
+    const points = data.map((value, i) => {
+        const x = padding.left + (i * stepX);
+        const normalized = (value - minValue) / valueRange;
+        const y = padding.top + chartHeight - (normalized * chartHeight);
+        return { x, y };
+    });
+    
+    let path = `M ${points[0].x} ${points[0].y}`;
+    
+    for (let i = 0; i < points.length - 1; i++) {
+        const xMid = (points[i].x + points[i + 1].x) / 2;
+        const yMid = (points[i].y + points[i + 1].y) / 2;
+        path += ` Q ${points[i].x} ${points[i].y}, ${xMid} ${yMid}`;
+        if (i === points.length - 2) {
+            path += ` Q ${points[i + 1].x} ${points[i + 1].y}, ${points[i + 1].x} ${points[i + 1].y}`;
+        }
+    }
+    
+    const linePath = path;
+    const areaPath = path + ` L ${padding.left + chartWidth} ${padding.top + chartHeight} L ${padding.left} ${padding.top + chartHeight} Z`;
+    
+    return `<path d="${areaPath}" fill="#BF4254" opacity="0.15"/><path d="${linePath}" stroke="#BF4254" stroke-width="2.5" fill="none"/>`;
+}
 
 // Game State
 let cards = [];
@@ -166,18 +323,11 @@ function createGraphContent(data) {
     const container = document.createElement('div');
     container.className = 'graph-container';
     
-    if (data.graphImage) {
-        const img = document.createElement('img');
-        img.src = data.graphImage;
-        img.alt = 'Datenvisualisierung';
-        img.className = 'graph-image';
-        container.appendChild(img);
-    } else {
-        const placeholder = document.createElement('div');
-        placeholder.className = 'graph-placeholder';
-        placeholder.textContent = 'Graph-Platzhalter';
-        container.appendChild(placeholder);
-    }
+    const img = document.createElement('img');
+    img.src = generateGraph(data);
+    img.alt = 'Datenvisualisierung';
+    img.className = 'graph-image';
+    container.appendChild(img);
     
     return container;
 }
