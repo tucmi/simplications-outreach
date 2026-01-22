@@ -9,11 +9,13 @@ Interactive educational games about data privacy and IoT devices for the Simplic
 Each game follows a consistent naming convention: `{game-name}-game.{ext}`
 
 #### Memory Game (Daten-Memory)
+
 - `memory-game.html` - Memory matching game HTML
 - `memory-game.css` - Memory game-specific styles
 - `memory-game.js` - Memory game logic and data
 
 #### Sensorium Game (Was siehst DU?)
+
 - `sensorium-game.html` - Sensorium perspective game HTML
 - `sensorium-game.css` - Sensorium game-specific styles
 - `sensorium-game.js` - Sensorium game logic and scenarios
@@ -34,11 +36,13 @@ Each game follows a consistent naming convention: `{game-name}-game.{ext}`
 ## 🎮 Games
 
 ### 1. Daten-Memory (Memory Game)
+
 Match data visualizations with the stories they tell. Players must connect graphs with their corresponding narratives to understand data interpretation.
 
 **File:** `memory-game.html`
 
 **Features:**
+
 - 6 matching pairs (graphs + stories)
 - Dynamic SVG graph generation
 - Flip animations
@@ -46,11 +50,13 @@ Match data visualizations with the stories they tell. Players must connect graph
 - Fullscreen mode
 
 ### 2. Sensorium (Perspective Game)
+
 Discover the two perspectives of data collection - what you think you're sharing vs. what's actually being collected.
 
 **File:** `sensorium-game.html`
 
 **Features:**
+
 - 3 IoT device scenarios (Smart Speaker, Smoke Detector, Smart TV)
 - Dual perspective switching
 - Data comparison reveals
@@ -62,12 +68,14 @@ Discover the two perspectives of data collection - what you think you're sharing
 ### Running Locally
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/tucmi/simplications-outreach.git
    cd simplications-outreach
    ```
 
 2. **Start a local server:**
+
    ```bash
    # Python 3
    python -m http.server 8000
@@ -86,6 +94,7 @@ Discover the two perspectives of data collection - what you think you're sharing
 ### Gallery Navigation
 
 Use the arrow keys or click the side arrows to navigate between games:
+
 - **← / →** - Switch between games
 - **1, 2** - Jump to specific game
 - Click dots at bottom to jump to any game
@@ -93,6 +102,7 @@ Use the arrow keys or click the side arrows to navigate between games:
 ## 🛠️ Adding a New Game
 
 1. **Create game files following the naming convention:**
+
    ```
    new-game-name.html
    new-game-name.css
@@ -100,6 +110,7 @@ Use the arrow keys or click the side arrows to navigate between games:
    ```
 
 2. **Include shared files in your HTML:**
+
    ```html
    <link rel="stylesheet" href="common.css">
    <link rel="stylesheet" href="new-game-name.css">
@@ -112,6 +123,7 @@ Use the arrow keys or click the side arrows to navigate between games:
 
 3. **Register in gallery navigation:**
    Edit `gallery-nav.js` and add your game to the `GAMES` array:
+
    ```javascript
    {
        id: 'new-game',
@@ -124,7 +136,9 @@ Use the arrow keys or click the side arrows to navigate between games:
 ## 📦 Common Resources
 
 ### common.css
+
 Provides:
+
 - CSS variables (colors, shadows, transitions)
 - Base reset and typography
 - Header/footer styles
@@ -133,7 +147,9 @@ Provides:
 - Utility classes (`.fade-in`, `.text-center`, `.hidden`)
 
 ### common.js
+
 Provides utility functions:
+
 - **DOM:** `$()`, `$$()`, `createElement()`
 - **Arrays:** `shuffleArray()`, `randomItem()`
 - **Timing:** `wait()`, `nextFrame()`, `addClassWithDelay()`
@@ -144,6 +160,7 @@ Provides utility functions:
 ## 🎨 Design System
 
 ### Colors
+
 - **Primary:** `#BF4254` (Simplications Red)
 - **Dark:** `#2C2E35`
 - **Gray:** `#84888E`
@@ -153,11 +170,13 @@ Provides utility functions:
 - **Danger:** `#C62828`
 
 ### Typography
+
 - **Font:** System font stack (SF Pro, Segoe UI, Roboto, etc.)
 - **Line height:** 1.6
 - **Headings:** Bold, -0.5px letter-spacing
 
 ### Spacing
+
 - **Border radius:** 8px (default), 4px (small), 16px (large)
 - **Shadows:** sm, md, lg
 - **Transitions:** fast (0.2s), medium (0.3s), slow (0.5s)
