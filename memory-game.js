@@ -216,6 +216,12 @@ function createErrorSVG() {
     </svg>`;
     return 'data:image/svg+xml,' + encodeURIComponent(svg);
 }
+
+function generateLineGraph(data, padding, chartWidth, chartHeight, maxValue, minValue, valueRange) {
+    const stepX = chartWidth / (data.length - 1);
+    let path = 'M ';
+    
+    data.forEach((value, i) => {
         const x = padding.left + (i * stepX);
         const normalized = (value - minValue) / valueRange;
         const y = padding.top + chartHeight - (normalized * chartHeight);
@@ -298,21 +304,21 @@ let lastSelectedType = null; // Track which type was selected last
 let currentPairCount = 0; // Track actual number of pairs in current game
 let isProcessingMatch = false; // Prevent interaction during match checking
 
-// DOM Elements (will be initialized in init())
-let storyBoard;
-let dataBoard;
-let newGameButton;
-let fullscreenButton;
-let restartButton;
-let attemptsDisplay;
-let matchesDisplay;
-let gameMessage;
-let messageTitle;
-let messageText;
-let zoomModal;
-let zoomClose;
-let zoomGraphContainer;
-let srAnnouncements;
+// DOM Elements
+const storyBoard = document.getElementById('storyBoard');
+const dataBoard = document.getElementById('dataBoard');
+const newGameButton = document.getElementById('newGameButton');
+const fullscreenButton = document.getElementById('fullscreenButton');
+const restartButton = document.getElementById('restartButton');
+const attemptsDisplay = document.getElementById('attempts');
+const matchesDisplay = document.getElementById('matches');
+const gameMessage = document.getElementById('gameMessage');
+const messageTitle = document.getElementById('messageTitle');
+const messageText = document.getElementById('messageText');
+const zoomModal = document.getElementById('zoomModal');
+const zoomClose = document.getElementById('zoomClose');
+const zoomGraphContainer = document.getElementById('zoomGraphContainer');
+const srAnnouncements = document.getElementById('srAnnouncements');
 
 /**
  * Announce message to screen readers
@@ -348,22 +354,6 @@ function hideZoomModal() {
 
 // Initialize the game
 function init() {
-    // Initialize DOM elements
-    storyBoard = document.getElementById('storyBoard');
-    dataBoard = document.getElementById('dataBoard');
-    newGameButton = document.getElementById('newGameButton');
-    fullscreenButton = document.getElementById('fullscreenButton');
-    restartButton = document.getElementById('restartButton');
-    attemptsDisplay = document.getElementById('attempts');
-    matchesDisplay = document.getElementById('matches');
-    gameMessage = document.getElementById('gameMessage');
-    messageTitle = document.getElementById('messageTitle');
-    messageText = document.getElementById('messageText');
-    zoomModal = document.getElementById('zoomModal');
-    zoomClose = document.getElementById('zoomClose');
-    zoomGraphContainer = document.getElementById('zoomGraphContainer');
-    srAnnouncements = document.getElementById('srAnnouncements');
-    
     newGameButton.addEventListener('click', startNewGame);
     fullscreenButton.addEventListener('click', toggleFullscreen);
     restartButton.addEventListener('click', startNewGame);
@@ -461,21 +451,21 @@ function createCards() {
     });
     
     // Shuffle each group separately
-    const shuffledStoryCards = shuffleArray(storyCards);
-    const shuffledGraphCards = shuffleArray(graphCards);
+    shuffleArray(storyCards);
+    shuffleArray(graphCards);
     
     // Store all cards
-    cards = [...shuffledStoryCards, ...shuffledGraphCards];
+    cards = [...storyCards, ...graphCards];
     
     // Render story cards
-    shuffledStoryCards.forEach((card, index) => {
+    storyCards.forEach((card, index) => {
         const cardElement = createCardElement(card, index);
         storyBoard.appendChild(cardElement);
     });
     
     // Render graph cards
-    shuffledGraphCards.forEach((card, index) => {
-        const cardElement = createCardElement(card, index + shuffledStoryCards.length);
+    graphCards.forEach((card, index) => {
+        const cardElement = createCardElement(card, index + storyCards.length);
         dataBoard.appendChild(cardElement);
     });
 }
