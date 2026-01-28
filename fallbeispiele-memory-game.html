@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Fallbeispiele-Memory | Simplications</title>
+	<link rel="stylesheet" href="common.css">
+	<link rel="stylesheet" href="fallbeispiele-memory-game.css">
+	<link rel="stylesheet" href="gallery-nav.css">
+</head>
+<body>
+	<header class="header">
+		<div class="header-content">
+			<h1>Fallbeispiele-Memory</h1>
+			<p>Ordne die Textbeispiele den passenden Sensordaten-Bildern zu! Finde heraus, welche Geschichte zu welchem Bild gehört.</p>
+		</div>
+	</header>
+
+	<main class="main-content">
+		<div class="game-controls">
+			<div class="game-buttons">
+				<button id="newGameButton" class="btn">Neues Spiel</button>
+			</div>
+			<div class="game-stats">
+				<span class="stat">Versuche: <strong id="attempts">0</strong></span>
+				<span class="stat">Gefundene Paare: <strong id="matches">0</strong></span>
+			</div>
+		</div>
+
+		<div class="game-boards-container">
+			<div class="board-section" role="region" aria-label="Textbeispiele-Spielfeld">
+				<h2 class="board-title">Textbeispiele</h2>
+				<div id="storyBoard" class="game-board">
+					<!-- Story cards will be dynamically inserted here -->
+				</div>
+			</div>
+            
+			<div class="board-section" role="region" aria-label="Bilddaten-Spielfeld">
+				<h2 class="board-title">Sensordaten-Bilder</h2>
+				<div id="dataBoard" class="game-board">
+					<!-- Data/Graph cards will be dynamically inserted here -->
+				</div>
+			</div>
+		</div>
+
+		<div id="gameMessage" class="game-message hidden">
+			<div class="message-content">
+				<h2 id="messageTitle"></h2>
+				<p id="messageText"></p>
+				<button id="restartButton" class="btn">Neues Spiel</button>
+			</div>
+		</div>
+	</main>
+
+	<footer class="footer">
+		<div class="footer-content">
+			<p>Ein Projekt von <a href="https://simplications.tucmi.de" target="_blank" rel="noopener noreferrer">Simplications</a></p>
+			<p>Entwickelt im Rahmen des Projekts "Implikationen (vermeintlich) einfacher Sensordaten für Privatheit im Zuhause"</p>
+			<p><a href="https://github.com/tucmi/simplications-outreach" target="_blank" rel="noopener noreferrer">GitHub Repository</a></p>
+		</div>
+	</footer>
+
+	<!-- Screen reader announcements -->
+	<div id="srAnnouncements" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+	<script src="common.js"></script>
+	<script src="fallbeispiele-memory-game.js"></script>
+	<script src="gallery-nav.js"></script>
+</body>
+</html>
+
+<!-- Zoom Modal for fullscreen image -->
+<div id="zoomModal" class="zoom-modal hidden">
+    <div class="zoom-modal-backdrop"></div>
+    <div class="zoom-modal-content">
+        <button class="zoom-close" id="zoomClose" aria-label="Schließen">&times;</button>
+        <div id="zoomGraphContainer" class="zoom-graph-container"></div>
+    </div>
+</div>

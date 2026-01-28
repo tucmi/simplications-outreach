@@ -1,0 +1,50 @@
+const gameData = [
+    {
+        id: 1,
+        storyTitle: "Lichtsensor",
+        storyText: "Ein Lichtsensor in der Wohnung zeigt, dass jemand regelmäßig um 4 Uhr aufsteht, um zur Arbeit zu gehen.",
+        graphImage: "Licht_4Uhr.jpg"
+    },
+    {
+        id: 2,
+        storyTitle: "Bewegung an Schublade",
+        storyText: "Die Bewegungen vom Sensor an der Süßigkeitenschublade legen nahe, wann da jemand genascht hat.",
+        graphImage: "Bewegung_Schublade.jpg"
+    },
+    {
+        id: 3,
+        storyTitle: "CO2-Sensor im Schlafzimmer",
+        storyText: "Der CO2-Sensor im Schlafzimmer zeigt nicht nur, wann geschlafen wird, sondern auch, ob jemand über Nacht da war.",
+        graphImage: "CO2_2Personen.jpg"
+    },
+    {
+        id: 4,
+        storyTitle: "Bewegung an der Wohnungstür",
+        storyText: "Der Bewegungssensor an der Wohnungstür zeigt auch, wann und wie lange mit dem Hund Gassi gegangen wurde.",
+        graphImage: "Bewegung_Wohnungstuer.jpg"
+    },
+    {
+        id: 5,
+        storyTitle: "Luftfeuchtigkeit und Temperatur in der Küche",
+        storyText: "Am Abend wurde etwas aus dem Tiefkühlfach im Ofen zubereitet.",
+        graphImage: "Temp+Luftf_Kueche.jpg"
+    },
+    {
+        id: 6,
+        storyTitle: "Luftqualität durch Deo",
+        storyText: "Der Ausschlag in der Luftqualität im Badezimmer zeigt, wann dort Deo benutzt wurde.",
+        graphImage: "Luftquali_Deo.jpg"
+    },
+    {
+        id: 7,
+        storyTitle: "Luftfeuchtigkeit im Bad",
+        storyText: "Am Abend steigt nach dem Duschen die Luftfeuchtigkeit im Bad stark an, danach wird gelüftet. Etwas später duscht jemand anderes ohne zu lüften.",
+        graphImage: "Luftfeuchtigkeit_Bad.jpg"
+    },
+    {
+        id: 8,
+        storyTitle: "Lautstärke und Mittagsruhe",
+        storyText: "Im Wohnzimmer ist es mittags ganz ruhig, damit das Kind schlafen kann.",
+        graphImage: "Lautstaerke_Mittagsruhe.jpg"
+    }
+];
