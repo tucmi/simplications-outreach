@@ -30,6 +30,12 @@ const GAMES = [
         title: 'Beispiel-Checkliste',
         file: 'checkliste-smart-home.html',
         description: 'Beispielhafte Raum-fuer-Raum-Checkliste fuer Datenerhebung, Speicherung und Weitergabe'
+    },
+    {
+        id: 'konsens-protokoll',
+        title: 'Konsens-Protokoll',
+        file: 'konsens-protokoll.html',
+        description: 'Vorlage fuer eine haushaltsinterne Nutzungsvereinbarung smarter Geraete'
     }
     // Add future games here:
     // {
