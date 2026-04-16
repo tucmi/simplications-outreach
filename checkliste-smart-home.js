@@ -114,7 +114,17 @@ function buildAuditList(items) {
 }
 
 function storageClass(item) {
-    return item.toLowerCase();
+    const normalized = item.toLowerCase();
+
+    if (normalized === 'lokal') {
+        return 'local';
+    }
+
+    if (normalized === 'anbieter') {
+        return 'vendor';
+    }
+
+    return normalized;
 }
 
 function transferClass(item) {
@@ -175,10 +185,17 @@ function buildRoomSection(roomConfig) {
 
 function initChecklistPage() {
     const roomGrid = document.getElementById('roomGrid');
+    const printChecklistButton = document.getElementById('printChecklistButton');
 
     CHECKLIST_ROOMS.forEach(roomConfig => {
         roomGrid.appendChild(buildRoomSection(roomConfig));
     });
+
+    if (printChecklistButton) {
+        printChecklistButton.addEventListener('click', () => {
+            window.print();
+        });
+    }
 }
 
 if (document.readyState === 'loading') {
