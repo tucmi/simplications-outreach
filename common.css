@@ -273,5 +273,6 @@ button:disabled {
     body {
         background: white;
         color: black;
+        filter: grayscale(1);
     }
 }
