@@ -28,7 +28,11 @@ const AUDIENCE_CATALOG = [
 			'before-purchase': {
 				social: [
 					'Eigene Rechte gegenüber Vermieter:innen oder anderen Entscheidungsträger:innen kennen.',
-					'Ein Konsens-Protokoll schon vor dem Kauf ansprechen und Mitbetroffene früh einbeziehen.',
+					{
+						text: 'Ein Konsens-Protokoll schon vor dem Kauf ansprechen und Mitbetroffene früh einbeziehen.',
+						linkText: 'Zum Konsens-Protokoll',
+						href: 'konsens-protokoll.html'
+					},
 					'Erwartungen an Transparenz und Mitsprache im Haushalt vorab klären.'
 				],
 				technical: [
@@ -39,7 +43,11 @@ const AUDIENCE_CATALOG = [
 			setup: {
 				social: [
 					'Beim Einrichten transparent kommunizieren, welche Funktionen aktiviert werden und welche Folgen das für Mitbewohnende hat.',
-					'Ein einfaches Konsens-Protokoll festhalten: Wer darf was einstellen, wer wird informiert, wie werden Konflikte gelöst?'
+					{
+						text: 'Ein einfaches Konsens-Protokoll festhalten: Wer darf was einstellen, wer wird informiert, wie werden Konflikte gelöst?',
+						linkText: 'Protokoll-Vorlage öffnen',
+						href: 'konsens-protokoll.html'
+					}
 				],
 				technical: [
 					'Zusätzliche Admin-Zugänge oder getrennte Rollen nutzen, damit Verantwortung nicht an einer Person hängt.',

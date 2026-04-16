@@ -18,24 +18,6 @@ const GAMES = [
         title: 'Sensorium',
         file: 'sensorium-game.html',
         description: 'Entdecke die zwei Perspektiven der Datensammlung'
-    },
-    {
-        id: 'massnahmenkatalog',
-        title: 'Maßnahmenkatalog',
-        file: 'massnahmenkatalog.html',
-        description: 'Soziale und technische Maßnahmen für mehr Privatheit im Smart Home'
-    },
-    {
-        id: 'checkliste-smart-home',
-        title: 'Beispiel-Checkliste',
-        file: 'checkliste-smart-home.html',
-        description: 'Beispielhafte Raum-fuer-Raum-Checkliste fuer Datenerhebung, Speicherung und Weitergabe'
-    },
-    {
-        id: 'konsens-protokoll',
-        title: 'Konsens-Protokoll',
-        file: 'konsens-protokoll.html',
-        description: 'Vorlage fuer eine haushaltsinterne Nutzungsvereinbarung smarter Geraete'
     }
     // Add future games here:
     // {
