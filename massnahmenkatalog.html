@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maßnahmenkatalog | Simplications</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="massnahmenkatalog.css">
+    <link rel="stylesheet" href="gallery-nav.css">
+</head>
+<body>
+    <header>
+        <h1>Maßnahmenkatalog</h1>
+        <p class="subtitle">Soziale und technische Maßnahmen für mehr Privatheit im Smart Home, geordnet nach Produktlebenszyklus und Verantwortung.</p>
+    </header>
+
+    <main class="catalog-page">
+        <section class="intro-panel" aria-labelledby="introTitle">
+            <div>
+                <p class="eyebrow">Orientierung</p>
+                <h2 id="introTitle">Ein strukturierter Überblick für Haushalte und Produktteams</h2>
+                <p class="intro-text">Der Katalog trennt Maßnahmen für Verbraucher:innen sowie Hersteller:innen und Entwickler:innen. Innerhalb jeder Perspektive sind die Punkte nach Phase des Produktlebenszyklus und nach sozialer oder technischer Maßnahme gruppiert. Ergänzend gibt es einen Abschnitt mit allgemeinen Sicherheitspraktiken.</p>
+            </div>
+        </section>
+
+        <section class="phase-tabs-section" aria-labelledby="phaseTabsTitle">
+            <div class="phase-tabs-header">
+                <p class="eyebrow">Produktlebenszyklus</p>
+                <h2 id="phaseTabsTitle">Phasen als Navigation</h2>
+            </div>
+            <div class="phase-tabs" role="tablist" aria-label="Phasen des Produktlebenszyklus">
+                <button class="phase-tab active" id="tab-before-purchase" type="button" role="tab" aria-selected="true" aria-controls="phase-panel" data-phase="before-purchase">Phase 1: Vor dem Kauf</button>
+                <button class="phase-tab" id="tab-setup" type="button" role="tab" aria-selected="false" aria-controls="phase-panel" data-phase="setup" tabindex="-1">Phase 2: Set-Up</button>
+                <button class="phase-tab" id="tab-use" type="button" role="tab" aria-selected="false" aria-controls="phase-panel" data-phase="use" tabindex="-1">Phase 3: Nutzung</button>
+                <button class="phase-tab" id="tab-disposal" type="button" role="tab" aria-selected="false" aria-controls="phase-panel" data-phase="disposal" tabindex="-1">Phase 4: Entsorgung</button>
+            </div>
+        </section>
+
+        <div id="phase-panel" role="tabpanel" aria-labelledby="tab-before-purchase">
+            <section id="consumerCatalog" class="audience-section" aria-labelledby="consumerTitle"></section>
+            <section id="developerCatalog" class="audience-section" aria-labelledby="developerTitle"></section>
+        </div>
+        <section id="securityCatalog" class="security-section" aria-labelledby="securityTitle"></section>
+    </main>
+
+    <footer>
+        <p>Ein Projekt von <a href="https://simplications.tucmi.de" target="_blank" rel="noopener">Simplications</a></p>
+        <p class="footer-note">Privatheit im Smart Home verständlich und praktisch aufbereitet</p>
+        <p><a href="https://github.com/tucmi/simplications-outreach" target="_blank" rel="noopener">GitHub Repository</a></p>
+    </footer>
+
+    <script src="common.js"></script>
+    <script src="massnahmenkatalog.js"></script>
+    <script src="gallery-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beispiel-Checkliste Smart Home | Simplications</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="checkliste-smart-home.css">
+    <link rel="stylesheet" href="gallery-nav.css">
+</head>
+<body>
+    <header>
+        <h1>Beispiel-Checkliste Smart Home</h1>
+        <p class="subtitle">Eine einfache Übersicht, um pro Raum zu prüfen, welche Geräte Daten erfassen, speichern und weiterleiten.</p>
+    </header>
+
+    <main class="checklist-page">
+        <section class="intro-card" aria-labelledby="introTitle">
+            <div>
+                <p class="eyebrow">Checkliste</p>
+                <h2 id="introTitle">Raum für Raum Geräte und Datenflüsse sichtbar machen</h2>
+                <p>Die Liste ist als Beispiel gedacht. Sie hilft dabei, im Haushalt systematisch festzuhalten, welche smarten Geräte vorhanden sind, welche Daten sie erheben und ob Daten lokal gespeichert oder an Apps, Hersteller-Clouds oder andere Dienste weitergegeben werden.</p>
+            </div>
+            <div class="legend" aria-label="Legende">
+                <div class="legend-item"><span class="legend-swatch collect"></span><span>Erhobene Daten</span></div>
+                <div class="legend-item"><span class="legend-swatch store"></span><span>Speicherung</span></div>
+                <div class="legend-item"><span class="legend-swatch send"></span><span>Übertragung</span></div>
+            </div>
+        </section>
+
+        <section class="howto-card" aria-labelledby="howtoTitle">
+            <h2 id="howtoTitle">So kann die Checkliste genutzt werden</h2>
+            <ol class="howto-list">
+                <li>Alle Räume durchgehen und smarte oder vernetzte Geräte notieren.</li>
+                <li>Pro Gerät festhalten, welche Datenarten anfallen und welche Daten wirklich notwendig sind.</li>
+                <li>Prüfen, ob Daten lokal bleiben, in einer Cloud gespeichert werden oder an weitere Stellen gesendet werden.</li>
+                <li>Offene Fragen markieren: Wer hat Zugriff, wie lange werden Daten gespeichert und wie lassen sie sich löschen?</li>
+            </ol>
+        </section>
+
+        <section class="room-grid" id="roomGrid" aria-label="Checkliste nach Räumen"></section>
+    </main>
+
+    <footer>
+        <p>Ein Projekt von <a href="https://simplications.tucmi.de" target="_blank" rel="noopener">Simplications</a></p>
+        <p class="footer-note">Beispielmaterial zur Reflexion von Privatheit im Smart Home</p>
+        <p><a href="https://github.com/tucmi/simplications-outreach" target="_blank" rel="noopener">GitHub Repository</a></p>
+    </footer>
+
+    <script src="common.js"></script>
+    <script src="checkliste-smart-home.js"></script>
+    <script src="gallery-nav.js"></script>
+</body>
+</html>

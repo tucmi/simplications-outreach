@@ -6,7 +6,7 @@ Interactive educational games about data privacy and IoT devices for the Simplic
 
 ### Game Files
 
-Each game follows a consistent naming convention: `{game-name}-game.{ext}`
+Interactive games use the naming convention `{game-name}-game.{ext}`. Standalone reference pages can use descriptive names such as `massnahmenkatalog.{ext}`.
 
 #### Memory Game (Daten-Memory)
 
@@ -19,6 +19,18 @@ Each game follows a consistent naming convention: `{game-name}-game.{ext}`
 - `sensorium-game.html` - Sensorium perspective game HTML
 - `sensorium-game.css` - Sensorium game-specific styles
 - `sensorium-game.js` - Sensorium game logic and scenarios
+
+#### Maßnahmenkatalog
+
+- `massnahmenkatalog.html` - Overview page for privacy measures in the smart home
+- `massnahmenkatalog.css` - Maßnahmenkatalog-specific styles
+- `massnahmenkatalog.js` - Structured rendering of lifecycle-based measures
+
+#### Beispiel-Checkliste Smart Home
+
+- `checkliste-smart-home.html` - Example checklist for rooms, devices, and data flows in the household
+- `checkliste-smart-home.css` - Checklist-specific styles
+- `checkliste-smart-home.js` - Structured rendering of example rooms and devices
 
 ### Shared Files
 
@@ -63,6 +75,32 @@ Discover the two perspectives of data collection - what you think you're sharing
 - Educational insights
 - Progressive scenario navigation
 
+### 3. Maßnahmenkatalog
+
+A structured overview of social and technical privacy measures for consumers as well as manufacturers and developers, grouped by product lifecycle phase.
+
+**File:** `massnahmenkatalog.html`
+
+**Features:**
+
+- Lifecycle-based structure (before purchase, setup, use, disposal)
+- Separate perspectives for consumers and product teams
+- Distinction between social and technical measures
+- Additional security best practices section
+
+### 4. Beispiel-Checkliste Smart Home
+
+An example audit checklist that helps users inspect which smart devices exist in each room, which data they collect, where data is stored, and where it is sent.
+
+**File:** `checkliste-smart-home.html`
+
+**Features:**
+
+- Room-by-room structure
+- Example devices and typical data categories
+- Separate columns for collection, storage, and transmission
+- Embedded audit questions for household review
+
 ## 🚀 Getting Started
 
 ### Running Locally
@@ -96,7 +134,7 @@ Discover the two perspectives of data collection - what you think you're sharing
 Use the arrow keys or click the side arrows to navigate between games:
 
 - **← / →** - Switch between games
-- **1, 2** - Jump to specific game
+- **1, 2, 3, 4** - Jump to a specific page
 
 ## 🛠️ Adding a New Game
 

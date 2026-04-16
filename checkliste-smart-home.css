@@ -1,0 +1,218 @@
+body {
+    background:
+        radial-gradient(circle at top left, rgba(191, 66, 84, 0.12), transparent 28%),
+        linear-gradient(180deg, var(--light-color) 0%, var(--white) 28%, var(--lighter-color) 100%);
+}
+
+.checklist-page {
+    width: min(1200px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 2rem 0 4rem;
+}
+
+.intro-card,
+.howto-card,
+.room-card {
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(180, 185, 193, 0.45);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.intro-card {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    padding: 1.75rem;
+}
+
+.eyebrow {
+    color: var(--primary-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+
+.intro-card h2,
+.howto-card h2,
+.room-card h2 {
+    font-size: clamp(1.45rem, 2.2vw, 2rem);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+}
+
+.legend {
+    display: grid;
+    gap: 0.75rem;
+    align-self: start;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 14px;
+    background: var(--light-color);
+}
+
+.legend-swatch {
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 50%;
+    flex: 0 0 auto;
+}
+
+.legend-swatch.collect {
+    background: var(--primary-color);
+}
+
+.legend-swatch.store {
+    background: var(--success-color);
+}
+
+.legend-swatch.send {
+    background: var(--warning-color);
+}
+
+.howto-card {
+    margin-top: 1.5rem;
+    padding: 1.5rem 1.75rem;
+}
+
+.howto-list {
+    padding-left: 1.25rem;
+    display: grid;
+    gap: 0.55rem;
+}
+
+.room-grid {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+}
+
+.room-card {
+    padding: 1.5rem;
+}
+
+.room-meta {
+    color: var(--gray-color);
+    max-width: 72ch;
+    margin-bottom: 1rem;
+}
+
+.device-table-wrapper {
+    overflow-x: auto;
+}
+
+.device-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 780px;
+}
+
+.device-table th,
+.device-table td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.9rem 0.85rem;
+    border-bottom: 1px solid rgba(180, 185, 193, 0.35);
+}
+
+.device-table th {
+    font-size: 0.92rem;
+    color: var(--gray-color);
+}
+
+.device-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.device-name {
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.device-type {
+    color: var(--gray-color);
+    font-size: 0.92rem;
+}
+
+.pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.data-pill,
+.status-pill,
+.audit-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.data-pill {
+    background: rgba(191, 66, 84, 0.1);
+    color: var(--primary-dark);
+}
+
+.status-pill.local {
+    background: rgba(46, 125, 50, 0.12);
+    color: var(--success-color);
+}
+
+.status-pill.cloud,
+.status-pill.app,
+.status-pill.vendor,
+.status-pill.external {
+    background: rgba(245, 124, 0, 0.12);
+    color: #9b5d00;
+}
+
+.audit-list {
+    list-style: none;
+    display: grid;
+    gap: 0.45rem;
+}
+
+.audit-list li {
+    display: flex;
+    gap: 0.55rem;
+}
+
+.audit-pill {
+    background: var(--lighter-color);
+    color: var(--dark-color);
+    flex: 0 0 auto;
+}
+
+.catalog-link {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+@media (max-width: 900px) {
+    .intro-card {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .checklist-page {
+        width: min(100% - 1rem, 1200px);
+        padding: 1rem 0 3rem;
+    }
+
+    .intro-card,
+    .howto-card,
+    .room-card {
+        padding: 1.1rem;
+    }
+}
