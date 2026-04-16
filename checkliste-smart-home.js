@@ -105,12 +105,34 @@ function buildAuditList(items) {
 
     items.forEach(item => {
         list.appendChild(createElement('li', {}, [
-            createElement('span', { class: 'audit-pill' }, 'Pruefen'),
+            createElement('span', { class: 'audit-pill' }, 'Prüfen'),
             createElement('span', {}, item)
         ]));
     });
 
     return list;
+}
+
+function storageClass(item) {
+    return item.toLowerCase();
+}
+
+function transferClass(item) {
+    const normalized = item.toLowerCase();
+
+    if (normalized.includes('app')) {
+        return 'app';
+    }
+
+    if (normalized.includes('cloud')) {
+        return 'cloud';
+    }
+
+    if (normalized.includes('hersteller') || normalized.includes('anbieter')) {
+        return 'vendor';
+    }
+
+    return 'external';
 }
 
 function buildDeviceRow(device) {
@@ -119,26 +141,10 @@ function buildDeviceRow(device) {
             createElement('div', { class: 'device-name' }, device.name),
             createElement('div', { class: 'device-type' }, device.type)
         ]),
-        createPillList(device.data, 'data-pill'),
-        createPillList(device.storage, 'status-pill', item => item.toLowerCase()),
-        createPillList(device.transfer, 'status-pill', item => {
-            const normalized = item.toLowerCase();
-
-            if (normalized.includes('app')) {
-                return 'app';
-            }
-
-            if (normalized.includes('cloud')) {
-                return 'cloud';
-            }
-
-            if (normalized.includes('hersteller') || normalized.includes('anbieter')) {
-                return 'vendor';
-            }
-
-            return 'external';
-        }),
-        buildAuditList(device.audit)
+        createElement('td', {}, [createPillList(device.data, 'data-pill')]),
+        createElement('td', {}, [createPillList(device.storage, 'status-pill', storageClass)]),
+        createElement('td', {}, [createPillList(device.transfer, 'status-pill', transferClass)]),
+        createElement('td', {}, [buildAuditList(device.audit)])
     ]);
 }
 
@@ -149,7 +155,7 @@ function buildRoomSection(roomConfig) {
             createElement('th', { scope: 'col' }, 'Welche Daten werden erhoben?'),
             createElement('th', { scope: 'col' }, 'Wo werden Daten gespeichert?'),
             createElement('th', { scope: 'col' }, 'Wohin werden Daten gesendet?'),
-            createElement('th', { scope: 'col' }, 'Prueffragen')
+            createElement('th', { scope: 'col' }, 'Prüffragen')
         ])
     ]);
 
