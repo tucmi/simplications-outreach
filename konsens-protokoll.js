@@ -315,6 +315,53 @@ function buildDeviceTable() {
     PROTOCOL_DEVICES.forEach((device, index) => {
         tbody.appendChild(buildDeviceRow(device, index));
     });
+
+    const BLANK_ROWS = 3;
+    for (let b = 0; b < BLANK_ROWS; b++) {
+        const rowIndex = PROTOCOL_DEVICES.length + b;
+        const tr = createElement('tr', { class: 'blank-row' });
+
+        tr.appendChild(createElement('td', { class: 'row-num' }, String(rowIndex + 1)));
+
+        const deviceTd = createElement('td', { class: 'device-cell' });
+        const nameInput = createElement('input', {
+            type: 'text',
+            class: 'notes-input',
+            'aria-label': `Eigenes Gerät ${b + 1}`
+        });
+        nameInput.placeholder = 'Eigenes Gerät eintragen...';
+        deviceTd.appendChild(nameInput);
+        tr.appendChild(deviceTd);
+
+        const locationTd = createElement('td', { class: 'location-cell' });
+        const locationInput = createElement('input', {
+            type: 'text',
+            class: 'notes-input',
+            'aria-label': `Standort eigenes Gerät ${b + 1}`
+        });
+        locationInput.placeholder = 'Standort...';
+        locationTd.appendChild(locationInput);
+        tr.appendChild(locationTd);
+
+        tr.appendChild(createElement('td', { class: 'data-cell' }));
+
+        tr.appendChild(buildCheckboxCell(`allowed_custom_${b}`, false));
+        tr.appendChild(buildCheckboxCell(`local_custom_${b}`, false));
+        tr.appendChild(buildCheckboxCell(`nothird_custom_${b}`, false));
+
+        const notesTd = createElement('td', { class: 'notes-cell' });
+        const notesInput = createElement('input', {
+            type: 'text',
+            class: 'notes-input',
+            'aria-label': `Besondere Vereinbarung eigenes Gerät ${b + 1}`
+        });
+        notesInput.placeholder = 'Besondere Absprachen...';
+        notesTd.appendChild(notesInput);
+        tr.appendChild(notesTd);
+
+        tbody.appendChild(tr);
+    }
+
     table.appendChild(tbody);
     wrapper.appendChild(table);
     section.appendChild(wrapper);
