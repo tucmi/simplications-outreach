@@ -3,27 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konsens-Protokoll Smart Home | Simplications</title>
+    <title>Konsens-Protokoll für gemeinsame Smart-Home-Regeln | Simplications</title>
     <link rel="stylesheet" href="../assets/css/common.css">
     <link rel="stylesheet" href="../assets/css/konsens-protokoll.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>Konsens-Protokoll</h1>
-        <p class="subtitle">Haltet gemeinsam fest, über welche smarten Geräte ihr euch verständigt habt und welche Regeln im Haushalt gelten.</p>
+        <h1>Konsens-Protokoll für gemeinsame Smart-Home-Regeln</h1>
+        <p class="subtitle">Eine praktische Vorlage, um im Haushalt transparent festzuhalten, welche Geräte genutzt werden dürfen, welche Einstellungen gelten und wie mit Daten umgegangen wird.</p>
     </header>
 
     <main class="protocol-page">
         <section class="page-actions" aria-label="Seitenaktionen">
             <a class="action-button action-button-secondary" href="massnahmenkatalog.html">Zurück zum Maßnahmenkatalog</a>
-            <button class="action-button action-button-primary" id="printProtocolButton" type="button">Druckfreundliche Ansicht anzeigen</button>
+            <button class="action-button action-button-primary" id="downloadPdfButton" type="button">Als PDF herunterladen</button>
         </section>
 
         <section class="intro-card" aria-labelledby="introTitle">
             <div class="intro-text-area">
                 <p class="eyebrow">Vorlage</p>
-                <h2 id="introTitle">Gemeinsame Nutzungsvereinbarung</h2>
-                <p>Diese Vorlage hilft dabei, im Haushalt transparent und gemeinsam zu klären, welche smarten Geräte und Sensoren genutzt werden – und welche Regeln dafür gelten. Füllt das Protokoll gemeinsam aus und besprecht offene Punkte, bevor ihr unterschreibt.</p>
+                <h2 id="introTitle">Gemeinsame Nutzungsvereinbarung im Haushalt</h2>
+                <p>Diese Vorlage hilft dabei, transparent und gemeinsam zu klären, welche smarten Geräte und Sensoren genutzt werden und welche Regeln dafür gelten. Ziel ist, Konflikte zu vermeiden und Privatsphäre im Alltag nachvollziehbar zu schützen.</p>
+                <p>Mitbetroffen sind alle Personen, deren Verhalten, Anwesenheit oder Routinen durch Geräte indirekt sichtbar werden können, auch wenn sie die Geräte selbst nicht bedienen. Dazu können z. B. Mitbewohnende, Kinder, Gäste oder regelmäßiger Besuch gehören.</p>
             </div>
             <div class="howto-mini">
                 <p class="eyebrow">So nutzt ihr das Protokoll</p>
@@ -53,8 +56,8 @@
 
             <section class="members-card" aria-labelledby="membersTitle">
                 <div class="section-header">
-                    <h2 id="membersTitle">Haushaltsmitglieder</h2>
-                    <p class="section-desc">Tragt alle Personen ein, die von den smarten Geräten betroffen sind und an dieser Vereinbarung teilnehmen.</p>
+                    <h2 id="membersTitle">Haushaltsmitglieder und Mitbetroffene</h2>
+                    <p class="section-desc">Tragt alle Personen ein, die von den smarten Geräten betroffen sind und an dieser Vereinbarung teilnehmen. Das umfasst auch Personen, die selbst keine Geräte konfigurieren, aber von Datenerhebung, Aufzeichnungen oder Automationen mit betroffen sein können.</p>
                 </div>
                 <div class="members-grid">
                     <div class="member-card">

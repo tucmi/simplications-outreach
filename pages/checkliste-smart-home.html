@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beispiel-Checkliste Smart Home | Simplications</title>
+    <title>Smart-Home-Datencheck: Beispiel-Checkliste für Haushalte | Simplications</title>
     <link rel="stylesheet" href="../assets/css/common.css">
     <link rel="stylesheet" href="../assets/css/checkliste-smart-home.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>Beispiel-Checkliste Smart Home</h1>
-        <p class="subtitle">Eine einfache Übersicht, um pro Raum zu prüfen, welche Geräte Daten erfassen, speichern und weiterleiten.</p>
+        <h1>Smart-Home-Datencheck: Beispiel-Checkliste für Haushalte</h1>
+        <p class="subtitle">Eine Schritt-für-Schritt-Übersicht, um pro Raum nachzuvollziehen, welche Geräte Daten erfassen, speichern und weitergeben und wen das im Alltag betrifft.</p>
     </header>
 
     <main class="checklist-page">
         <section class="page-actions" aria-label="Seitenaktionen">
             <a class="action-button action-button-secondary" href="massnahmenkatalog.html">Zurück zum Maßnahmenkatalog</a>
-            <button class="action-button action-button-primary" id="printChecklistButton" type="button">Druckfreundliche Ansicht anzeigen</button>
+            <button class="action-button action-button-primary" id="downloadPdfButton" type="button">Als PDF herunterladen</button>
         </section>
 
         <section class="intro-card" aria-labelledby="introTitle">
             <div>
                 <p class="eyebrow">Checkliste</p>
-                <h2 id="introTitle">Raum für Raum Geräte und Datenflüsse sichtbar machen</h2>
+                <h2 id="introTitle">Raum für Raum Geräte, Datenflüsse und Mitbetroffene sichtbar machen</h2>
                 <p>Die Liste ist als Beispiel gedacht. Sie hilft dabei, im Haushalt systematisch festzuhalten, welche smarten Geräte vorhanden sind, welche Daten sie erheben und ob Daten lokal gespeichert oder an Apps, Hersteller-Clouds oder andere Dienste weitergegeben werden.</p>
+                <p>Mitbetroffen sind dabei nicht nur Eigentümer:innen der Geräte, sondern auch Mitbewohnende, Kinder, Gäste oder Besuch, deren Verhalten indirekt mit erfasst werden kann. Genau deshalb ist es hilfreich, die Checkliste gemeinsam zu nutzen und regelmäßig zu aktualisieren.</p>
             </div>
             <div class="legend" aria-label="Legende">
                 <div class="legend-item"><span class="legend-swatch collect"></span><span>Erhobene Daten</span></div>
@@ -36,9 +38,10 @@
             <h2 id="howtoTitle">So kann die Checkliste genutzt werden</h2>
             <ol class="howto-list">
                 <li>Alle Räume durchgehen und smarte oder vernetzte Geräte notieren.</li>
-                <li>Pro Gerät festhalten, welche Datenarten anfallen und welche Daten wirklich notwendig sind.</li>
+                <li>Pro Gerät festhalten, welche Datenarten anfallen, wofür sie genutzt werden und welche Daten wirklich notwendig sind.</li>
                 <li>Prüfen, ob Daten lokal bleiben, in einer Cloud gespeichert werden oder an weitere Stellen gesendet werden.</li>
-                <li>Offene Fragen markieren: Wer hat Zugriff, wie lange werden Daten gespeichert und wie lassen sie sich löschen?</li>
+                <li>Mitbetroffene mitdenken: Wer wird mit erfasst, wer hat Zugriff und welche Informationen brauchen alle Beteiligten?</li>
+                <li>Offene Fragen markieren: Wie lange werden Daten gespeichert und wie lassen sie sich löschen?</li>
             </ol>
         </section>
 
