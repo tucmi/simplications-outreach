@@ -42,7 +42,349 @@
             </ol>
         </section>
 
-        <section class="room-grid" id="roomGrid" aria-label="Checkliste nach Räumen"></section>
+        <section class="room-grid" id="roomGrid" aria-label="Checkliste nach Räumen">
+            <section class="room-card">
+                <h2>Wohnzimmer</h2>
+                <p class="room-meta">Hier stehen oft Geräte mit Mikrofonen, Kameras oder detaillierten Nutzungsprofilen.</p>
+                <div class="device-table-wrapper">
+                    <table class="device-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Gerät</th>
+                                <th scope="col">Welche Daten werden erhoben?</th>
+                                <th scope="col">Wo werden Daten gespeichert?</th>
+                                <th scope="col">Wohin werden Daten gesendet?</th>
+                                <th scope="col">Prüffragen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="device-name">Smart-TV</div>
+                                    <div class="device-type">Entertainment</div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="data-pill">Nutzungsverhalten</span>
+                                        <span class="data-pill">Sender/Apps</span>
+                                        <span class="data-pill">Sprachbefehle</span>
+                                        <span class="data-pill">Gerätekennung</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill local">lokal</span>
+                                        <span class="status-pill cloud">cloud</span>
+                                        <span class="status-pill vendor">anbieter</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill app">TV-App</span>
+                                        <span class="status-pill vendor">Hersteller-Cloud</span>
+                                        <span class="status-pill external">Streaming-Dienste</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul class="audit-list">
+                                        <li><span class="audit-pill">Prüfen</span><span>Mikrofon/Kamera deaktivierbar?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Werbe-Tracking abschaltbar?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Verlauf löschbar?</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="device-name">Smarter Lautsprecher</div>
+                                    <div class="device-type">Sprachassistenz</div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="data-pill">Sprachbefehle</span>
+                                        <span class="data-pill">Nutzungszeiten</span>
+                                        <span class="data-pill">Haushaltsroutinen</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill cloud">cloud</span>
+                                        <span class="status-pill vendor">anbieter</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill app">Sprachdienst</span>
+                                        <span class="status-pill cloud">Verknüpfte Smart-Home-Clouds</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul class="audit-list">
+                                        <li><span class="audit-pill">Prüfen</span><span>Wird ständig mitgehört?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Welche Routinen sind aktiviert?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Können Sprachaufnahmen gelöscht werden?</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="room-card">
+                <h2>Küche</h2>
+                <p class="room-meta">In der Küche entstehen oft Daten über Routinen, Temperaturen und Energieverbrauch.</p>
+                <div class="device-table-wrapper">
+                    <table class="device-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Gerät</th>
+                                <th scope="col">Welche Daten werden erhoben?</th>
+                                <th scope="col">Wo werden Daten gespeichert?</th>
+                                <th scope="col">Wohin werden Daten gesendet?</th>
+                                <th scope="col">Prüffragen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="device-name">Smarter Kühlschrank</div>
+                                    <div class="device-type">Haushaltsgerät</div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="data-pill">Temperatur</span>
+                                        <span class="data-pill">Türöffnungen</span>
+                                        <span class="data-pill">Energieverbrauch</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill local">lokal</span>
+                                        <span class="status-pill cloud">cloud</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill app">Hersteller-App</span>
+                                        <span class="status-pill external">Wartungsdienst</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul class="audit-list">
+                                        <li><span class="audit-pill">Prüfen</span><span>Braucht das Gerät wirklich eine Cloud?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Wer sieht Türöffnungen?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Sind Benachrichtigungen nötig?</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="device-name">Sprachgesteuerte Steckdose</div>
+                                    <div class="device-type">Energie / Automation</div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="data-pill">Schaltzeiten</span>
+                                        <span class="data-pill">Energieverbrauch</span>
+                                        <span class="data-pill">Automationen</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill app">app</span>
+                                        <span class="status-pill cloud">cloud</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill app">Steckdosen-App</span>
+                                        <span class="status-pill external">Sprachassistenz</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul class="audit-list">
+                                        <li><span class="audit-pill">Prüfen</span><span>Welche Routinen sind verknüpft?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Bleiben Schaltpläne lokal?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Ist Fernzugriff aktiviert?</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="room-card">
+                <h2>Schlafzimmer</h2>
+                <p class="room-meta">Geräte in privaten Rückzugsräumen verdienen besondere Zurückhaltung bei Datenerhebung und Freigaben.</p>
+                <div class="device-table-wrapper">
+                    <table class="device-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Gerät</th>
+                                <th scope="col">Welche Daten werden erhoben?</th>
+                                <th scope="col">Wo werden Daten gespeichert?</th>
+                                <th scope="col">Wohin werden Daten gesendet?</th>
+                                <th scope="col">Prüffragen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="device-name">Sleep Tracker / Smartwatch</div>
+                                    <div class="device-type">Gesundheit / Wearable</div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="data-pill">Schlafdauer</span>
+                                        <span class="data-pill">Bewegung</span>
+                                        <span class="data-pill">Herzfrequenz</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill app">app</span>
+                                        <span class="status-pill cloud">cloud</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill app">Hersteller-App</span>
+                                        <span class="status-pill external">Gesundheitsplattformen</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul class="audit-list">
+                                        <li><span class="audit-pill">Prüfen</span><span>Wer sieht Gesundheitsdaten?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Ist Datenteilung mit Dritten aktiviert?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Wie lange bleiben die Daten gespeichert?</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="device-name">Smarte Lampe</div>
+                                    <div class="device-type">Licht / Komfort</div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="data-pill">Nutzungszeiten</span>
+                                        <span class="data-pill">Automationen</span>
+                                        <span class="data-pill">Raumpräsenz indirekt</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill local">lokal</span>
+                                        <span class="status-pill app">app</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill app">Licht-App</span>
+                                        <span class="status-pill external">Bridge / Hub</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul class="audit-list">
+                                        <li><span class="audit-pill">Prüfen</span><span>Ist Präsenz aus Schaltmustern ableitbar?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Braucht die Lampe Internetzugang?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Sind Freigaben für Gäste aktiv?</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="room-card">
+                <h2>Flur / Eingangsbereich</h2>
+                <p class="room-meta">Geräte am Eingang erfassen oft besonders sensible Bewegungs- und Besuchsdaten.</p>
+                <div class="device-table-wrapper">
+                    <table class="device-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Gerät</th>
+                                <th scope="col">Welche Daten werden erhoben?</th>
+                                <th scope="col">Wo werden Daten gespeichert?</th>
+                                <th scope="col">Wohin werden Daten gesendet?</th>
+                                <th scope="col">Prüffragen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="device-name">Videotürklingel</div>
+                                    <div class="device-type">Sicherheit / Kamera</div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="data-pill">Video</span>
+                                        <span class="data-pill">Audio</span>
+                                        <span class="data-pill">Zeitpunkte von Besuchen</span>
+                                        <span class="data-pill">Bewegung</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill cloud">cloud</span>
+                                        <span class="status-pill vendor">anbieter</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill app">Kamera-App</span>
+                                        <span class="status-pill vendor">Hersteller-Cloud</span>
+                                        <span class="status-pill external">Push-Dienst</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul class="audit-list">
+                                        <li><span class="audit-pill">Prüfen</span><span>Wer wird mit erfasst?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Wie lange werden Videos gespeichert?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Ist Daueraufzeichnung aktiviert?</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="device-name">Smartes Türschloss</div>
+                                    <div class="device-type">Zugangskontrolle</div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="data-pill">Öffnungsprotokolle</span>
+                                        <span class="data-pill">Nutzerkonten</span>
+                                        <span class="data-pill">Zutrittszeiten</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill local">lokal</span>
+                                        <span class="status-pill app">app</span>
+                                        <span class="status-pill cloud">cloud</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pill-list">
+                                        <span class="status-pill app">Schloss-App</span>
+                                        <span class="status-pill external">Remote-Zugriff</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul class="audit-list">
+                                        <li><span class="audit-pill">Prüfen</span><span>Wer hat Adminrechte?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Gibt es alte Gastzugänge?</span></li>
+                                        <li><span class="audit-pill">Prüfen</span><span>Ist der Fernzugriff nötig?</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
     </main>
 
     <footer>
@@ -52,7 +394,7 @@
         <p><a href="https://github.com/tucmi/simplications-outreach" target="_blank" rel="noopener">GitHub Repository</a></p>
     </footer>
 
-    <script src="../assets/js/common.js"></script>
     <script src="../assets/js/checkliste-smart-home.js"></script>
 </body>
 </html>
+

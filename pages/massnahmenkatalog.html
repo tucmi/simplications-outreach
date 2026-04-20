@@ -34,9 +34,148 @@
         </section>
 
         <div id="phase-panel" role="tabpanel" aria-labelledby="tab-before-purchase">
-            <section id="consumerCatalog" class="audience-section" aria-labelledby="consumerTitle"></section>
+            <section id="consumerCatalog" class="audience-section" aria-labelledby="consumerTitle">
+                <div class="audience-panel">
+                    <div class="audience-header">
+                        <span class="audience-tag">Für Verbraucher:innen</span>
+                        <h2 id="consumerTitle">Maßnahmen im Haushalt und in der gemeinsamen Nutzung</h2>
+                        <p class="audience-intro">Diese Perspektive buendelt Maßnahmen für Menschen, die Smart-Home-Technik kaufen, einrichten, gemeinsam nutzen und wieder aus dem Haushalt entfernen.</p>
+                    </div>
+                    <div class="phase-grid">
+                        <article class="phase-card" data-phase="before-purchase">
+                            <div class="phase-card-header">
+                                <h3>Phase 1: Vor dem Kauf</h3>
+                                <span class="measure-count">5 Maßnahmen</span>
+                            </div>
+                            <div class="measure-groups">
+                                <div class="measure-group">
+                                    <span class="group-tag social">Sozial</span>
+                                    <ul class="measure-list">
+                                        <li>Eigene Rechte gegenüber Vermieter:innen oder anderen Entscheidungsträger:innen kennen.</li>
+                                        <li><span>Ein Konsens-Protokoll schon vor dem Kauf ansprechen und Mitbetroffene früh einbeziehen. </span><a class="catalog-resource-link" href="konsens-protokoll.html">Zum Konsens-Protokoll</a></li>
+                                        <li>Erwartungen an Transparenz und Mitsprache im Haushalt vorab klären.</li>
+                                    </ul>
+                                </div>
+                                <div class="measure-group">
+                                    <span class="group-tag technical">Technisch</span>
+                                    <ul class="measure-list">
+                                        <li>Prüfen, ob ein Gerät überhaupt smart sein muss oder eine weniger vernetzte Alternative ausreicht.</li>
+                                        <li>Vorab vergleichen, welche Daten das Produkt erhebt, welche App benötigt wird und wer auf Einstellungen zugreifen kann.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="phase-card" data-phase="setup" hidden>
+                            <div class="phase-card-header">
+                                <h3>Phase 2: Set-Up</h3>
+                                <span class="measure-count">5 Maßnahmen</span>
+                            </div>
+                            <div class="measure-groups">
+                                <div class="measure-group">
+                                    <span class="group-tag social">Sozial</span>
+                                    <ul class="measure-list">
+                                        <li>Beim Einrichten transparent kommunizieren, welche Funktionen aktiviert werden und welche Folgen das für Mitbewohnende hat.</li>
+                                        <li><span>Ein einfaches Konsens-Protokoll festhalten: Wer darf was einstellen, wer wird informiert, wie werden Konflikte gelöst? </span><a class="catalog-resource-link" href="konsens-protokoll.html">Protokoll-Vorlage öffnen</a></li>
+                                    </ul>
+                                </div>
+                                <div class="measure-group">
+                                    <span class="group-tag technical">Technisch</span>
+                                    <ul class="measure-list">
+                                        <li>Zusätzliche Admin-Zugänge oder getrennte Rollen nutzen, damit Verantwortung nicht an einer Person hängt.</li>
+                                        <li>Datenschutzfreundliche Grundeinstellungen direkt im Set-Up wählen und unnötige Funktionen deaktivieren.</li>
+                                        <li>Smart-Home-Geräte möglichst in ein separates IoT-WLAN einbinden.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="phase-card" data-phase="use" hidden>
+                            <div class="phase-card-header">
+                                <h3>Phase 3: Nutzung</h3>
+                                <span class="measure-count">7 Maßnahmen</span>
+                            </div>
+                            <div class="measure-groups">
+                                <div class="measure-group">
+                                    <span class="group-tag social">Sozial</span>
+                                    <ul class="measure-list">
+                                        <li>Mit Checklisten regelmäßig prüfen, welche Geräte aktiv sind, welche Apps genutzt werden und wer weiterhin Zugriff hat.</li>
+                                        <li><span>Eine Beispiel-Checkliste nutzen, um pro Raum Geräte, Datenerhebung, Speicherung und Weitergabe systematisch zu prüfen. </span><a class="catalog-resource-link" href="checkliste-smart-home.html">Zur Beispiel-Checkliste</a></li>
+                                        <li>Veränderungen an Routinen, Automationen oder Freigaben im Haushalt sichtbar kommunizieren.</li>
+                                    </ul>
+                                </div>
+                                <div class="measure-group">
+                                    <span class="group-tag technical">Technisch</span>
+                                    <ul class="measure-list">
+                                        <li>Datenminimierung laufend umsetzen: nur nötige Sensoren, Dienste und Verknüpfungen aktiv lassen.</li>
+                                        <li>Alte Daten regelmäßig automatisch oder manuell löschen.</li>
+                                        <li>Einstellungen nachjustieren, wenn sich Nutzung, Mitbewohnende oder Risiken ändern.</li>
+                                        <li>Nicht jedes Gerät mit jedem anderen koppeln; weniger Vernetzung reduziert Angriffs- und Datenflächen.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="phase-card" data-phase="disposal" hidden>
+                            <div class="phase-card-header">
+                                <h3>Phase 4: Entsorgung</h3>
+                                <span class="measure-count">5 Maßnahmen</span>
+                            </div>
+                            <div class="measure-groups">
+                                <div class="measure-group">
+                                    <span class="group-tag social">Sozial</span>
+                                    <ul class="measure-list">
+                                        <li>Vor Weitergabe oder Entsorgung gemeinsam klären, welche Konten, Freigaben und Routinen beendet werden müssen.</li>
+                                        <li><span>Eine Abschluss-Checkliste nutzen, damit keine Zugriffe oder geteilten Datenbestände übersehen werden. </span><a class="catalog-resource-link" href="checkliste-smart-home.html">Checkliste erneut aufrufen</a></li>
+                                    </ul>
+                                </div>
+                                <div class="measure-group">
+                                    <span class="group-tag technical">Technisch</span>
+                                    <ul class="measure-list">
+                                        <li>Geräte auf Werkseinstellungen zurücksetzen und verbundene Konten entfernen.</li>
+                                        <li>Lokale und cloudbasierte Datenbestände gezielt löschen.</li>
+                                        <li>Prüfen, ob Backups, Automationen oder App-Berechtigungen weiterhin auf das Gerät verweisen.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
         </div>
-        <section id="securityCatalog" class="security-section" aria-labelledby="securityTitle"></section>
+        <section id="securityCatalog" class="security-section" aria-labelledby="securityTitle">
+            <div class="security-panel">
+                <div class="security-header">
+                    <span class="audience-tag">Sicherheitspraktiken</span>
+                    <h2 id="securityTitle">Allgemeine Sicherheits-Basics ergänzend zum Lebenszyklus</h2>
+                    <p>Diese Maßnahmen sind nicht auf eine einzelne Phase begrenzt. Sie schaffen eine belastbare Sicherheitsbasis für den alltäglichen Betrieb und für den verantwortlichen Umgang mit Smart-Home-Daten.</p>
+                </div>
+                <div class="security-grid">
+                    <article class="security-card">
+                        <h3>Allgemeine Sicherheitspraktiken für Verbraucher:innen</h3>
+                        <p>Sicherheitsroutinen im Haushalt ergänzen die phasenbezogenen Maßnahmen und reduzieren Risiken im laufenden Betrieb.</p>
+                        <div class="measure-groups">
+                            <div class="measure-group">
+                                <span class="group-tag social">Sozial</span>
+                                <ul class="measure-list">
+                                    <li>Im Haushalt klar festlegen, wer Updates, Backups und Konten im Blick behält.</li>
+                                    <li>Zugriffe und Sicherheitsänderungen regelmäßig gemeinsam überprüfen.</li>
+                                </ul>
+                            </div>
+                            <div class="measure-group">
+                                <span class="group-tag technical">Technisch</span>
+                                <ul class="measure-list">
+                                    <li>Separates IoT- oder Smart-Home-WLAN für vernetzte Geräte nutzen.</li>
+                                    <li>Wo sinnvoll VPN, Firewall und Mehrfaktor-Authentifizierung einsetzen.</li>
+                                    <li>Passwortmanagement, Sperrbildschirme und aktuelle Sicherheits-Updates konsequent nutzen.</li>
+                                    <li>Backups und Sicherheitssoftware als feste Routine einplanen.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -46,7 +185,7 @@
         <p><a href="https://github.com/tucmi/simplications-outreach" target="_blank" rel="noopener">GitHub Repository</a></p>
     </footer>
 
-    <script src="../assets/js/common.js"></script>
     <script src="../assets/js/massnahmenkatalog.js"></script>
 </body>
 </html>
+

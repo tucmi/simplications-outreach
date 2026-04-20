@@ -36,7 +36,275 @@
             </div>
         </section>
 
-        <div id="protocolContent"></div>
+        <div id="protocolContent">
+            <section class="meta-card" aria-labelledby="metaTitle">
+                <h2 id="metaTitle">Protokolldaten</h2>
+                <div class="meta-grid">
+                    <div class="meta-field">
+                        <label for="protocolDate" class="meta-label">Datum der Vereinbarung</label>
+                        <input type="date" id="protocolDate" class="meta-input" aria-label="Datum der Vereinbarung">
+                    </div>
+                    <div class="meta-field">
+                        <label for="protocolAddress" class="meta-label">Haushalt / Adresse (optional)</label>
+                        <input type="text" id="protocolAddress" class="meta-input" aria-label="Adresse des Haushalts" placeholder="z. B. Musterstraße 1, 01234 Musterstadt">
+                    </div>
+                </div>
+            </section>
+
+            <section class="members-card" aria-labelledby="membersTitle">
+                <div class="section-header">
+                    <h2 id="membersTitle">Haushaltsmitglieder</h2>
+                    <p class="section-desc">Tragt alle Personen ein, die von den smarten Geräten betroffen sind und an dieser Vereinbarung teilnehmen.</p>
+                </div>
+                <div class="members-grid">
+                    <div class="member-card">
+                        <div class="member-number">1</div>
+                        <div class="member-field">
+                            <label for="memberName0" class="field-label">Name</label>
+                            <input type="text" id="memberName0" class="field-input" aria-label="Name Haushaltsmitglied 1" placeholder="Name eintragen">
+                        </div>
+                        <div class="member-field">
+                            <label for="memberRole0" class="field-label">Rolle</label>
+                            <input type="text" id="memberRole0" class="field-input" aria-label="Rolle Haushaltsmitglied 1" placeholder="z. B. Mieter:in, Kind">
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-number">2</div>
+                        <div class="member-field">
+                            <label for="memberName1" class="field-label">Name</label>
+                            <input type="text" id="memberName1" class="field-input" aria-label="Name Haushaltsmitglied 2" placeholder="Name eintragen">
+                        </div>
+                        <div class="member-field">
+                            <label for="memberRole1" class="field-label">Rolle</label>
+                            <input type="text" id="memberRole1" class="field-input" aria-label="Rolle Haushaltsmitglied 2" placeholder="z. B. Mieter:in, Kind">
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-number">3</div>
+                        <div class="member-field">
+                            <label for="memberName2" class="field-label">Name</label>
+                            <input type="text" id="memberName2" class="field-input" aria-label="Name Haushaltsmitglied 3" placeholder="Name eintragen">
+                        </div>
+                        <div class="member-field">
+                            <label for="memberRole2" class="field-label">Rolle</label>
+                            <input type="text" id="memberRole2" class="field-input" aria-label="Rolle Haushaltsmitglied 3" placeholder="z. B. Mieter:in, Kind">
+                        </div>
+                    </div>
+                    <div class="member-card">
+                        <div class="member-number">4</div>
+                        <div class="member-field">
+                            <label for="memberName3" class="field-label">Name</label>
+                            <input type="text" id="memberName3" class="field-input" aria-label="Name Haushaltsmitglied 4" placeholder="Name eintragen">
+                        </div>
+                        <div class="member-field">
+                            <label for="memberRole3" class="field-label">Rolle</label>
+                            <input type="text" id="memberRole3" class="field-input" aria-label="Rolle Haushaltsmitglied 4" placeholder="z. B. Mieter:in, Kind">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="devices-card" aria-labelledby="devicesTitle">
+                <div class="section-header">
+                    <h2 id="devicesTitle">Geräte und Vereinbarungen</h2>
+                    <p class="section-desc">Geht gemeinsam durch, welche Geräte im Haushalt vorhanden sind. Setzt Häkchen für eure Vereinbarungen und notiert besondere Absprachen.</p>
+                </div>
+
+                <div class="table-legend">
+                    <div class="legend-item"><span class="legend-checkbox-box" aria-hidden="true"></span><strong>Nutzung erlaubt</strong> <span class="legend-desc">Das Gerät darf im Haushalt genutzt werden</span></div>
+                    <div class="legend-item"><span class="legend-checkbox-box" aria-hidden="true"></span><strong>Nur lokal</strong> <span class="legend-desc">Daten bleiben auf dem Gerät bzw. im Heimnetz</span></div>
+                    <div class="legend-item"><span class="legend-checkbox-box" aria-hidden="true"></span><strong>Keine Drittanbieter</strong> <span class="legend-desc">Keine Weitergabe an externe Dienste oder Anbieter</span></div>
+                </div>
+
+                <div class="device-table-wrapper">
+                    <table class="protocol-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Gerät</th>
+                                <th scope="col">Standort</th>
+                                <th scope="col">Erhobene Daten</th>
+                                <th scope="col">Nutzung erlaubt</th>
+                                <th scope="col">Nur lokal</th>
+                                <th scope="col">Keine Drittanbieter</th>
+                                <th scope="col">Besondere Vereinbarung</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="row-num">1</td>
+                                <td class="device-cell"><div class="device-name">Smart Speaker / Sprachassistent</div><span class="type-pill">Sprachsteuerung</span></td>
+                                <td class="location-cell">Wohnzimmer / Küche</td>
+                                <td class="data-cell"><div class="data-pill-list"><span class="data-mini-pill">Sprachaufnahmen</span><span class="data-mini-pill">Nutzungszeiten</span><span class="data-mini-pill">Routinen</span></div></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_0"><input type="checkbox" id="allowed_0" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_0"><input type="checkbox" id="local_0" class="protocol-checkbox"></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_0"><input type="checkbox" id="nothird_0" class="protocol-checkbox"></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung für Smart Speaker / Sprachassistent" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr>
+                                <td class="row-num">2</td>
+                                <td class="device-cell"><div class="device-name">Smart-TV</div><span class="type-pill">Entertainment</span></td>
+                                <td class="location-cell">Wohnzimmer</td>
+                                <td class="data-cell"><div class="data-pill-list"><span class="data-mini-pill">Nutzungsverhalten</span><span class="data-mini-pill">Sprachbefehle</span><span class="data-mini-pill">Gerätekennung</span></div></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_1"><input type="checkbox" id="allowed_1" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_1"><input type="checkbox" id="local_1" class="protocol-checkbox"></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_1"><input type="checkbox" id="nothird_1" class="protocol-checkbox"></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung für Smart-TV" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr>
+                                <td class="row-num">3</td>
+                                <td class="device-cell"><div class="device-name">Videotürklingel</div><span class="type-pill">Sicherheit / Kamera</span></td>
+                                <td class="location-cell">Eingang</td>
+                                <td class="data-cell"><div class="data-pill-list"><span class="data-mini-pill">Video</span><span class="data-mini-pill">Audio</span><span class="data-mini-pill">Bewegung</span><span class="data-mini-pill">Besuchszeiten</span></div></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_2"><input type="checkbox" id="allowed_2" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_2"><input type="checkbox" id="local_2" class="protocol-checkbox"></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_2"><input type="checkbox" id="nothird_2" class="protocol-checkbox" checked></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung für Videotürklingel" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr>
+                                <td class="row-num">4</td>
+                                <td class="device-cell"><div class="device-name">Smartes Türschloss</div><span class="type-pill">Zugangskontrolle</span></td>
+                                <td class="location-cell">Eingang</td>
+                                <td class="data-cell"><div class="data-pill-list"><span class="data-mini-pill">Öffnungszeiten</span><span class="data-mini-pill">Nutzerkonten</span><span class="data-mini-pill">Protokolle</span></div></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_3"><input type="checkbox" id="allowed_3" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_3"><input type="checkbox" id="local_3" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_3"><input type="checkbox" id="nothird_3" class="protocol-checkbox" checked></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung für Smartes Türschloss" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr>
+                                <td class="row-num">5</td>
+                                <td class="device-cell"><div class="device-name">CO₂-Sensor</div><span class="type-pill">Luftqualität</span></td>
+                                <td class="location-cell">Schlafzimmer</td>
+                                <td class="data-cell"><div class="data-pill-list"><span class="data-mini-pill">CO₂-Werte</span><span class="data-mini-pill">Temperatur</span><span class="data-mini-pill">Anwesenheit indirekt</span></div></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_4"><input type="checkbox" id="allowed_4" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_4"><input type="checkbox" id="local_4" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_4"><input type="checkbox" id="nothird_4" class="protocol-checkbox" checked></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung für CO₂-Sensor" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr>
+                                <td class="row-num">6</td>
+                                <td class="device-cell"><div class="device-name">Bewegungssensor</div><span class="type-pill">Automation / Sicherheit</span></td>
+                                <td class="location-cell">Flur / Eingang</td>
+                                <td class="data-cell"><div class="data-pill-list"><span class="data-mini-pill">Bewegungszeiten</span><span class="data-mini-pill">Anwesenheitsmuster</span></div></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_5"><input type="checkbox" id="allowed_5" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_5"><input type="checkbox" id="local_5" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_5"><input type="checkbox" id="nothird_5" class="protocol-checkbox" checked></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung für Bewegungssensor" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr>
+                                <td class="row-num">7</td>
+                                <td class="device-cell"><div class="device-name">Lichtsensor</div><span class="type-pill">Automation / Komfort</span></td>
+                                <td class="location-cell">Wohnzimmer / Schlafzimmer</td>
+                                <td class="data-cell"><div class="data-pill-list"><span class="data-mini-pill">Lichtintensität</span><span class="data-mini-pill">Nutzungszeiten</span><span class="data-mini-pill">Schlafmuster indirekt</span></div></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_6"><input type="checkbox" id="allowed_6" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_6"><input type="checkbox" id="local_6" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_6"><input type="checkbox" id="nothird_6" class="protocol-checkbox" checked></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung für Lichtsensor" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr>
+                                <td class="row-num">8</td>
+                                <td class="device-cell"><div class="device-name">Temperatur- und Luftfeuchtigkeitssensor</div><span class="type-pill">Klima / Komfort</span></td>
+                                <td class="location-cell">Bad / Küche / Schlafzimmer</td>
+                                <td class="data-cell"><div class="data-pill-list"><span class="data-mini-pill">Temperatur</span><span class="data-mini-pill">Luftfeuchtigkeit</span><span class="data-mini-pill">Routinemuster</span></div></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_7"><input type="checkbox" id="allowed_7" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_7"><input type="checkbox" id="local_7" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_7"><input type="checkbox" id="nothird_7" class="protocol-checkbox" checked></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung für Temperatur- und Luftfeuchtigkeitssensor" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr>
+                                <td class="row-num">9</td>
+                                <td class="device-cell"><div class="device-name">Lautstärkesensor</div><span class="type-pill">Klima / Ruhe</span></td>
+                                <td class="location-cell">Wohnzimmer / Kinderzimmer</td>
+                                <td class="data-cell"><div class="data-pill-list"><span class="data-mini-pill">Lautstärkepegel</span><span class="data-mini-pill">Aktivitätszeiten</span></div></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_8"><input type="checkbox" id="allowed_8" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_8"><input type="checkbox" id="local_8" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_8"><input type="checkbox" id="nothird_8" class="protocol-checkbox" checked></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung für Lautstärkesensor" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr>
+                                <td class="row-num">10</td>
+                                <td class="device-cell"><div class="device-name">Smarte Steckdose</div><span class="type-pill">Energie / Automation</span></td>
+                                <td class="location-cell">Küche / Wohnzimmer</td>
+                                <td class="data-cell"><div class="data-pill-list"><span class="data-mini-pill">Schaltzeiten</span><span class="data-mini-pill">Energieverbrauch</span><span class="data-mini-pill">Automationen</span></div></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_9"><input type="checkbox" id="allowed_9" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_9"><input type="checkbox" id="local_9" class="protocol-checkbox"></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_9"><input type="checkbox" id="nothird_9" class="protocol-checkbox" checked></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung für Smarte Steckdose" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr>
+                                <td class="row-num">11</td>
+                                <td class="device-cell"><div class="device-name">Sleep Tracker / Smartwatch</div><span class="type-pill">Gesundheit / Wearable</span></td>
+                                <td class="location-cell">Schlafzimmer</td>
+                                <td class="data-cell"><div class="data-pill-list"><span class="data-mini-pill">Schlafdaten</span><span class="data-mini-pill">Herzfrequenz</span><span class="data-mini-pill">Bewegung</span></div></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_10"><input type="checkbox" id="allowed_10" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_10"><input type="checkbox" id="local_10" class="protocol-checkbox"></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_10"><input type="checkbox" id="nothird_10" class="protocol-checkbox"></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung für Sleep Tracker / Smartwatch" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr>
+                                <td class="row-num">12</td>
+                                <td class="device-cell"><div class="device-name">Sicherheitskamera (innen)</div><span class="type-pill">Sicherheit / Kamera</span></td>
+                                <td class="location-cell">Eingang / Flur</td>
+                                <td class="data-cell"><div class="data-pill-list"><span class="data-mini-pill">Video</span><span class="data-mini-pill">Bewegung</span><span class="data-mini-pill">Zeitstempel</span></div></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_11"><input type="checkbox" id="allowed_11" class="protocol-checkbox"></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_11"><input type="checkbox" id="local_11" class="protocol-checkbox" checked></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_11"><input type="checkbox" id="nothird_11" class="protocol-checkbox" checked></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung für Sicherheitskamera innen" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr class="blank-row">
+                                <td class="row-num">13</td>
+                                <td class="device-cell"><input type="text" class="notes-input" aria-label="Eigenes Gerät 1" placeholder="Eigenes Gerät eintragen..."></td>
+                                <td class="location-cell"><input type="text" class="notes-input" aria-label="Standort eigenes Gerät 1" placeholder="Standort..."></td>
+                                <td class="data-cell"></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_custom_0"><input type="checkbox" id="allowed_custom_0" class="protocol-checkbox"></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_custom_0"><input type="checkbox" id="local_custom_0" class="protocol-checkbox"></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_custom_0"><input type="checkbox" id="nothird_custom_0" class="protocol-checkbox"></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung eigenes Gerät 1" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr class="blank-row">
+                                <td class="row-num">14</td>
+                                <td class="device-cell"><input type="text" class="notes-input" aria-label="Eigenes Gerät 2" placeholder="Eigenes Gerät eintragen..."></td>
+                                <td class="location-cell"><input type="text" class="notes-input" aria-label="Standort eigenes Gerät 2" placeholder="Standort..."></td>
+                                <td class="data-cell"></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_custom_1"><input type="checkbox" id="allowed_custom_1" class="protocol-checkbox"></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_custom_1"><input type="checkbox" id="local_custom_1" class="protocol-checkbox"></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_custom_1"><input type="checkbox" id="nothird_custom_1" class="protocol-checkbox"></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung eigenes Gerät 2" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                            <tr class="blank-row">
+                                <td class="row-num">15</td>
+                                <td class="device-cell"><input type="text" class="notes-input" aria-label="Eigenes Gerät 3" placeholder="Eigenes Gerät eintragen..."></td>
+                                <td class="location-cell"><input type="text" class="notes-input" aria-label="Standort eigenes Gerät 3" placeholder="Standort..."></td>
+                                <td class="data-cell"></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="allowed_custom_2"><input type="checkbox" id="allowed_custom_2" class="protocol-checkbox"></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="local_custom_2"><input type="checkbox" id="local_custom_2" class="protocol-checkbox"></label></td>
+                                <td class="checkbox-cell"><label class="checkbox-wrapper" for="nothird_custom_2"><input type="checkbox" id="nothird_custom_2" class="protocol-checkbox"></label></td>
+                                <td class="notes-cell"><input type="text" class="notes-input" aria-label="Besondere Vereinbarung eigenes Gerät 3" placeholder="Besondere Absprachen..."></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="notes-card" aria-labelledby="notesTitle">
+                <h2 id="notesTitle">Weitere Vereinbarungen und Anmerkungen</h2>
+                <p class="section-desc">Platz für zusätzliche Absprachen, die nicht in der Geräteliste abgebildet sind, zum Beispiel Regeln für Gäste, Löschfristen oder geplante Änderungen.</p>
+                <textarea id="protocolNotes" class="notes-textarea" rows="4" aria-label="Weitere Vereinbarungen und Anmerkungen" placeholder="Weitere Vereinbarungen, Ausnahmen oder Hinweise..."></textarea>
+            </section>
+
+            <section class="signatures-card" aria-labelledby="signaturesTitle">
+                <div class="section-header">
+                    <h2 id="signaturesTitle">Unterschriften</h2>
+                    <p class="section-desc">Mit der Unterschrift bestätigen alle Beteiligten, dass sie die Vereinbarungen kennen und ihnen zustimmen.</p>
+                </div>
+                <div class="signatures-grid">
+                    <div class="signature-card"><div class="sig-label">Person 1</div><div class="sig-line"></div><div class="sig-hint">Unterschrift, Datum</div></div>
+                    <div class="signature-card"><div class="sig-label">Person 2</div><div class="sig-line"></div><div class="sig-hint">Unterschrift, Datum</div></div>
+                    <div class="signature-card"><div class="sig-label">Person 3</div><div class="sig-line"></div><div class="sig-hint">Unterschrift, Datum</div></div>
+                    <div class="signature-card"><div class="sig-label">Person 4</div><div class="sig-line"></div><div class="sig-hint">Unterschrift, Datum</div></div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
@@ -46,7 +314,8 @@
         <p><a href="https://github.com/tucmi/simplications-outreach" target="_blank" rel="noopener">GitHub Repository</a></p>
     </footer>
 
-    <script src="../assets/js/common.js"></script>
     <script src="../assets/js/konsens-protokoll.js"></script>
 </body>
 </html>
+
+
