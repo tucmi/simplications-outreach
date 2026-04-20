@@ -7,49 +7,49 @@ const gameData = [
 		id: 1,
 		storyTitle: "Lichtsensor",
 		storyText: "Ein Lichtsensor in der Wohnung zeigt, dass jemand regelmäßig um 4 Uhr aufsteht, um zur Arbeit zu gehen.",
-		image: "Fallbeispiele_Daten/Licht_4Uhr.png"
+		image: "../data/Fallbeispiele_Daten/Licht_4Uhr.png"
 	},
 	{
 		id: 2,
 		storyTitle: "Bewegung an Schublade",
 		storyText: "Die Bewegungen vom Sensor an der Süßigkeitenschublade legen nahe, wann da jemand genascht hat.",
-		image: "Fallbeispiele_Daten/Bewegung_Schublade.jpg"
+		image: "../data/Fallbeispiele_Daten/Bewegung_Schublade.jpg"
 	},
 	{
 		id: 3,
 		storyTitle: "CO2-Sensor im Schlafzimmer",
 		storyText: "Der CO2-Sensor im Schlafzimmer zeigt nicht nur, wann geschlafen wird, sondern auch, ob jemand über Nacht da war.",
-		image: "Fallbeispiele_Daten/CO2_2Personen.png"
+		image: "../data/Fallbeispiele_Daten/CO2_2Personen.png"
 	},
 	{
 		id: 4,
 		storyTitle: "Bewegung an der Wohnungstür",
 		storyText: "Der Bewegungssensor an der Wohnungstür zeigt auch, wann und wie lange mit dem Hund Gassi gegangen wurde.",
-		image: "Fallbeispiele_Daten/Bewegung_Wohnungstuer.jpg"
+		image: "../data/Fallbeispiele_Daten/Bewegung_Wohnungstuer.jpg"
 	},
 	{
 		id: 5,
 		storyTitle: "Luftfeuchtigkeit und Temperatur in der Küche",
 		storyText: "Am Abend wurde etwas aus dem Tiefkühlfach im Ofen zubereitet.",
-		image: "Fallbeispiele_Daten/Temp+Luftf_Kueche.jpg"
+		image: "../data/Fallbeispiele_Daten/Temp+Luftf_Kueche.jpg"
 	},
 	{
 		id: 6,
 		storyTitle: "Luftqualität durch Deo",
 		storyText: "Der Ausschlag in der Luftqualität im Badezimmer zeigt, wann dort Deo benutzt wurde.",
-		image: "Fallbeispiele_Daten/Luftquali_Deo.jpg"
+		image: "../data/Fallbeispiele_Daten/Luftquali_Deo.jpg"
 	},
 	{
 		id: 7,
 		storyTitle: "Luftfeuchtigkeit im Bad",
 		storyText: "Am Abend steigt nach dem Duschen die Luftfeuchtigkeit im Bad stark an, danach wird gelüftet. Etwas später duscht jemand anderes ohne zu lüften.",
-		image: "Fallbeispiele_Daten/Luftfeuchtigkeit_Bad.jpg"
+		image: "../data/Fallbeispiele_Daten/Luftfeuchtigkeit_Bad.jpg"
 	},
 	{
 		id: 8,
 		storyTitle: "Lautstärke und Mittagsruhe",
 		storyText: "Im Wohnzimmer ist es mittags ganz ruhig, damit das Kind schlafen kann.",
-		image: "Fallbeispiele_Daten/Lautstaerke_Mittagsruhe.jpg"
+		image: "../data/Fallbeispiele_Daten/Lautstaerke_Mittagsruhe.jpg"
 	}
 ];
 

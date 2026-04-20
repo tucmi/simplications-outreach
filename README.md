@@ -10,38 +10,38 @@ Interactive games use the naming convention `{game-name}-game.{ext}`. Standalone
 
 #### Memory Game (Daten-Memory)
 
-- `memory-game.html` - Memory matching game HTML
-- `memory-game.css` - Memory game-specific styles
-- `memory-game.js` - Memory game logic and data
+- `pages/memory-game.html` - Memory matching game HTML
+- `assets/css/memory-game.css` - Memory game-specific styles
+- `assets/js/memory-game.js` - Memory game logic and data
 
 #### Sensorium Game (Was siehst DU?)
 
-- `sensorium-game.html` - Sensorium perspective game HTML
-- `sensorium-game.css` - Sensorium game-specific styles
-- `sensorium-game.js` - Sensorium game logic and scenarios
+- `pages/sensorium-game.html` - Sensorium perspective game HTML
+- `assets/css/sensorium-game.css` - Sensorium game-specific styles
+- `assets/js/sensorium-game.js` - Sensorium game logic and scenarios
 
 #### Maßnahmenkatalog
 
-- `massnahmenkatalog.html` - Overview page for privacy measures in the smart home
-- `massnahmenkatalog.css` - Maßnahmenkatalog-specific styles
-- `massnahmenkatalog.js` - Structured rendering of lifecycle-based measures
+- `pages/massnahmenkatalog.html` - Overview page for privacy measures in the smart home
+- `assets/css/massnahmenkatalog.css` - Maßnahmenkatalog-specific styles
+- `assets/js/massnahmenkatalog.js` - Structured rendering of lifecycle-based measures
 
 #### Beispiel-Checkliste Smart Home
 
-- `checkliste-smart-home.html` - Example checklist for rooms, devices, and data flows in the household
-- `checkliste-smart-home.css` - Checklist-specific styles
-- `checkliste-smart-home.js` - Structured rendering of example rooms and devices
+- `pages/checkliste-smart-home.html` - Example checklist for rooms, devices, and data flows in the household
+- `assets/css/checkliste-smart-home.css` - Checklist-specific styles
+- `assets/js/checkliste-smart-home.js` - Structured rendering of example rooms and devices
 
 ### Shared Files
 
-- `common.css` - Shared styles (colors, typography, buttons, animations)
-- `common.js` - Shared utility functions (DOM helpers, array utils, storage, animations)
-- `gallery-nav.css` - Gallery carousel navigation styles
-- `gallery-nav.js` - Gallery carousel navigation logic
+- `assets/css/common.css` - Shared styles (colors, typography, buttons, animations)
+- `assets/js/common.js` - Shared utility functions (DOM helpers, array utils, storage, animations)
+- `assets/css/gallery-nav.css` - Gallery carousel navigation styles
+- `assets/js/gallery-nav.js` - Gallery carousel navigation logic
 
 ### Other Files
 
-- `index.html` - Redirect to memory-game.html for backward compatibility
+- `index.html` - Redirect to pages/memory-game.html for backward compatibility
 - `README.md` - This file
 - `LICENSE` - Project license
 
@@ -51,7 +51,7 @@ Interactive games use the naming convention `{game-name}-game.{ext}`. Standalone
 
 Match data visualizations with the stories they tell. Players must connect graphs with their corresponding narratives to understand data interpretation.
 
-**File:** `memory-game.html`
+**File:** `pages/memory-game.html`
 
 **Features:**
 
@@ -65,7 +65,7 @@ Match data visualizations with the stories they tell. Players must connect graph
 
 Discover the two perspectives of data collection - what you think you're sharing vs. what's actually being collected.
 
-**File:** `sensorium-game.html`
+**File:** `pages/sensorium-game.html`
 
 **Features:**
 
@@ -79,7 +79,7 @@ Discover the two perspectives of data collection - what you think you're sharing
 
 A structured overview of social and technical privacy measures for consumers as well as manufacturers and developers, grouped by product lifecycle phase.
 
-**File:** `massnahmenkatalog.html`
+**File:** `pages/massnahmenkatalog.html`
 
 **Features:**
 
@@ -92,7 +92,7 @@ A structured overview of social and technical privacy measures for consumers as 
 
 An example audit checklist that helps users inspect which smart devices exist in each room, which data they collect, where data is stored, and where it is sent.
 
-**File:** `checkliste-smart-home.html`
+**File:** `pages/checkliste-smart-home.html`
 
 **Features:**
 
@@ -127,7 +127,7 @@ An example audit checklist that helps users inspect which smart devices exist in
 
 3. **Open in browser:**
    - Navigate to `http://localhost:8000`
-   - Or directly open `memory-game.html` or `sensorium-game.html`
+   - Or directly open `pages/memory-game.html` or `pages/sensorium-game.html`
 
 ### Gallery Navigation
 
@@ -141,25 +141,25 @@ Use the arrow keys or click the side arrows to navigate between games:
 1. **Create game files following the naming convention:**
 
    ```cmd
-   new-game-name.html
-   new-game-name.css
-   new-game-name.js
+   pages/new-game-name.html
+   assets/css/new-game-name.css
+   assets/js/new-game-name.js
    ```
 
 2. **Include shared files in your HTML:**
 
    ```html
-   <link rel="stylesheet" href="common.css">
-   <link rel="stylesheet" href="new-game-name.css">
-   <link rel="stylesheet" href="gallery-nav.css">
+   <link rel="stylesheet" href="../assets/css/common.css">
+   <link rel="stylesheet" href="../assets/css/new-game-name.css">
+   <link rel="stylesheet" href="../assets/css/gallery-nav.css">
    
-   <script src="common.js"></script>
-   <script src="new-game-name.js"></script>
-   <script src="gallery-nav.js"></script>
+   <script src="../assets/js/common.js"></script>
+   <script src="../assets/js/new-game-name.js"></script>
+   <script src="../assets/js/gallery-nav.js"></script>
    ```
 
 3. **Register in gallery navigation:**
-   Edit `gallery-nav.js` and add your game to the `GAMES` array:
+   Edit `assets/js/gallery-nav.js` and add your game to the `GAMES` array:
 
    ```javascript
    {
@@ -172,7 +172,7 @@ Use the arrow keys or click the side arrows to navigate between games:
 
 ## 📦 Common Resources
 
-### common.css
+### assets/css/common.css
 
 Provides:
 
@@ -183,7 +183,7 @@ Provides:
 - Common animations (`fadeIn`, `fadeInUp`, `pulse`, `bounce`)
 - Utility classes (`.fade-in`, `.text-center`, `.hidden`)
 
-### common.js
+### assets/js/common.js
 
 Provides utility functions:
 

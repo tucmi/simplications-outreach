@@ -32,7 +32,7 @@ const GAMES = [
  * Get current game index based on current page
  */
 function getCurrentGameIndex() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPage = window.location.pathname.split('/').pop() || 'memory-game.html';
     return GAMES.findIndex(game => game.file === currentPage);
 }
 
