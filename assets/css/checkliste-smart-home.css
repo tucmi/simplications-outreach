@@ -309,7 +309,6 @@ body {
     }
 
     footer,
-    .gallery-nav,
     .page-actions {
         display: none !important;
     }

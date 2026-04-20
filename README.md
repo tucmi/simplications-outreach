@@ -36,12 +36,10 @@ Interactive games use the naming convention `{game-name}-game.{ext}`. Standalone
 
 - `assets/css/common.css` - Shared styles (colors, typography, buttons, animations)
 - `assets/js/common.js` - Shared utility functions (DOM helpers, array utils, storage, animations)
-- `assets/css/gallery-nav.css` - Gallery carousel navigation styles
-- `assets/js/gallery-nav.js` - Gallery carousel navigation logic
 
 ### Other Files
 
-- `index.html` - Redirect to pages/memory-game.html for backward compatibility
+- `index.html` - Main hub page linking to games and serious content
 - `README.md` - This file
 - `LICENSE` - Project license
 
@@ -129,13 +127,6 @@ An example audit checklist that helps users inspect which smart devices exist in
    - Navigate to `http://localhost:8000`
    - Or directly open `pages/memory-game.html` or `pages/sensorium-game.html`
 
-### Gallery Navigation
-
-Use the arrow keys or click the side arrows to navigate between games:
-
-- **← / →** - Switch between games
-- **1, 2, 3, 4** - Jump to a specific page
-
 ## 🛠️ Adding a New Game
 
 1. **Create game files following the naming convention:**
@@ -151,23 +142,9 @@ Use the arrow keys or click the side arrows to navigate between games:
    ```html
    <link rel="stylesheet" href="../assets/css/common.css">
    <link rel="stylesheet" href="../assets/css/new-game-name.css">
-   <link rel="stylesheet" href="../assets/css/gallery-nav.css">
    
    <script src="../assets/js/common.js"></script>
    <script src="../assets/js/new-game-name.js"></script>
-   <script src="../assets/js/gallery-nav.js"></script>
-   ```
-
-3. **Register in gallery navigation:**
-   Edit `assets/js/gallery-nav.js` and add your game to the `GAMES` array:
-
-   ```javascript
-   {
-       id: 'new-game',
-       title: 'New Game Title',
-       file: 'new-game-name.html',
-       description: 'Game description'
-   }
    ```
 
 ## 📦 Common Resources

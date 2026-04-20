@@ -2,47 +2,231 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=pages/memory-game.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simplications Outreach - Redirecting...</title>
+    <title>Simplications Outreach Hub</title>
     <style>
+        :root {
+            --bg: #f6f6f7;
+            --text: #1f2126;
+            --muted: #5b6069;
+            --games: #2f5d50;
+            --games-soft: #e5f1ed;
+            --serious: #7a2d38;
+            --serious-soft: #f9e8eb;
+            --card: #ffffff;
+            --border: #dfe3e8;
+            --shadow: 0 8px 24px rgba(24, 30, 38, 0.08);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background: linear-gradient(135deg, #BF4254 0%, #9B3544 100%);
-            color: white;
+            background: linear-gradient(160deg, #f7f8fa 0%, #eef1f5 100%);
+            color: var(--text);
         }
-        .redirect-message {
-            text-align: center;
+
+        .hub {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 2.5rem 1.25rem 3rem;
         }
-        .redirect-message h1 {
-            font-size: 2rem;
+
+        .intro {
+            background: var(--card);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            border-radius: 16px;
+            padding: 1.4rem 1.4rem 1.2rem;
             margin-bottom: 1rem;
         }
-        .redirect-message p {
-            font-size: 1.1rem;
+
+        .intro h1 {
+            margin: 0;
+            font-size: clamp(1.6rem, 2.6vw, 2.2rem);
         }
-        .redirect-message a {
-            color: #F7F7F8;
-            text-decoration: underline;
+
+        .intro p {
+            margin: 0.6rem 0 0;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .section {
+            margin-top: 1.25rem;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.1rem;
+        }
+
+        .section.games .section-header {
+            background: var(--games-soft);
+            border-bottom: 1px solid #c9dfd7;
+        }
+
+        .section.serious .section-header {
+            background: var(--serious-soft);
+            border-bottom: 1px solid #ebccd1;
+        }
+
+        .section h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .section p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.9rem;
+            padding: 1rem;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.45;
+            flex-grow: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            padding: 0.2rem 0.5rem;
+            border-radius: 999px;
+            width: fit-content;
+        }
+
+        .games .badge {
+            color: #1f4d40;
+            background: #d5ece5;
+        }
+
+        .serious .badge {
+            color: #6c1f2b;
+            background: #f6dce1;
+        }
+
+        .card a {
+            text-decoration: none;
+            font-weight: 600;
+            color: var(--games);
+            border: 1px solid #bad5cc;
+            border-radius: 8px;
+            padding: 0.45rem 0.6rem;
+            text-align: center;
+            background: #f5fbf8;
+        }
+
+        .serious .card a {
+            color: var(--serious);
+            border-color: #e2b8c0;
+            background: #fff7f8;
+        }
+
+        .card a:hover {
+            filter: brightness(0.98);
+        }
+
+        .footer-note {
+            margin-top: 1rem;
+            color: var(--muted);
+            font-size: 0.92rem;
         }
     </style>
 </head>
 <body>
-    <div class="redirect-message">
-        <h1>Simplications Outreach</h1>
-        <p>Weiterleitung zum Daten-Memory Spiel...</p>
-        <p><a href="pages/memory-game.html">Klicken Sie hier, falls die Weiterleitung nicht funktioniert</a></p>
+    <div class="hub">
+        <section class="intro">
+            <h1>Simplications Outreach Hub</h1>
+            <p>Startpunkt für alle Inhalte: Interaktive Lernspiele und vertiefende Materialien rund um Privatheit im Smart Home.</p>
+        </section>
+
+        <section class="section games">
+            <div class="section-header">
+                <h2>Spiele</h2>
+                <p>Interaktiv und explorativ</p>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <span class="badge">GAME</span>
+                    <h3>Daten-Memory</h3>
+                    <p>Ordne Datenvisualisierungen den passenden Geschichten zu.</p>
+                    <a href="pages/memory-game.html">Spiel starten</a>
+                </article>
+                <article class="card">
+                    <span class="badge">GAME</span>
+                    <h3>Sensorium</h3>
+                    <p>Vergleiche deine Sicht mit der Datensammler-Perspektive.</p>
+                    <a href="pages/sensorium-game.html">Spiel starten</a>
+                </article>
+                <article class="card">
+                    <span class="badge">GAME</span>
+                    <h3>Fallbeispiele-Memory</h3>
+                    <p>Verbinde Textbeispiele mit passenden Sensordaten-Bildern.</p>
+                    <a href="pages/fallbeispiele-memory-game.html">Spiel starten</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="section serious">
+            <div class="section-header">
+                <h2>Reflexion und Materialien</h2>
+                <p>Strukturiert und praxisnah</p>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <span class="badge">MATERIAL</span>
+                    <h3>Maßnahmenkatalog</h3>
+                    <p>Soziale und technische Maßnahmen entlang des Produktlebenszyklus.</p>
+                    <a href="pages/massnahmenkatalog.html">Zum Maßnahmenkatalog</a>
+                </article>
+                <article class="card">
+                    <span class="badge">MATERIAL</span>
+                    <h3>Konsens-Protokoll</h3>
+                    <p>Vorlage für gemeinsame Absprachen zur Smart-Home-Nutzung.</p>
+                    <a href="pages/konsens-protokoll.html">Zum Konsens-Protokoll</a>
+                </article>
+                <article class="card">
+                    <span class="badge">MATERIAL</span>
+                    <h3>Beispiel-Checkliste</h3>
+                    <p>Raumweise Übersicht zu Datenerhebung, Speicherung und Übertragung.</p>
+                    <a href="pages/checkliste-smart-home.html">Zur Checkliste</a>
+                </article>
+            </div>
+        </section>
+
+        <p class="footer-note">Ein Projekt von Simplications</p>
     </div>
-    <script>
-        // Fallback redirect for browsers that don't support meta refresh
-        setTimeout(() => {
-            window.location.href = 'pages/memory-game.html';
-        }, 100);
-    </script>
 </body>
 </html>
