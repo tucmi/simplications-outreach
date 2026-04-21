@@ -116,7 +116,7 @@ function generateProtocolPdf() {
         ]);
         
         pdf.autoTable({
-            head: [['Gerät', 'Standort', 'Erlaubt', 'Lokal', 'Keine 3.', 'Absprachen']],
+            head: [['Gerät', 'Standort', 'Erlaubt', 'Abschaltbar', 'Keine 3.', 'Absprachen']],
             body: tableData,
             startY: yPos,
             margin: { left: margin, right: margin },
