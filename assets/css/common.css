@@ -169,6 +169,42 @@ button:disabled {
     transform: translateY(-2px);
 }
 
+/* Top action links (e.g. "Zurueck zum Hub") */
+.page-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1rem auto 1.25rem;
+    padding: 0 1rem;
+    max-width: 1100px;
+}
+
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: all var(--transition-medium);
+}
+
+.action-button-secondary {
+    color: var(--dark-color);
+    background: var(--white);
+    border-color: var(--gray-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.action-button-secondary:hover {
+    background: var(--light-color);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
 /* ============================================
    Common Animations
    ============================================ */
