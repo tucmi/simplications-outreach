@@ -206,7 +206,7 @@ newGameButton.addEventListener('click', startGame);
 restartButton.addEventListener('click', startGame);
 
 // Start game on load
-window.addEventListener('DOMContentLoaded', startGame);
+document.addEventListener('DOMContentLoaded', startGame);
 
 // Modal logic
 const zoomModal = document.getElementById('zoomModal');

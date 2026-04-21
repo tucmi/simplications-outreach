@@ -1,5 +1,5 @@
 /* ============================================
-   Common Styles - Simplications Outreach Games
+   Common Styles - Simplications Transfer Games
    Shared styles across all games
    ============================================ */
 
@@ -40,6 +40,14 @@
     --border-radius: 8px;
     --border-radius-sm: 4px;
     --border-radius-lg: 16px;
+
+    /* Card skin */
+    --card-bg: rgba(255, 255, 255, 0.94);
+    --card-border: rgba(180, 185, 193, 0.45);
+    --card-radius: 20px;
+
+    /* Page layout */
+    --page-max-width: 1200px;
 }
 
 /* ============================================
@@ -174,35 +182,58 @@ button:disabled {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin: 1rem auto 1.25rem;
-    padding: 0 1rem;
-    max-width: 1100px;
+    margin-bottom: 1.25rem;
 }
 
 .action-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.5rem;
-    padding: 0.5rem 0.9rem;
-    border-radius: var(--border-radius);
-    font-weight: 600;
-    text-decoration: none;
+    min-height: 2.75rem;
+    padding: 0.7rem 1.1rem;
+    border-radius: 999px;
     border: 1px solid transparent;
-    transition: all var(--transition-medium);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.action-button:hover,
+.action-button:focus-visible {
+    transform: translateY(-1px);
+}
+
+.action-button-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: var(--white);
+}
+
+.action-button-primary:hover,
+.action-button-primary:focus-visible {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--dark-color) 100%);
 }
 
 .action-button-secondary {
+    background: rgba(255, 255, 255, 0.94);
+    border-color: rgba(180, 185, 193, 0.45);
     color: var(--dark-color);
-    background: var(--white);
-    border-color: var(--gray-light);
-    box-shadow: var(--shadow-sm);
 }
 
-.action-button-secondary:hover {
-    background: var(--light-color);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-1px);
+.action-button-secondary:hover,
+.action-button-secondary:focus-visible {
+    border-color: rgba(191, 66, 84, 0.35);
+    color: var(--primary-dark);
+}
+
+.eyebrow {
+    color: var(--primary-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
 }
 
 /* ============================================

@@ -1,19 +1,5 @@
 /* Fallbeispiele-Memory Game Styles */
 
-:root {
-    --color-primary: var(--primary-color);
-    --color-dark: var(--dark-color);
-    --color-text: var(--dark-color);
-    --color-gray-1: var(--gray-color);
-    --color-gray-2: var(--gray-light);
-    --color-light: var(--light-color);
-    --color-lighter: var(--lighter-color);
-    --color-white: var(--white);
-    --color-black: var(--black);
-    --color-success: #2E7D32;
-    --transition: var(--transition-medium);
-}
-
 body {
     background-color: var(--lighter-color);
 }
@@ -79,8 +65,8 @@ header h1 {
 }
 
 .btn {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: var(--primary-color);
+    color: var(--white);
     border: none;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
@@ -89,11 +75,11 @@ header h1 {
     letter-spacing: 0.02rem;
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: var(--transition);
+    transition: var(--transition-medium);
 }
 
 .btn:hover {
-    background-color: var(--color-dark);
+    background-color: var(--dark-color);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -127,7 +113,7 @@ header h1 {
 }
 
 .memory-card {
-    background: var(--color-white);
+    background: var(--white);
     border-radius: var(--border-radius);
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     cursor: pointer;
@@ -148,13 +134,13 @@ header h1 {
 
 .memory-card.flipped, .memory-card.matched {
     box-shadow: 0 4px 16px rgba(0,0,0,0.18);
-    background: var(--color-light);
+    background: var(--light-color);
     transform: scale(1.04);
 }
 
 .memory-card.matched {
-    background: var(--color-success);
-    color: var(--color-white);
+    background: var(--success-color);
+    color: var(--white);
     pointer-events: none;
 }
 
@@ -188,7 +174,7 @@ header h1 {
 }
 
 .message-content {
-    background: var(--color-white);
+    background: var(--white);
     border-radius: var(--border-radius);
     box-shadow: 0 4px 24px rgba(0,0,0,0.18);
     padding: 2rem 2.5rem;

@@ -40,8 +40,4 @@ function initChecklistPage() {
     }
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initChecklistPage);
-} else {
-    initChecklistPage();
-}
+document.addEventListener('DOMContentLoaded', initChecklistPage);

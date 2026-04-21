@@ -19,25 +19,23 @@ function generateProtocolPdf() {
     const devices = [];
     const rows = document.querySelectorAll('.protocol-table tbody tr:not(.blank-row)');
     rows.forEach((row, index) => {
-        const deviceNameEl = row.querySelector('.device-name');
-        const locationEl = row.querySelector('.location-cell');
-        const dataEl = row.querySelector('.data-cell');
-        
-        if (deviceNameEl) {
+        const deviceNameInput = row.querySelector('.device-cell input.notes-input');
+        const locationInput = row.querySelector('.location-cell input.notes-input');
+        const dataInput = row.querySelector('.data-cell input.notes-input');
+        const notesInput = row.querySelector('.notes-cell input.notes-input');
+
+        const name = deviceNameInput?.value.trim() || '';
+        const location = locationInput?.value.trim() || '';
+        const data = dataInput?.value.trim() || '';
+
+        // Only include row if at least a device name is entered
+        if (name) {
             const allowed = document.getElementById(`allowed_${index}`)?.checked || false;
             const local = document.getElementById(`local_${index}`)?.checked || false;
             const noThird = document.getElementById(`nothird_${index}`)?.checked || false;
-            const notes = row.querySelector('.notes-input')?.value || '';
-            
-            devices.push({
-                name: deviceNameEl.textContent.trim(),
-                location: locationEl?.textContent.trim() || '',
-                data: dataEl?.textContent.trim() || '',
-                allowed,
-                local,
-                noThird,
-                notes
-            });
+            const notes = notesInput?.value || '';
+
+            devices.push({ name, location, data, allowed, local, noThird, notes });
         }
     });
     
@@ -199,8 +197,4 @@ function initProtocolPage() {
     }
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initProtocolPage);
-} else {
-    initProtocolPage();
-}
+document.addEventListener('DOMContentLoaded', initProtocolPage);

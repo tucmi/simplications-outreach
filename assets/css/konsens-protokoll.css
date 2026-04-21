@@ -8,61 +8,9 @@ body {
    Page layout
    ============================================ */
 .protocol-page {
-    width: min(1280px, calc(100% - 2rem));
+    width: min(var(--page-max-width), calc(100% - 2rem));
     margin: 0 auto;
     padding: 2rem 0 4rem;
-}
-
-/* ============================================
-   Action buttons (identical pattern to checklist)
-   ============================================ */
-.page-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-}
-
-.action-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 2.75rem;
-    padding: 0.7rem 1.1rem;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    font-size: 0.95rem;
-    font-weight: 700;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
-
-.action-button:hover,
-.action-button:focus-visible {
-    transform: translateY(-1px);
-}
-
-.action-button-primary {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-    color: var(--white);
-}
-
-.action-button-primary:hover,
-.action-button-primary:focus-visible {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--dark-color) 100%);
-}
-
-.action-button-secondary {
-    background: rgba(255, 255, 255, 0.94);
-    border-color: rgba(180, 185, 193, 0.45);
-    color: var(--dark-color);
-}
-
-.action-button-secondary:hover,
-.action-button-secondary:focus-visible {
-    border-color: rgba(191, 66, 84, 0.35);
-    color: var(--primary-dark);
 }
 
 /* ============================================
@@ -74,21 +22,12 @@ body {
 .devices-card,
 .notes-card,
 .signatures-card {
-    background: rgba(255, 255, 255, 0.94);
-    border: 1px solid rgba(180, 185, 193, 0.45);
-    border-radius: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--card-radius);
     box-shadow: var(--shadow-md);
     padding: 1.75rem;
     margin-bottom: 1.25rem;
-}
-
-.eyebrow {
-    color: var(--primary-dark);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
 }
 
 /* ============================================
@@ -313,21 +252,6 @@ body {
     min-width: 10rem;
 }
 
-.device-name {
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-}
-
-.type-pill {
-    display: inline-block;
-    background: rgba(191, 66, 84, 0.1);
-    color: var(--primary-dark);
-    border-radius: 999px;
-    padding: 0.2rem 0.55rem;
-    font-size: 0.78rem;
-    font-weight: 600;
-}
-
 .location-cell {
     font-size: 0.92rem;
     color: var(--gray-color);
@@ -336,22 +260,6 @@ body {
 
 .data-cell {
     min-width: 10rem;
-}
-
-.data-pill-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-}
-
-.data-mini-pill {
-    display: inline-block;
-    background: var(--lighter-color);
-    color: var(--dark-color);
-    border-radius: 999px;
-    padding: 0.18rem 0.5rem;
-    font-size: 0.78rem;
-    font-weight: 500;
 }
 
 .checkbox-cell {
@@ -624,20 +532,6 @@ body {
 
     .protocol-table tbody tr:hover {
         background: none;
-    }
-
-    .type-pill {
-        background: #eee !important;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-        font-size: 7pt;
-    }
-
-    .data-mini-pill {
-        background: #f0f0f0 !important;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-        font-size: 7pt;
     }
 
     .protocol-checkbox {

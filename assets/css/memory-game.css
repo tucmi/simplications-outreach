@@ -2,21 +2,6 @@
    Memory Game Specific Styles
    ============================================ */
 
-/* Variable aliases for backward compatibility */
-:root {
-    --color-primary: var(--primary-color);
-    --color-dark: var(--dark-color);
-    --color-text: var(--dark-color);
-    --color-gray-1: var(--gray-color);
-    --color-gray-2: var(--gray-light);
-    --color-light: var(--light-color);
-    --color-lighter: var(--lighter-color);
-    --color-white: var(--white);
-    --color-black: var(--black);
-    --color-success: #2E7D32;
-    --transition: var(--transition-medium);
-}
-
 /* Override background for memory game */
 body {
     background-color: var(--lighter-color);
@@ -100,8 +85,8 @@ header h1 {
 
 /* Button */
 .btn {
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: var(--primary-color);
+    color: var(--white);
     border: none;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
@@ -110,11 +95,11 @@ header h1 {
     letter-spacing: 0.02rem;
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: var(--transition);
+    transition: var(--transition-medium);
 }
 
 .btn:hover {
-    background-color: var(--color-dark);
+    background-color: var(--dark-color);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -124,17 +109,17 @@ header h1 {
 }
 
 .btn:disabled {
-    background-color: var(--color-gray-2);
+    background-color: var(--gray-light);
     cursor: not-allowed;
     transform: none;
 }
 
 .btn-secondary {
-    background-color: var(--color-gray-1);
+    background-color: var(--gray-color);
 }
 
 .btn-secondary:hover {
-    background-color: var(--color-dark);
+    background-color: var(--dark-color);
 }
 
 /* Floating Action Button */
@@ -144,8 +129,8 @@ header h1 {
     right: 1rem;
     width: 56px;
     height: 56px;
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: var(--primary-color);
+    color: var(--white);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -153,12 +138,12 @@ header h1 {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    transition: var(--transition);
+    transition: var(--transition-medium);
     z-index: 100;
 }
 
 .fab:hover {
-    background-color: var(--color-dark);
+    background-color: var(--dark-color);
     transform: scale(1.1);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
@@ -202,7 +187,7 @@ header h1 {
 }
 
 .board-section {
-    background-color: var(--color-white);
+    background-color: var(--white);
     border-radius: var(--border-radius);
     padding: 1.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -215,11 +200,11 @@ header h1 {
 }
 
 .board-section.active {
-    box-shadow: 0 0 0 3px var(--color-primary), 0 4px 12px rgba(191, 66, 84, 0.3);
+    box-shadow: 0 0 0 3px var(--primary-color), 0 4px 12px rgba(191, 66, 84, 0.3);
 }
 
 .board-title {
-    color: var(--color-primary);
+    color: var(--primary-color);
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 1.25rem;
@@ -245,7 +230,7 @@ header h1 {
 .card {
     aspect-ratio: 3/4;
     min-height: 280px;
-    background-color: var(--color-white);
+    background-color: var(--white);
     border-radius: var(--border-radius);
     cursor: pointer;
     position: relative;
@@ -275,7 +260,7 @@ header h1 {
 }
 
 .card.matched .card-back {
-    border: 3px solid var(--color-success);
+    border: 3px solid var(--success-color);
 }
 
 .card-face {
@@ -292,8 +277,8 @@ header h1 {
 }
 
 .card-front {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-dark) 100%);
-    color: var(--color-white);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+    color: var(--white);
 }
 
 .card-front::before {
@@ -304,7 +289,7 @@ header h1 {
 }
 
 .card-back {
-    background-color: var(--color-white);
+    background-color: var(--white);
     transform: rotateY(180deg);
     overflow: hidden;
 }
@@ -321,7 +306,7 @@ header h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-lighter);
+    background-color: var(--lighter-color);
     border-radius: var(--border-radius);
     padding: 0.25rem;
 }
@@ -329,13 +314,13 @@ header h1 {
 .graph-placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--color-light) 0%, var(--color-lighter) 100%);
-    border: 2px dashed var(--color-gray-2);
+    background: linear-gradient(135deg, var(--light-color) 0%, var(--lighter-color) 100%);
+    border: 2px dashed var(--gray-light);
     border-radius: var(--border-radius);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-gray-1);
+    color: var(--gray-color);
     font-size: 0.8rem;
     text-align: center;
 }
@@ -362,13 +347,13 @@ header h1 {
 .story-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: var(--color-primary);
+    color: var(--primary-color);
     margin-bottom: 0.75rem;
 }
 
 .story-text {
     font-size: 1rem;
-    color: var(--color-text);
+    color: var(--dark-color);
     line-height: 1.5;
     overflow-y: auto;
 }
@@ -385,7 +370,7 @@ header h1 {
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    transition: var(--transition);
+    transition: var(--transition-medium);
 }
 
 .game-message.hidden {
@@ -394,7 +379,7 @@ header h1 {
 }
 
 .message-content {
-    background-color: var(--color-white);
+    background-color: var(--white);
     padding: 3rem 2rem;
     border-radius: var(--border-radius);
     text-align: center;
@@ -403,24 +388,24 @@ header h1 {
 }
 
 .message-content h2 {
-    color: var(--color-primary);
+    color: var(--primary-color);
     font-size: 2rem;
     margin-bottom: 1rem;
 }
 
 .message-content p {
-    color: var(--color-text);
+    color: var(--dark-color);
     font-size: 1.1rem;
     margin-bottom: 2rem;
 }
 
 /* Footer */
 .footer {
-    background-color: var(--color-white);
-    border-top: 1px solid var(--color-light);
+    background-color: var(--white);
+    border-top: 1px solid var(--light-color);
     padding: 0.5rem 0.5rem;
     text-align: center;
-    color: var(--color-gray-1);
+    color: var(--gray-color);
 }
 
 .footer-content {
@@ -434,14 +419,14 @@ header h1 {
 }
 
 .footer a {
-    color: var(--color-primary);
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: 700;
-    transition: var(--transition);
+    transition: var(--transition-medium);
 }
 
 .footer a:hover {
-    color: var(--color-dark);
+    color: var(--dark-color);
     text-decoration: underline;
 }
 
@@ -521,7 +506,7 @@ header h1 {
     width: 32px;
     height: 32px;
     background-color: rgba(191, 66, 84, 0.9);
-    color: var(--color-white);
+    color: var(--white);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -531,7 +516,7 @@ header h1 {
     font-size: 18px;
     font-weight: bold;
     z-index: 10;
-    transition: var(--transition);
+    transition: var(--transition-medium);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -576,7 +561,7 @@ header h1 {
     position: relative;
     max-width: 90vw;
     max-height: 90vh;
-    background-color: var(--color-white);
+    background-color: var(--white);
     border-radius: var(--border-radius);
     padding: 2rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -589,8 +574,8 @@ header h1 {
     right: -12px;
     width: 40px;
     height: 40px;
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: var(--primary-color);
+    color: var(--white);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -599,12 +584,12 @@ header h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: var(--transition);
+    transition: var(--transition-medium);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .zoom-close:hover {
-    background-color: var(--color-dark);
+    background-color: var(--dark-color);
     transform: scale(1.1) rotate(90deg);
 }
 

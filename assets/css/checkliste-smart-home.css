@@ -5,66 +5,17 @@ body {
 }
 
 .checklist-page {
-    width: min(1200px, calc(100% - 2rem));
+    width: min(var(--page-max-width), calc(100% - 2rem));
     margin: 0 auto;
     padding: 2rem 0 4rem;
-}
-
-.page-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-}
-
-.action-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 2.75rem;
-    padding: 0.7rem 1.1rem;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    font-size: 0.95rem;
-    font-weight: 700;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
-
-.action-button:hover,
-.action-button:focus-visible {
-    transform: translateY(-1px);
-}
-
-.action-button-primary {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
-    color: var(--white);
-}
-
-.action-button-primary:hover,
-.action-button-primary:focus-visible {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--dark-color) 100%);
-}
-
-.action-button-secondary {
-    background: rgba(255, 255, 255, 0.94);
-    border-color: rgba(180, 185, 193, 0.45);
-    color: var(--dark-color);
-}
-
-.action-button-secondary:hover,
-.action-button-secondary:focus-visible {
-    border-color: rgba(191, 66, 84, 0.35);
-    color: var(--primary-dark);
 }
 
 .intro-card,
 .howto-card,
 .room-card {
-    background: rgba(255, 255, 255, 0.94);
-    border: 1px solid rgba(180, 185, 193, 0.45);
-    border-radius: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--card-radius);
     box-shadow: var(--shadow-md);
 }
 
@@ -73,15 +24,6 @@ body {
     grid-template-columns: 2fr 1fr;
     gap: 1.5rem;
     padding: 1.75rem;
-}
-
-.eyebrow {
-    color: var(--primary-dark);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
 }
 
 .intro-card h2,
@@ -180,16 +122,6 @@ body {
     border-bottom: none;
 }
 
-.device-name {
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-}
-
-.device-type {
-    color: var(--gray-color);
-    font-size: 0.92rem;
-}
-
 .cell-input {
     font-family: inherit;
     font-size: 0.92rem;
@@ -212,14 +144,6 @@ body {
     color: var(--gray-color);
 }
 
-.pill-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-}
-
-.data-pill,
-.status-pill,
 .audit-pill {
     display: inline-flex;
     align-items: center;
@@ -227,24 +151,6 @@ body {
     padding: 0.35rem 0.7rem;
     font-size: 0.85rem;
     font-weight: 600;
-}
-
-.data-pill {
-    background: rgba(191, 66, 84, 0.1);
-    color: var(--primary-dark);
-}
-
-.status-pill.local {
-    background: rgba(46, 125, 50, 0.12);
-    color: var(--success-color);
-}
-
-.status-pill.cloud,
-.status-pill.app,
-.status-pill.vendor,
-.status-pill.external {
-    background: rgba(245, 124, 0, 0.12);
-    color: #9b5d00;
 }
 
 .audit-list {
@@ -418,17 +324,12 @@ body {
         background: none !important;
     }
 
-    .data-pill,
-    .status-pill,
     .audit-pill {
         border-radius: 3pt;
         padding: 1pt 4pt;
         font-size: 8pt;
         print-color-adjust: exact;
         -webkit-print-color-adjust: exact;
-    }
-
-    .audit-pill {
         display: none;
     }
 

@@ -1,6 +1,6 @@
 /* ============================================
    Common JavaScript Utilities
-   Simplications Outreach Games
+   Simplications Transfer Games
    ============================================ */
 
 /**

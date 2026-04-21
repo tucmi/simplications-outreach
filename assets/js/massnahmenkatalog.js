@@ -74,8 +74,4 @@ function initCatalog() {
     updatePhaseVisibility();
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCatalog);
-} else {
-    initCatalog();
-}
+document.addEventListener('DOMContentLoaded', initCatalog);
