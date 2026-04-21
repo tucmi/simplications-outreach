@@ -260,3 +260,73 @@ body {
         align-items: flex-start;
     }
 }
+
+/* ============================================
+   Footnote references and sources section
+   ============================================ */
+.fn-ref {
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.fn-ref:hover {
+    text-decoration: underline;
+}
+
+.fn-refs {
+    font-size: 0.75em;
+    vertical-align: super;
+    line-height: 1;
+    margin-left: 0.1em;
+    white-space: nowrap;
+}
+
+.sources-section {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-sm);
+    padding: 1.5rem 1.75rem;
+    margin-top: 2rem;
+}
+
+.sources-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: var(--gray-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.sources-list {
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+    padding: 0;
+}
+
+.sources-list li {
+    font-size: 0.88rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+}
+
+.sources-list li::before {
+    content: attr(data-fn);
+    font-size: 0.78em;
+    font-weight: 700;
+    color: var(--primary-dark);
+    flex: 0 0 auto;
+}
+
+.sources-list a {
+    color: var(--primary-dark);
+    word-break: break-all;
+}
+
+.sources-list a:hover {
+    color: var(--primary-color);
+}
