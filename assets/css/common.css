@@ -259,6 +259,36 @@ button:disabled {
     }
 }
 
+/* ============================================
+   Global Prototype Ribbon
+   ============================================ */
+body::before {
+    content: "PROTOTYPE";
+    position: fixed;
+    top: 20px;
+    right: -64px;
+    z-index: 9999;
+    padding: 0.35rem 5rem;
+    background: linear-gradient(135deg, #f57c00 0%, #c62828 100%);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transform: rotate(40deg);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.28);
+    pointer-events: none;
+}
+
+@media (max-width: 640px) {
+    body::before {
+        top: 14px;
+        right: -70px;
+        padding: 0.3rem 4.4rem;
+        font-size: 0.62rem;
+    }
+}
+
 @keyframes pulse {
     0%, 100% {
         transform: scale(1);
