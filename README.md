@@ -16,6 +16,8 @@ Interactive games use the naming convention `{game-name}-game.{ext}`. Standalone
 
 #### Sensorium Game (Was siehst DU?)
 
+Not linked from the hub page (`index.html`); reachable only by opening its page directly.
+
 - `pages/sensorium-game.html` - Sensorium perspective game HTML
 - `assets/css/sensorium-game.css` - Sensorium game-specific styles
 - `assets/js/sensorium-game.js` - Sensorium game logic and scenarios
@@ -34,7 +36,7 @@ Interactive games use the naming convention `{game-name}-game.{ext}`. Standalone
 
 ### Shared Files
 
-- `assets/css/common.css` - Shared styles (colors, typography, buttons, animations)
+- `assets/css/common.css` - Shared styles (colors, typography, buttons, animations, global "DEMO" ribbon)
 - `assets/js/common.js` - Shared utility functions (DOM helpers, array utils, storage, animations)
 
 ### Other Files
@@ -63,7 +65,7 @@ Match data visualizations with the stories they tell. Players must connect graph
 
 Discover the two perspectives of data collection - what you think you're sharing vs. what's actually being collected.
 
-**File:** `pages/sensorium-game.html`
+**File:** `pages/sensorium-game.html` (not linked from the hub page)
 
 **Features:**
 
