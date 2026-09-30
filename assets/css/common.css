@@ -263,7 +263,7 @@ button:disabled {
    Global Prototype Ribbon
    ============================================ */
 body::before {
-    content: "PROTOTYPE";
+    content: "DEMO";
     position: fixed;
     top: 20px;
     right: -64px;
