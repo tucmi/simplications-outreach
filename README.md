@@ -51,7 +51,7 @@ Not linked from the hub page (`index.html`); reachable only by opening its page 
 ### Shared Files
 
 - `assets/css/common.css` - Shared styles (colors, typography, buttons, focus ring, zoom modal, `.sr-only`, animations, global "DEMO" ribbon)
-- `assets/js/common.js` - Shared utility functions (DOM helpers, array utils, storage, animations)
+- `assets/js/common.js` - Shared utility functions (`shuffleArray`, `scrollToTop`)
 
 ### Other Files
 
@@ -183,12 +183,8 @@ Provides:
 
 Provides utility functions:
 
-- **DOM:** `$()`, `$$()`, `createElement()`
-- **Arrays:** `shuffleArray()`, `randomItem()`
-- **Timing:** `wait()`, `nextFrame()`, `addClassWithDelay()`
-- **Storage:** `saveToStorage()`, `loadFromStorage()`, `removeFromStorage()`
-- **Events:** `debounce()`, `throttle()`
-- **Scroll:** `scrollToTop()`, `scrollToElement()`
+- **Arrays:** `shuffleArray()` (returns a new array, does not mutate)
+- **Scroll:** `scrollToTop()`
 
 ## 🎨 Design System
 
