@@ -161,6 +161,7 @@ const scenarios = [
 let currentScenarioIndex = 0;
 let currentPerspective = 'user'; // 'user' or 'collector'
 let hasViewedCollectorPerspective = false;
+let insightTimeout = null;
 
 // ============================================
 // DOM Elements
@@ -212,6 +213,7 @@ function init() {
 function loadScenario(index) {
     const scenario = scenarios[index];
     hasViewedCollectorPerspective = false;
+    clearTimeout(insightTimeout);
     
     // Update scenario info
     elements.currentScenario.textContent = index + 1;
@@ -305,7 +307,7 @@ function switchPerspective(perspective, animate = true) {
     if (perspective === 'collector' && !hasViewedCollectorPerspective) {
         hasViewedCollectorPerspective = true;
         const scenario = scenarios[currentScenarioIndex];
-        setTimeout(() => {
+        insightTimeout = setTimeout(() => {
             elements.insightText.textContent = scenario.insight;
             document.querySelector('.insights-section').classList.add('fade-in');
         }, 500);
@@ -350,10 +352,6 @@ function updateProgressBar() {
     elements.progressFill.style.width = `${progress}%`;
 }
 
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
 // ============================================
 // Completion Modal
 // ============================================
@@ -362,10 +360,14 @@ function showCompletionModal() {
     // Create modal overlay
     const modal = document.createElement('div');
     modal.className = 'completion-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-labelledby', 'completionTitle');
+    const previouslyFocused = document.activeElement;
     modal.innerHTML = `
         <div class="modal-content">
             <div class="modal-header">
-                <h2>🎉 Glückwunsch!</h2>
+                <h2 id="completionTitle">🎉 Glückwunsch!</h2>
                 <p>Du hast alle Szenarien durchgespielt</p>
             </div>
             
@@ -425,34 +427,42 @@ function showCompletionModal() {
     // Add fade-in animation
     setTimeout(() => modal.classList.add('show'), 10);
     
-    // Event listeners
-    modal.querySelector('#closeModalBtn').addEventListener('click', () => {
+    // Single close path: removes the key handler, closes the modal, restarts the game
+    const dismiss = () => {
+        document.removeEventListener('keydown', keyHandler);
         closeCompletionModal(modal);
         resetGame();
-    });
-    
-    modal.querySelector('#restartBtn').addEventListener('click', () => {
-        closeCompletionModal(modal);
-        resetGame();
-    });
-    
-    // Close on overlay click
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeCompletionModal(modal);
-            resetGame();
-        }
-    });
-    
-    // Close on Escape key
-    const escapeHandler = (e) => {
-        if (e.key === 'Escape') {
-            closeCompletionModal(modal);
-            resetGame();
-            document.removeEventListener('keydown', escapeHandler);
+        if (previouslyFocused && typeof previouslyFocused.focus === 'function') {
+            previouslyFocused.focus();
         }
     };
-    document.addEventListener('keydown', escapeHandler);
+
+    // Escape closes; Tab is kept inside the modal
+    const keyHandler = (e) => {
+        if (e.key === 'Escape') {
+            dismiss();
+        } else if (e.key === 'Tab') {
+            const focusable = modal.querySelectorAll('button');
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+    };
+    document.addEventListener('keydown', keyHandler);
+
+    modal.querySelector('#closeModalBtn').addEventListener('click', dismiss);
+    modal.querySelector('#restartBtn').addEventListener('click', dismiss);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) dismiss();
+    });
+
+    modal.querySelector('#closeModalBtn').focus();
 }
 
 function closeCompletionModal(modal) {

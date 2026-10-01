@@ -123,6 +123,32 @@ function sanitizeForSVG(text) {
 }
 
 /**
+ * Compute x positions for each data point.
+ * Uses the numeric hour values of the time labels (e.g. "6.5h") so that the
+ * horizontal spacing reflects real elapsed time. Falls back to even spacing
+ * if labels are missing or not parseable.
+ * @param {Object} data - Graph data object
+ * @param {number} chartWidth - Width of the plot area
+ * @param {number} inset - Space kept free at both ends of the axis
+ * @returns {number[]} x offsets relative to the plot area's left edge
+ */
+function computeXPositions(data, chartWidth, inset = 0) {
+    const n = data.graphData.length;
+    const times = (data.timeLabels || []).map(label => parseFloat(label));
+    const usable = times.length === n && times.every(t => Number.isFinite(t)) && Math.max(...times) > Math.min(...times);
+    const innerWidth = chartWidth - 2 * inset;
+
+    if (!usable) {
+        const step = n > 1 ? innerWidth / (n - 1) : 0;
+        return data.graphData.map((_, i) => inset + i * step);
+    }
+
+    const tMin = Math.min(...times);
+    const tRange = Math.max(...times) - tMin;
+    return times.map(t => inset + ((t - tMin) / tRange) * innerWidth);
+}
+
+/**
  * Generate SVG graph from data
  * @param {Object} data - Graph data object containing graphType, graphData, labels, etc.
  * @param {boolean} showTitle - Whether to display the graph title
@@ -135,67 +161,68 @@ function generateGraph(data, showTitle = true) {
             console.error('Invalid graph data:', data);
             return createErrorSVG();
         }
-        
+
         const { graphType, graphTitle, graphData, yAxisLabel, highlightIndices, timeLabels } = data;
-        
+
         const { WIDTH: width, HEIGHT: height, PADDING: padding, COLORS, FONT_SIZES } = SVG_CONFIG;
         const chartWidth = width - padding.left - padding.right;
         const chartHeight = height - padding.top - padding.bottom;
-        
+
         const maxValue = Math.max(...graphData);
         const minValue = Math.min(...graphData);
         const valueRange = maxValue - minValue || 1;
-        
+
+        // Bars need breathing room at the axis ends so they don't cross the axes
+        const inset = graphType === 'bar' ? 8 : 0;
+        const xs = computeXPositions(data, chartWidth, inset).map(x => padding.left + x);
+
         let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">`;
         svg += `<rect width="${width}" height="${height}" fill="${COLORS.BACKGROUND}"/>`;
-        
-        // Only show title if showTitle is true
+
         if (showTitle && graphTitle) {
             svg += `<text x="${width/2}" y="25" text-anchor="middle" font-size="${FONT_SIZES.TITLE}" font-weight="bold" fill="${COLORS.PRIMARY}">${sanitizeForSVG(graphTitle)}</text>`;
         }
-        
+
         // Axes
         const axisY = padding.top + chartHeight;
         svg += `<line x1="${padding.left}" y1="${axisY}" x2="${width - padding.right}" y2="${axisY}" stroke="${COLORS.SECONDARY}" stroke-width="1"/>`;
         svg += `<line x1="${padding.left}" y1="${padding.top}" x2="${padding.left}" y2="${axisY}" stroke="${COLORS.SECONDARY}" stroke-width="1"/>`;
-        
+
         // Y-axis label
         if (yAxisLabel) {
             svg += `<text x="${padding.left - 30}" y="${height/2}" font-size="${FONT_SIZES.LABEL}" fill="${COLORS.SECONDARY}">${sanitizeForSVG(yAxisLabel)}</text>`;
         }
-    
-    // X-axis time labels
-    if (timeLabels && timeLabels.length > 0) {
-        const stepX = chartWidth / (graphData.length - 1);
-        timeLabels.forEach((label, i) => {
-            const x = padding.left + (i * stepX);
-            const y = axisY + 20;
-                svg += `<text x="${x}" y="${y}" font-size="${FONT_SIZES.TIME}" fill="${COLORS.SECONDARY}" text-anchor="middle">${sanitizeForSVG(label)}</text>`;
+
+        // X-axis time labels, aligned with the data points / bars
+        if (timeLabels && timeLabels.length > 0) {
+            timeLabels.forEach((label, i) => {
+                if (xs[i] === undefined) return;
+                svg += `<text x="${xs[i]}" y="${axisY + 20}" font-size="${FONT_SIZES.TIME}" fill="${COLORS.SECONDARY}" text-anchor="middle">${sanitizeForSVG(label)}</text>`;
             });
         }
-        
+
         // X-axis label
         svg += `<text x="${width/2}" y="${height - 10}" font-size="${FONT_SIZES.LABEL}" fill="${COLORS.SECONDARY}" text-anchor="middle">Zeit</text>`;
-        
-        // Generate graph based on type
-        switch(graphType) {
+
+        const layout = { xs, padding, chartHeight, maxValue, minValue, valueRange };
+        switch (graphType) {
             case 'line':
-                svg += generateLineGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
+                svg += generateLineGraph(graphData, layout);
                 break;
             case 'bar':
-                svg += generateBarGraph(graphData, padding, chartWidth, chartHeight, maxValue, highlightIndices);
+                svg += generateBarGraph(graphData, layout, highlightIndices);
                 break;
             case 'area':
-                svg += generateAreaGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
+                svg += generateAreaGraph(graphData, layout);
                 break;
             case 'smooth':
-                svg += generateSmoothGraph(graphData, padding, chartWidth, chartHeight, maxValue, minValue, valueRange);
+                svg += generateSmoothGraph(graphData, layout);
                 break;
             default:
                 console.warn('Unknown graph type:', graphType);
                 return createErrorSVG();
         }
-        
+
         svg += '</svg>';
         return 'data:image/svg+xml,' + encodeURIComponent(svg);
     } catch (error) {
@@ -217,67 +244,58 @@ function createErrorSVG() {
     return 'data:image/svg+xml,' + encodeURIComponent(svg);
 }
 
-function generateLineGraph(data, padding, chartWidth, chartHeight, maxValue, minValue, valueRange) {
-    const stepX = chartWidth / (data.length - 1);
-    let path = 'M ';
-    
-    data.forEach((value, i) => {
-        const x = padding.left + (i * stepX);
+// Map data values to points inside the plot area
+function toPoints(data, { xs, padding, chartHeight, minValue, valueRange }) {
+    return data.map((value, i) => {
         const normalized = (value - minValue) / valueRange;
-        const y = padding.top + chartHeight - (normalized * chartHeight);
-        path += `${x} ${y} `;
-        if (i < data.length - 1) path += 'L ';
+        return { x: xs[i], y: padding.top + chartHeight - normalized * chartHeight };
     });
-    
+}
+
+function linePathFrom(points) {
+    return 'M ' + points.map(p => `${p.x} ${p.y}`).join(' L ');
+}
+
+function areaPathFrom(linePath, points, { padding, chartHeight }) {
+    const baseY = padding.top + chartHeight;
+    return `${linePath} L ${points[points.length - 1].x} ${baseY} L ${points[0].x} ${baseY} Z`;
+}
+
+function generateLineGraph(data, layout) {
+    const path = linePathFrom(toPoints(data, layout));
     return `<path d="${path}" stroke="#BF4254" stroke-width="2.5" fill="none"/>`;
 }
 
-function generateBarGraph(data, padding, chartWidth, chartHeight, maxValue, highlightIndices = []) {
-    const barWidth = chartWidth / data.length * 0.7;
-    const stepX = chartWidth / data.length;
-    let svg = '';
-    
-    data.forEach((value, i) => {
-        const x = padding.left + (i * stepX) + (stepX - barWidth) / 2;
-        const barHeight = (value / maxValue) * chartHeight;
+function generateBarGraph(data, layout, highlightIndices = []) {
+    const { xs, padding, chartHeight, maxValue } = layout;
+
+    // Bar width: 70% of the smallest gap between neighbouring bars
+    let minGap = Infinity;
+    for (let i = 1; i < xs.length; i++) {
+        minGap = Math.min(minGap, xs[i] - xs[i - 1]);
+    }
+    const barWidth = Number.isFinite(minGap) ? Math.max(2, minGap * 0.7) : 20;
+    const safeMax = maxValue || 1;
+
+    return data.map((value, i) => {
+        const barHeight = (value / safeMax) * chartHeight;
         const y = padding.top + chartHeight - barHeight;
-        const isHighlighted = highlightIndices.includes(i);
-        const color = isHighlighted ? '#BF4254' : '#84888E';
-        svg += `<rect x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" fill="${color}" rx="1"/>`;
-    });
-    
-    return svg;
+        const color = highlightIndices.includes(i) ? '#BF4254' : '#84888E';
+        return `<rect x="${xs[i] - barWidth / 2}" y="${y}" width="${barWidth}" height="${barHeight}" fill="${color}" rx="1"/>`;
+    }).join('');
 }
 
-function generateAreaGraph(data, padding, chartWidth, chartHeight, maxValue, minValue, valueRange) {
-    const stepX = chartWidth / (data.length - 1);
-    let path = 'M ';
-    
-    data.forEach((value, i) => {
-        const x = padding.left + (i * stepX);
-        const normalized = (value - minValue) / valueRange;
-        const y = padding.top + chartHeight - (normalized * chartHeight);
-        path += `${x} ${y} `;
-        if (i < data.length - 1) path += 'L ';
-    });
-    
-    const linePath = path;
-    const areaPath = path + `L ${padding.left + chartWidth} ${padding.top + chartHeight} L ${padding.left} ${padding.top + chartHeight} Z`;
-    
+function generateAreaGraph(data, layout) {
+    const points = toPoints(data, layout);
+    const linePath = linePathFrom(points);
+    const areaPath = areaPathFrom(linePath, points, layout);
     return `<path d="${areaPath}" fill="#BF4254" opacity="0.2"/><path d="${linePath}" stroke="#BF4254" stroke-width="2.5" fill="none"/>`;
 }
 
-function generateSmoothGraph(data, padding, chartWidth, chartHeight, maxValue, minValue, valueRange) {
-    const stepX = chartWidth / (data.length - 1);
-    const points = data.map((value, i) => {
-        const x = padding.left + (i * stepX);
-        const normalized = (value - minValue) / valueRange;
-        const y = padding.top + chartHeight - (normalized * chartHeight);
-        return { x, y };
-    });
-    
+function generateSmoothGraph(data, layout) {
+    const points = toPoints(data, layout);
+
     let path = `M ${points[0].x} ${points[0].y}`;
-    
     for (let i = 0; i < points.length - 1; i++) {
         const xMid = (points[i].x + points[i + 1].x) / 2;
         const yMid = (points[i].y + points[i + 1].y) / 2;
@@ -286,11 +304,9 @@ function generateSmoothGraph(data, padding, chartWidth, chartHeight, maxValue, m
             path += ` Q ${points[i + 1].x} ${points[i + 1].y}, ${points[i + 1].x} ${points[i + 1].y}`;
         }
     }
-    
-    const linePath = path;
-    const areaPath = path + ` L ${padding.left + chartWidth} ${padding.top + chartHeight} L ${padding.left} ${padding.top + chartHeight} Z`;
-    
-    return `<path d="${areaPath}" fill="#BF4254" opacity="0.15"/><path d="${linePath}" stroke="#BF4254" stroke-width="2.5" fill="none"/>`;
+
+    const areaPath = areaPathFrom(path, points, layout);
+    return `<path d="${areaPath}" fill="#BF4254" opacity="0.15"/><path d="${path}" stroke="#BF4254" stroke-width="2.5" fill="none"/>`;
 }
 
 // Game State
@@ -303,6 +319,7 @@ let gameStarted = false;
 let lastSelectedType = null; // Track which type was selected last
 let currentPairCount = 0; // Track actual number of pairs in current game
 let isProcessingMatch = false; // Prevent interaction during match checking
+let pendingTimeouts = []; // Timers of the current game, cleared on restart
 
 // DOM Elements
 const storyBoard = document.getElementById('storyBoard');
@@ -335,7 +352,10 @@ function announceToScreenReader(message) {
 }
 
 // Zoom Modal Functions
+let zoomTrigger = null; // Element to return focus to when the modal closes
+
 function showZoomModal(data) {
+    zoomTrigger = document.activeElement;
     zoomGraphContainer.innerHTML = '';
     
     const img = document.createElement('img');
@@ -345,11 +365,14 @@ function showZoomModal(data) {
     
     zoomModal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    zoomClose.focus();
 }
 
 function hideZoomModal() {
     zoomModal.classList.add('hidden');
     document.body.style.overflow = '';
+    if (zoomTrigger && typeof zoomTrigger.focus === 'function') zoomTrigger.focus();
+    zoomTrigger = null;
 }
 
 // Initialize the game
@@ -365,11 +388,18 @@ function init() {
     // Event delegation for card clicks
     storyBoard.addEventListener('click', handleBoardClick);
     dataBoard.addEventListener('click', handleBoardClick);
+    storyBoard.addEventListener('keydown', handleBoardKeydown);
+    dataBoard.addEventListener('keydown', handleBoardKeydown);
     
     // ESC key to close zoom modal
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !zoomModal.classList.contains('hidden')) {
+        if (zoomModal.classList.contains('hidden')) return;
+        if (e.key === 'Escape') {
             hideZoomModal();
+        } else if (e.key === 'Tab') {
+            // The close button is the only focusable element in the modal
+            e.preventDefault();
+            zoomClose.focus();
         }
     });
     
@@ -389,12 +419,35 @@ function handleBoardClick(e) {
     handleCardClick(cardElement, cardData);
 }
 
+// Schedule a timer that is cancelled when a new game starts
+function scheduleTimeout(fn, delay) {
+    const id = setTimeout(() => {
+        pendingTimeouts = pendingTimeouts.filter(t => t !== id);
+        fn();
+    }, delay);
+    pendingTimeouts.push(id);
+}
+
+// Keyboard support: Enter/Space activates the focused card
+function handleBoardKeydown(e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    if (e.target.closest('.zoom-icon')) return; // let the zoom button handle its own keys
+    const cardElement = e.target.closest('.card');
+    if (!cardElement) return;
+    e.preventDefault();
+    handleBoardClick(e);
+}
+
 // Start a new game
 function startNewGame() {
     if (!gameData || gameData.length === 0) {
-        showMessage('Keine Daten', 'Bitte füge Spieldaten in der script.js Datei hinzu.');
+        showMessage('Keine Daten', 'Es sind keine Spieldaten vorhanden.');
         return;
     }
+
+    pendingTimeouts.forEach(clearTimeout);
+    pendingTimeouts = [];
+    isProcessingMatch = false;
 
     gameMessage.classList.add('hidden');
     gameStarted = true;
@@ -450,22 +503,22 @@ function createCards() {
         });
     });
     
-    // Shuffle each group separately
-    shuffleArray(storyCards);
-    shuffleArray(graphCards);
+    // Shuffle each group separately (shuffleArray returns a new array)
+    const shuffledStories = shuffleArray(storyCards);
+    const shuffledGraphs = shuffleArray(graphCards);
     
     // Store all cards
-    cards = [...storyCards, ...graphCards];
+    cards = [...shuffledStories, ...shuffledGraphs];
     
     // Render story cards
-    storyCards.forEach((card, index) => {
+    shuffledStories.forEach((card, index) => {
         const cardElement = createCardElement(card, index);
         storyBoard.appendChild(cardElement);
     });
     
     // Render graph cards
-    graphCards.forEach((card, index) => {
-        const cardElement = createCardElement(card, index + storyCards.length);
+    shuffledGraphs.forEach((card, index) => {
+        const cardElement = createCardElement(card, index + shuffledStories.length);
         dataBoard.appendChild(cardElement);
     });
 }
@@ -477,6 +530,11 @@ function createCardElement(card, index) {
     cardDiv.dataset.index = index;
     cardDiv.dataset.pairId = card.pairId;
     cardDiv.dataset.type = card.type;
+    cardDiv.tabIndex = 0;
+    cardDiv.setAttribute('role', 'button');
+    cardDiv.setAttribute('aria-label', card.type === 'story'
+        ? `Geschichte: ${card.data.storyTitle}`
+        : `Datenvisualisierung ${card.pairId + 1}`);
     
     // Store card data in map for event delegation
     cardDataMap.set(String(index), card);
@@ -565,6 +623,9 @@ function handleCardClick(cardElement, card) {
     
     // For story cards, check if already flipped
     if (card.type === 'story' && cardElement.classList.contains('flipped')) return;
+
+    // A second pick must come from the opposite board
+    if (flippedCards.length === 1 && flippedCards[0].card.type === card.type) return;
     
     // For data cards, they're always visible - just add to selection
     // For story cards, flip them
@@ -596,7 +657,7 @@ function handleCardClick(cardElement, card) {
     if (flippedCards.length === 2) {
         attempts++;
         updateStats();
-        setTimeout(checkForMatch, GAME_CONFIG.MATCH_CHECK_DELAY);
+        scheduleTimeout(checkForMatch, GAME_CONFIG.MATCH_CHECK_DELAY);
     }
 }
 
@@ -629,7 +690,7 @@ function checkForMatch() {
         }
         
         // Add pulse animation briefly
-        setTimeout(() => {
+        scheduleTimeout(() => {
             first.element.classList.add('pulse');
             second.element.classList.add('pulse');
         }, GAME_CONFIG.PULSE_DELAY);
@@ -646,17 +707,17 @@ function checkForMatch() {
         
         // Check if game is complete
         if (matchedPairs === currentPairCount) {
-            setTimeout(endGame, GAME_CONFIG.END_GAME_DELAY);
+            scheduleTimeout(endGame, GAME_CONFIG.END_GAME_DELAY);
         }
     } else {
         // No match - keep cards flipped, show shake, then flip back
         announceToScreenReader('Keine Übereinstimmung. Versuche es erneut.');
-        setTimeout(() => {
+        scheduleTimeout(() => {
             first.element.classList.add('shake');
             second.element.classList.add('shake');
             
             // After shake animation completes, flip cards back
-            setTimeout(() => {
+            scheduleTimeout(() => {
                 first.element.classList.remove('shake', 'flipped');
                 second.element.classList.remove('shake', 'flipped');
                 flippedCards = [];
@@ -689,34 +750,28 @@ function showMessage(title, text) {
     gameMessage.classList.remove('hidden');
 }
 
+// Fullscreen button icons
+const FULLSCREEN_SVG_OPEN = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+const FULLSCREEN_SVG_CLOSE = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>';
+
 // Toggle fullscreen mode
 function toggleFullscreen() {
     if (!document.fullscreenElement) {
-        // Enter fullscreen
-        document.documentElement.requestFullscreen().then(() => {
-            fullscreenButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>';
-            fullscreenButton.title = 'Vollbild beenden';
-            fullscreenButton.setAttribute('aria-label', 'Vollbild beenden');
-        }).catch(err => {
+        document.documentElement.requestFullscreen().catch(err => {
             console.error(`Error attempting to enable fullscreen: ${err.message}`);
         });
     } else {
-        // Exit fullscreen
-        document.exitFullscreen().then(() => {
-            fullscreenButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
-            fullscreenButton.title = 'Vollbild';
-            fullscreenButton.setAttribute('aria-label', 'Vollbild');
-        });
+        document.exitFullscreen();
     }
 }
 
-// Update fullscreen button icon when fullscreen changes
+// Keep the fullscreen button in sync with the actual fullscreen state
 document.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement) {
-        fullscreenButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
-        fullscreenButton.title = 'Vollbild';
-        fullscreenButton.setAttribute('aria-label', 'Vollbild');
-    }
+    const isFullscreen = Boolean(document.fullscreenElement);
+    const label = isFullscreen ? 'Vollbild beenden' : 'Vollbild';
+    fullscreenButton.innerHTML = isFullscreen ? FULLSCREEN_SVG_CLOSE : FULLSCREEN_SVG_OPEN;
+    fullscreenButton.title = label;
+    fullscreenButton.setAttribute('aria-label', label);
 });
 
 // Initialize the game when the page loads

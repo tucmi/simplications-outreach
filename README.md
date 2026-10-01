@@ -14,6 +14,14 @@ Interactive games use the naming convention `{game-name}-game.{ext}`. Standalone
 - `assets/css/memory-game.css` - Memory game-specific styles
 - `assets/js/memory-game.js` - Memory game logic and data
 
+#### Fallbeispiele-Memory
+
+Pairs short text case studies with real sensor-data images.
+
+- `pages/fallbeispiele-memory-game.html` - Fallbeispiele memory game HTML
+- `assets/css/fallbeispiele-memory-game.css` - Game-specific styles
+- `assets/js/fallbeispiele-memory-game.js` - Game logic and case-study data (images in `data/Fallbeispiele_Daten/`; `data/Fallbeispiele.txt` is the plain-text source of the case studies and is not loaded at runtime)
+
 #### Sensorium Game (Was siehst DU?)
 
 Not linked from the hub page (`index.html`); reachable only by opening its page directly.
@@ -34,14 +42,22 @@ Not linked from the hub page (`index.html`); reachable only by opening its page 
 - `assets/css/checkliste-smart-home.css` - Checklist-specific styles
 - `assets/js/checkliste-smart-home.js` - Structured rendering of example rooms and devices
 
+#### Konsens-Protokoll
+
+- `pages/konsens-protokoll.html` - Fillable household agreement template
+- `assets/css/konsens-protokoll.css` - Protocol-specific styles
+- `assets/js/konsens-protokoll.js` - PDF export (jsPDF + autoTable, loaded from cdnjs)
+
 ### Shared Files
 
-- `assets/css/common.css` - Shared styles (colors, typography, buttons, animations, global "DEMO" ribbon)
+- `assets/css/common.css` - Shared styles (colors, typography, buttons, focus ring, zoom modal, `.sr-only`, animations, global "DEMO" ribbon)
 - `assets/js/common.js` - Shared utility functions (DOM helpers, array utils, storage, animations)
 
 ### Other Files
 
 - `index.html` - Main hub page linking to games and serious content
+- `assets/css/index.css` - Hub page styles
+- `checkliste-smart-home.html`, `konsens-protokoll.html`, `massnahmenkatalog.html` (repo root) - Redirect stubs to the pages in `pages/`, kept so older links keep working
 - `README.md` - This file
 - `LICENSE` - Project license
 
@@ -60,6 +76,7 @@ Match data visualizations with the stories they tell. Players must connect graph
 - Flip animations
 - Statistics tracking
 - Fullscreen mode
+- Keyboard-playable cards (Tab, Enter/Space)
 
 ### 2. Sensorium (Perspective Game)
 

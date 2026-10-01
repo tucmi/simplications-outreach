@@ -144,6 +144,15 @@ header h1 {
     pointer-events: none;
 }
 
+.memory-card.matched::after {
+    content: "✓";
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
 .card-text {
     font-size: 0.98rem;
     line-height: 1.3;

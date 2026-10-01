@@ -107,24 +107,25 @@ function generateProtocolPdf() {
         const tableData = devices.map(d => [
             d.name || '',
             d.location || '',
-            d.allowed ? '✓' : '',
-            d.local ? '✓' : '',
-            d.noThird ? '✓' : '',
+            d.data || '',
+            d.allowed ? 'X' : '',
+            d.local ? 'X' : '',
+            d.noThird ? 'X' : '',
             d.notes || ''
         ]);
         
         pdf.autoTable({
-            head: [['Gerät', 'Standort', 'Erlaubt', 'Abschaltbar', 'Keine 3.', 'Absprachen']],
+            head: [['Gerät', 'Standort', 'Erhobene Daten', 'Erlaubt', 'Abschaltbar', 'Keine Drittanbieter', 'Absprachen']],
             body: tableData,
             startY: yPos,
             margin: { left: margin, right: margin },
             styles: { font: 'helvetica', fontSize: 8, cellPadding: 3, overflow: 'linebreak' },
-            headerStyles: { fillColor: [47, 93, 80], textColor: [255, 255, 255], fontStyle: 'bold' },
-            alternateRowStyles: { fillColor: [245, 251, 248] },
+            headerStyles: { fillColor: [191, 66, 84], textColor: [255, 255, 255], fontStyle: 'bold' },
+            alternateRowStyles: { fillColor: [247, 247, 248] },
             columnStyles: {
-                2: { halign: 'center' },
                 3: { halign: 'center' },
-                4: { halign: 'center' }
+                4: { halign: 'center' },
+                5: { halign: 'center', cellWidth: 28 }
             }
         });
         
@@ -151,31 +152,35 @@ function generateProtocolPdf() {
         yPos += notesLines.length * 5 + 6;
     }
     
-    // Signature section
-    if (yPos > pdf.internal.pageSize.getHeight() - 50) {
+    // Signature section: one line per household member (at least two)
+    const signers = Math.max(2, members.length);
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const sigRows = Math.ceil(signers / 2);
+    if (yPos > pageHeight - (20 + sigRows * 28)) {
         pdf.addPage();
         yPos = 15;
     }
-    
+
     pdf.setFontSize(10);
     pdf.setFont(undefined, 'bold');
     pdf.text('Unterschriften', margin, yPos);
     yPos += 8;
-    
+
     pdf.setFont(undefined, 'normal');
     pdf.setFontSize(9);
-    const sigX = margin;
     const sigSpacing = (pageWidth - 2 * margin) / 2;
-    const sigLineY = yPos + 12;
-    const sigLabelY = sigLineY + 8;
-    
-    // Draw signature lines
-    for (let i = 0; i < 2; i++) {
-        const x = sigX + (i * sigSpacing);
-        pdf.line(x, sigLineY, x + sigSpacing - 10, sigLineY);
-        pdf.text(`Person ${i + 1}`, x, sigLabelY);
+
+    for (let i = 0; i < signers; i++) {
+        const x = margin + (i % 2) * sigSpacing;
+        const lineY = yPos + 12 + Math.floor(i / 2) * 28;
+        pdf.line(x, lineY, x + sigSpacing - 10, lineY);
+        const label = members[i]?.name || `Person ${i + 1}`;
+        pdf.text(label, x, lineY + 6);
+        pdf.setFontSize(7);
+        pdf.text('Unterschrift, Datum', x, lineY + 10);
+        pdf.setFontSize(9);
     }
-    
+
     // Footer
     pdf.setFontSize(8);
     pdf.setTextColor(150);
